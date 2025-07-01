@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h5 class="modal-title">Ajouter un résultat PIP</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="resultsPipForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="expectation">Attente</label>
+        <input type="text" class="form-control" id="expectation" formControlName="expectation">
+      </div>
+      <div class="form-group">
+        <label for="risk">Risk</label>
+        <input type="text" class="form-control" id="risk" formControlName="risk">
+      </div>
+      <div class="form-group">
+        <label for="existantMonitoring">Surveillance existante</label>
+        <input type="text" class="form-control" id="existantMonitoring" formControlName="existantMonitoring">
+      </div>
+      <div class="form-group">
+        <label for="setupMonitoring">Surveillance à mettre en place</label>
+        <input type="text" class="form-control" id="setupMonitoring" formControlName="setupMonitoring">
+      </div>
+      <div class="form-group">
+        <label for="pip">PIP</label>
+        <select class="form-control" id="pip" formControlName="pip">
+          <option [ngValue]="null" disabled>Sélectionner un PIP</option>
+          <option *ngFor="let pip of pips" [ngValue]="pip">{{ pip.name }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="processus">Processus</label>
+        <select multiple class="form-control" id="processus" formControlName="processus">
+          <option *ngFor="let processus of processusList" [ngValue]="processus">{{ processus.name }}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Enregistrer</button>
+  </div>
+  

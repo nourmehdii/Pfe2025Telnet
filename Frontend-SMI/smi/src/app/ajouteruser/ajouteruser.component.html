@@ -1,0 +1,44 @@
+<div class="modal-body">
+    <form (submit)="register()">
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="user.firstName" name="firstName" required aria-label="First Name">
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="user.lastName" name="lastName" required aria-label="Last Name">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" required aria-label="Email">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" required aria-label="Password">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Activities</label>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Choose Activities</mat-label>
+                <mat-select [(ngModel)]="selectedActivities" multiple class="w-100" id="selectedActivities" name="selectedActivities" aria-label="Choose Activities">
+                    <mat-option *ngFor="let activity of activities" [value]="activity">
+                        {{ activity.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-select" [(ngModel)]="selectedRole" name="role" id="role" aria-label="Role">
+                <option value="ADMIN">Admin</option>
+                <option value="RESPONSABLEQUALITE">Responsable Qualité</option>
+                <option value="DIRECTEUR">Directeur</option>
+                <option value="CHEFDEPROJET">Chef de Projet</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </form>
+</div>

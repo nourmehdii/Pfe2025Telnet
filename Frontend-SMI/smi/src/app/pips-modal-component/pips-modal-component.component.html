@@ -1,0 +1,44 @@
+
+<h2 mat-dialog-title>PIP Details</h2>
+
+
+<div mat-dialog-content>
+  <div *ngIf="data.pips.length === 0" class="no-pips">
+    No PIPs to display.
+  </div>
+ 
+    <i class="fas fa-sync-alt" (click)="refreshPips(data.categoryId)"></i>
+
+  <table *ngIf="data.pips.length > 0" class="pip-table">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Interaction</th>
+        <th>Type</th>
+        <th>Actions</th> <!-- Nouvelle colonne pour les actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pip of data.pips">
+        <td>{{ pip.name }}</td>
+        <td>{{ pip.interaction }}</td>
+        <td>{{ pip.type }}</td>
+        <td>
+          <button class="action-button delete" (click)="deletePip(pip)">
+            <i class="fa fa-trash"></i>
+          </button>
+          <button class="action-button edit" (click)="editPipModal(pip)">
+            <i class="fa fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeModal()">Close</button>
+</div>
+
+<!-- Lien vers Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

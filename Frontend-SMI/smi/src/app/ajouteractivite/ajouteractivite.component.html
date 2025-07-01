@@ -1,0 +1,38 @@
+<div class="modal bs-example-modal" tabindex="-1" role="dialog">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addActivityModalLabel">Ajouter une activité</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="createActivity()">
+          <div class="mb-3">
+            <label for="activityName" class="form-label">Nom de l'activité</label>
+            <input type="text" class="form-control" id="activityName" name="activityName" [(ngModel)]="newActivity.name" required>
+          </div>
+          <div class="mb-3">
+            <label for="activityDescription" class="form-label">Description de l'activité</label>
+            <textarea class="form-control" id="activityDescription" name="activityDescription" [(ngModel)]="newActivity.description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="processusSelect" class="form-label">Processus</label>
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Processus</mat-label>
+              <mat-select [formControl]="selectedProcessus" multiple>
+                <mat-option *ngFor="let processus of processusList" [value]="processus.id">
+                  {{ processus.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

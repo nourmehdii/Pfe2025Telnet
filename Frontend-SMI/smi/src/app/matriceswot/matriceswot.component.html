@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Colored Sidebar | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+    </head>
+
+    <body data-sidebar="colored">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-header></app-header>
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <app-app-menu></app-app-menu>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+              <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+
+            <div class="container">
+  <div class="header">
+    <h2>Matrice SWOT</h2>
+    <button class="add-button" (click)="openAddCadranModal()">Ajouter Cadran</button>
+  </div>
+
+  <!-- Toute la matrice SWOT ici -->
+  <div class="swot-grid-labeled">
+    <!-- Ligne 1 : INTERNE -->
+    <div class="label-cell">Interne</div>
+
+    <div class="swot-box force">
+      <h3>Forces</h3>
+      <div *ngFor="let item of voletsForce" class="cadran-item">
+        <span (click)="onCadranClick(item)">
+          {{ item?.name }}
+        </span>
+      </div>
+    </div>
+
+    <div class="swot-box faiblesse">
+      <h3>Faiblesses</h3>
+      <div *ngFor="let item of voletsFaiblesse" class="cadran-item">
+        <span (click)="onCadranClick(item)">
+          {{ item?.name }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Ligne 2 : EXTERNE -->
+    <div class="label-cell">Externe</div>
+
+    <div class="swot-box opportunite">
+      <h3>Opportunités</h3>
+      <div *ngFor="let item of voletsOpportunite" class="cadran-item">
+        <span (click)="onCadranClick(item)">
+          {{ item.volet?.name }} {{ item?.name }}
+        </span>
+      </div>
+    </div>
+
+    <div class="swot-box menace">
+      <h3>Menaces</h3>
+      <div *ngFor="let item of voletsMenace" class="cadran-item">
+        <span (click)="onCadranClick(item)">
+          {{ item.volet?.name }} {{ item?.name }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

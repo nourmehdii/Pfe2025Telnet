@@ -1,0 +1,8 @@
+<form (submit)="updateCategory()">
+    <div class="mb-3">
+      <label for="categoryName" class="form-label">Nom de la catégorie</label>
+      <input type="text" class="form-control" id="categoryName" [(ngModel)]="categoryDetails.name" name="categoryName" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+  </form>
+  

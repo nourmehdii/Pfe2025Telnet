@@ -1,0 +1,37 @@
+.custom-button-plus {
+    background-color: #6a96c8; /* Couleur bleu foncé */
+    border: none;
+    border-radius: 50%; /* Pour rendre le bouton rond */
+    color: rgb(187, 195, 218); /* Couleur du texte */
+    width: 30px; /* Ajustez la largeur selon vos préférences */
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button-plus:hover {
+    background-color: #0056b3; /* Couleur bleu foncé plus foncée au survol */
+}
+
+.custom-button-plus i {
+    font-size: 1.5rem; /* Taille de l'icône */
+}
+
+.btn-round {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .btn-round i {
+    pointer-events: none; /* To prevent icon from capturing clicks */
+  }
+  

@@ -1,0 +1,60 @@
+<div class="modal-header">
+    <h5 class="modal-title">Modifier Projet</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dialogRef.close()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nom du Projet</label>
+        <input type="text" class="form-control" id="name" formControlName="name" required>
+        <div *ngIf="projectForm.get('name').invalid && projectForm.get('name').touched" class="text-danger">
+          Le nom du projet est requis.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="type" class="form-label">Type de Projet</label>
+        <input type="text" class="form-control" id="type" formControlName="type" required>
+        <div *ngIf="projectForm.get('type').invalid && projectForm.get('type').touched" class="text-danger">
+          Le type de projet est requis.
+        </div>
+      </div>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Date de début</mat-label>
+        <input matInput type="date" formControlName="startDate">
+        <mat-error *ngIf="projectForm.get('startDate').invalid && projectForm.get('startDate').touched">
+          La date de début est requise.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Date de fin</mat-label>
+        <input matInput type="date" formControlName="endDate">
+        <mat-error *ngIf="projectForm.get('endDate').invalid && projectForm.get('endDate').touched">
+          La date de fin est requise.
+        </mat-error>
+      </mat-form-field>
+      <div class="mb-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Processus</mat-label>
+          <mat-select formControlName="processus" multiple>
+            <mat-option *ngFor="let processus of processusList" [value]="processus.id">{{ processus.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="projectForm.get('processus').invalid && projectForm.get('processus').touched" class="text-danger">
+          Au moins un processus doit être sélectionné.
+        </div>
+      </div>
+      <div class="mb-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Client</mat-label>
+          <mat-select formControlName="cli">
+            <mat-option *ngFor="let client of clientList" [value]="client.id">{{ client.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="projectForm.get('cli').invalid && projectForm.get('cli').touched" class="text-danger">
+          Veuillez sélectionner un client.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,75 @@
+.custom-button {
+    background-color: #4CAF50; /* couleur de fond */
+    border: none;
+    color: white; /* couleur du texte */
+    padding: 10px 20px; /* Réduisez le padding pour un bouton plus petit */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px; /* Taille du texte plus petite */
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 20px; /* angles arrondis */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* ombre */
+}
+
+.button-container {
+    display: flex; /* Utilisation de Flexbox pour aligner les boutons horizontalement */
+    align-items: center; /* Centre les éléments verticalement */
+}
+
+.button-container {
+    display: flex; /* Utilisation de Flexbox pour aligner les boutons horizontalement */
+    align-items: center; /* Centre les éléments verticalement */
+}
+
+.delete-button {
+    border: none;
+    background-color: #b71c1c; /* Couleur de fond pour le bouton de suppression */
+    cursor: pointer;
+    padding: 0;
+    width: 30px; /* Ajustez la largeur selon vos préférences */
+    height: 30px; /* Ajustez la hauteur selon vos préférences */
+    border-radius: 50%; /* Rend le bouton rond */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s; /* Ajout d'une transition fluide */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajout d'une légère ombre */
+    margin-right: 5px; /* Ajout de marge à droite pour l'espace entre les boutons */
+    color: #fff; /* Couleur du texte */
+    font-size: 10px; /* Taille du texte */
+}
+
+.edit-button {
+    border: none;
+    background-color: #52b6ec; /* Couleur de fond pour le bouton de modification */
+    cursor: pointer;
+    padding: 0;
+    width: 30px; /* Ajustez la largeur selon vos préférences */
+    height: 30px; /* Ajustez la hauteur selon vos préférences */
+    border-radius: 50%; /* Rend le bouton rond */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s; /* Ajout d'une transition fluide */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajout d'une légère ombre */
+    color: #fff; /* Couleur du texte */
+    font-size: 10px; /* Taille du texte */
+}
+
+/* Ajuster la taille des icônes */
+.custom-button1 i {
+    font-size: 16px; /* Taille des icônes */
+}
+
+/* Changement de couleur au survol */
+.delete-button:hover {
+    background-color: #d66565; /* Couleur de fond au survol pour le bouton de suppression */
+}
+
+.edit-button:hover {
+    background-color: #3c8dbc; /* Couleur de fond au survol pour le bouton de modification */
+}
+

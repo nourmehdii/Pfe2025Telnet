@@ -1,0 +1,285 @@
+.custom-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.input-label {
+    font-weight: bold;
+}
+
+.file-label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.file-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.submit-button {
+    margin-top: 20px;
+}
+
+/* Styling for File Input */
+.file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.file-input-wrapper input[type='file'] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+}
+
+/* Styling for Progress Bar */
+.progress {
+    margin-top: 20px;
+}
+
+/* Animation for Progress Bar */
+.progress-bar {
+    transition: width 0.3s ease-in-out;
+}
+
+/* Animation for Form */
+#uploadForm {
+    animation: slideInUp 0.5s ease-in-out;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #007bff; /* Couleur de la barre de progression */
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out; /* Animation de transition pour une mise à jour en douceur */
+}
+
+/* Styles pour les cadres simples */
+.simple-card {
+    border: 1px solid #ccc; /* Bordure grise */
+}
+
+/* Styles pour les badges personnalisés */
+.custom-badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+/* Styles pour les badges de couleur primaire */
+.custom-primary {
+    color: #fff;
+    background-color: #6c757d; /* Gris foncé */
+}
+
+/* Styles pour les badges de couleur de succès */
+.custom-success {
+    color: #fff;
+    background-color: #28a745; /* Vert */
+}
+
+/* Styles pour les badges de couleur d'information */
+.custom-info {
+    color: #fff;
+    background-color: #17a2b8; /* Bleu */
+}
+
+/* Styles pour les badges de couleur de mise en garde */
+.custom-warning {
+    color: #212529;
+    background-color: #ffc107; /* Jaune */
+}
+
+.custom-round-button {
+    border: none;
+    border-radius: 50%; /* Bordure arrondie */
+    background-color: #007bff; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement intérieur */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transition en douceur pour le changement de couleur de fond */
+}
+
+.custom-round-button:hover {
+    background-color: #0056b3; /* Changement de couleur de fond au survol */
+}
+
+
+.rounded-button {
+    border-radius: 20px; /* Ajustez ce chiffre pour obtenir l'arrondi désiré */
+}
+
+
+
+.custom-button {
+    background-color: #7bbad1; /* couleur de fond */
+    border: none;
+    color: white; /* couleur du texte */
+    padding: 10px 20px; /* Réduisez le padding pour un bouton plus petit */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px; /* Taille du texte plus petite */
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 20px; /* angles arrondis */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* ombre */
+}
+
+.delete-button {
+    border: none;
+    background-color: #b71c1c; /* Couleur de fond pour le bouton de suppression */
+    cursor: pointer;
+    padding: 0;
+    width: 30px; /* Ajustez la largeur selon vos préférences */
+    height: 30px; /* Ajustez la hauteur selon vos préférences */
+    border-radius: 50%; /* Rend le bouton rond */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s; /* Ajout d'une transition fluide */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajout d'une légère ombre */
+    margin-right: 5px; /* Ajout de marge à droite pour l'espace entre les boutons */
+    color: #fff; /* Couleur du texte */
+    font-size: 10px; /* Taille du texte */
+}
+
+.edit-button {
+    border: none;
+    background-color: #52b6ec; /* Couleur de fond pour le bouton de modification */
+    cursor: pointer;
+    padding: 0;
+    width: 30px; /* Ajustez la largeur selon vos préférences */
+    height: 30px; /* Ajustez la hauteur selon vos préférences */
+    border-radius: 50%; /* Rend le bouton rond */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s; /* Ajout d'une transition fluide */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajout d'une légère ombre */
+    color: #fff; /* Couleur du texte */
+    font-size: 10px; /* Taille du texte */
+}
+
+/* Ajuster la taille des icônes */
+.custom-button1 i {
+    font-size: 16px; /* Taille des icônes */
+}
+
+/* Changement de couleur au survol */
+.delete-button:hover {
+    background-color: #d66565; /* Couleur de fond au survol pour le bouton de suppression */
+}
+
+.edit-button:hover {
+    background-color: #3c8dbc; /* Couleur de fond au survol pour le bouton de modification */
+}
+
+.custom-button1.navigate-button {
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    padding: 4px;
+    min-width: unset !important;
+    max-width: fit-content;
+    height: fit-content;
+    font-size: 12px;
+    margin: 2px;
+}
+
+.table-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.table-responsive {
+    display: inline-block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+  .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-body {
+        padding: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .invalid-feedback {
+        color: #dc3545;
+    }
+    
+    .input-group-text {
+        background-color: #f8f9fa;
+    }
+    
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 8px 16px; /* Ajustement de la taille du bouton */
+        font-size: 14px; /* Ajustement de la taille de la police */
+    }
+    
+    .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+    
+    .hr-text {
+        position: relative;
+        text-align: center;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        border: 0;
+        border-top: 1px solid #eee;
+        color: #999;
+    }
+    
+    .hr-text::before {
+        content: '...';
+        display: inline-block;
+        position: relative;
+        top: -11px;
+        padding: 0 10px;
+        background-color: #f8f9fa;
+        color: #999;
+        font-size: 18px;
+    }
+/* exemple de règle CSS pour ajuster l'espacement des boutons */
+.btn-secondary {
+    margin-left: 10px; /* ajustez la marge selon vos besoins */
+  }
+  

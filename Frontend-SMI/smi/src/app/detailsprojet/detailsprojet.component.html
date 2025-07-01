@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+    
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Colored Sidebar | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+      
+
+    </head>
+
+    <body data-sidebar="colored">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-header></app-header>
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <app-app-menu></app-app-menu>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                       
+                        <!-- end page title -->
+
+                        
+                        <!-- end row -->
+
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-xl-6" *ngIf="projectDetails">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Description</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <span class="fw-bold">Project Type</span>
+                                                <span class="badge bg-primary" *ngIf="projectDetails.type">{{ projectDetails.type }}</span>
+                                            </li>
+                                            <li class="list-group-item" *ngIf="projectDetails.activity">
+                                                <span class="fw-bold">Activity</span>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-info">{{ projectDetails.activity.name }}</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-xl-6" *ngIf="projectDetails && projectDetails.cli">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Information</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <span class="fw-bold">Client</span>
+                                                <span class="badge bg-success">{{ projectDetails.cli.name }}</span>
+                                            </li>
+                                            <li class="list-group-item" *ngIf="projectDetails.processus">
+                                                <span class="fw-bold">Processus</span>
+                                                <ul class="list-group">
+                                                    <li *ngFor="let processus of projectDetails.processus" class="list-group-item">
+                                                        <span class="badge bg-warning">{{ processus.name }}</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        
+                        <div class="row">
+                          <div class="col-lg-12">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <br/><br/>
+                                      <h4 class="card-title mb-4">Listes des processus</h4>
+                                      <div class="table-responsive">
+                                        <table class="table align-middle table-nowrap mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Processus</th>
+                                                    <th>KPI</th>
+                                                    <th>Période</th>
+                                                    <th>Objectif KPI</th>
+                                                    <th>Valeur</th>
+                                                    <th>Analyse</th>
+                                                    <th>Historique KPI</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngIf="projectDetails && projectDetails.processus">
+                                                    <ng-container *ngFor="let processus of projectDetails.processus; let i = index">
+                                                        <ng-container *ngIf="processus.kpis">
+                                                            <ng-container *ngFor="let kpi of processus.kpis; let j = index">
+                                                                <tr>
+                                                                    <td *ngIf="j === 0" [attr.rowspan]="processus.kpis.length">{{ processus.name }}</td>
+                                                                    <td>{{ kpi.name }}</td>
+                                                                    <td>
+                                                                        <span *ngIf="getKpiDate(i, kpi)">{{ getKpiDate(i, kpi).startDate | date: 'dd/MM/yyyy' }}</span>
+                                                                        <span *ngIf="getKpiDate(i, kpi) && getKpiDate(i, kpi).endDateP"> - </span>
+                                                                        <span *ngIf="getKpiDate(i, kpi) && getKpiDate(i, kpi).endDateP">{{ getKpiDate(i, kpi).endDateP | date: 'dd/MM/yyyy' }}</span>
+                                                                    </td>
+                                                                    <td>{{ kpi.objectif }}</td>
+                                                                    <td>
+                                                                        <ng-container *ngIf="getKpiValue(i, kpi) !== null && getKpiValue(i, kpi) !== undefined && getKpiValue(i, kpi) !== ''">
+                                                                            <button mat-button [ngClass]="{
+                                                                                'circle-btn': true,
+                                                                                'green-text': getKpiValue(i, kpi) > kpi.objectif,
+                                                                                'red-text': getKpiValue(i, kpi) <= kpi.objectif
+                                                                            }" (click)="openModifierKpiHistoryModal(getKpiId(i, kpi))">{{ getKpiValue(i, kpi) }}</button>
+                                                                        </ng-container>
+                                                                    </td>
+                                                                    <td>
+                                                                        <ng-container *ngIf="getKpiValue(i, kpi) !== null && getKpiValue(i, kpi) !== undefined && getKpiValue(i, kpi) !== ''">
+                                                                            <ng-container *ngIf="getKpiValue(i, kpi) >= kpi.objectif; else showAnalysisButton">
+                                                                                <i class="fa fa-smile-o" aria-hidden="true"></i>
+                                                                            </ng-container>
+                                                                            <ng-template #showAnalysisButton>
+                                                                                <button mat-button class="analysis-btn" [routerLink]="['/analyse', projectId]">
+                                                                                    <i class="fa fa-chart-line" aria-hidden="true"></i>
+                                                                                </button>
+                                                                            </ng-template>
+                                                                        </ng-container>
+                                                                    </td>
+                                                                    
+                                                                    <td>
+                                                                        <button mat-button class="analysis-btn rounded-circle purple-btn" [routerLink]="['/evolutionkpi', getKpiId(i, kpi)]">
+                                                                            <i class="fas fa-chart-line icon-custom-color" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button mat-icon-button class="round-icon-button" (click)="openModal(kpi.name)">
+                                                                            <mat-icon>add</mat-icon>
+                                                                        </button>
+                                                                    </td>
+                                                                    <!-- Affichage de la notification -->
+                                                                    <td>
+                                                                        <div *ngIf="showNotification(i, kpi)">
+                                                                            <!-- Contenu de votre notification à afficher -->
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                        </ng-container>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                        
+                        
+                    
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                <!-- Modal -->
+
+              <!-- Modale pour ajouter une activité -->
+
+          <!-- Modal d'ajout de processus -->
+<!-- Button to open the Material modal -->
+
+
+<!-- Material modal for adding processus -->
+
+  
+               <!-- Modale pour ajouter une activité -->
+
+  
+                <!-- end modal -->
+                
+         
+            </div>
+            <!-- end main content-->
+
+        </div>
+    
+        <div class="rightbar-overlay"></div>
+
+    
+    </body>
+
+</html>

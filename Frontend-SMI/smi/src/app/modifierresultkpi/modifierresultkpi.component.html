@@ -1,0 +1,25 @@
+<!-- modifierresultkpi.component.html -->
+<h1 mat-dialog-title class="dialog-title">Modifier l'historique des KPI</h1>
+<div mat-dialog-content class="dialog-content">
+  <form [formGroup]="requestBodyForm" (ngSubmit)="updateResult()">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Date de début</mat-label>
+      <input matInput type="date" formControlName="startDateP">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Date de fin</mat-label>
+      <input matInput type="date" formControlName="endDateP">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Valeur</mat-label>
+      <input matInput type="number" formControlName="value">
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button class="btn btn-primary" type="submit">Enregistrer</button>
+      <button mat-raised-button class="btn btn-secondary" type="button">Annuler</button>
+    </div>
+  </form>
+</div>

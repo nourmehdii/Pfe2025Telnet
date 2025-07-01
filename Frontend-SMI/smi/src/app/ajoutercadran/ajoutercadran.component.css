@@ -1,0 +1,118 @@
+/* ===== Form Container ===== */
+.cadran-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Title ===== */
+.cadran-form-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e1666; /* Utilise une couleur de ta charte */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== Form Group ===== */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* ===== Form Labels ===== */
+label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1e1666;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ===== Input and Select Fields ===== */
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c2c3c5;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #22a4d9; /* Utilise la couleur bleu clair de ta charte */
+  outline: none;
+}
+
+/* ===== Radio Buttons ===== */
+.radio-group {
+  display: flex; /* Utilise flexbox pour aligner les éléments horizontalement */
+  gap: 20px; /* Ajoute un espacement de 20px entre les boutons radio */
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 10px;
+  display: inline-block; 
+  align-self: center; /* Assure que les boutons sont bien alignés verticalement */
+
+}
+
+.radio-group label {
+  margin-right: 20px;
+  font-size: 14px;
+  color: #1e1666;
+}
+
+/* ===== Submit Button ===== */
+button[type="submit"] {
+  background-color: #22a4d9; /* Utilise la couleur bleu clair */
+  color: #fff;
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #187398; /* Une couleur légèrement plus sombre au survol */
+}
+
+button[type="submit"]:active {
+  background-color: #1e1666; /* Change la couleur au clic */
+}
+
+/* ===== Invalid Feedback ===== */
+.invalid-feedback {
+  font-size: 14px;
+  color: #e74c3c;
+  margin-top: 5px;
+  display: block;
+}
+
+/* ===== Responsive Form ===== */
+@media (max-width: 767px) {
+  .cadran-form-container {
+    padding: 20px;
+  }
+}
+
+
+/*=== scroll ball verticale ===*/
+.cadran-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-height: 80vh; /* Limite la hauteur à 80% de la hauteur de la fenêtre */
+  overflow-y: auto; /* Active le défilement vertical si le contenu dépasse */
+}

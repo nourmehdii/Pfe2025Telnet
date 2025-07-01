@@ -1,0 +1,43 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateProcessModalLabel">Modifier Processus</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulaire pour modifier un processus -->
+        <form [formGroup]="updateProcessusForm" (submit)="updateProcessus()">
+          <div class="mb-3">
+            <label for="updateProcessName" class="form-label">Nom du Processus</label>
+            <input type="text" class="form-control" id="updateProcessName" formControlName="name" required>
+            <div *ngIf="updateProcessusForm.get('name').invalid && updateProcessusForm.get('name').touched" class="text-danger">
+              Nom du Processus requis
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="updateProcessDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="updateProcessDescription" formControlName="description" required></textarea>
+            <div *ngIf="updateProcessusForm.get('description').invalid && updateProcessusForm.get('description').touched" class="text-danger">
+              Description requise
+            </div>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="fill">
+              <mat-label>Sélectionner les KPIs</mat-label>
+              <mat-select formControlName="kpis" multiple required>
+                <mat-option *ngFor="let kpi of kpiList" [value]="kpi.id">{{ kpi.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="updateProcessusForm.get('kpis').invalid && updateProcessusForm.get('kpis').touched" class="text-danger">
+              Sélectionnez au moins un KPI
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-primary" [disabled]="updateProcessusForm.invalid">Modifier</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

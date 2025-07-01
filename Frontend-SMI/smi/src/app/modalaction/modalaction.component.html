@@ -1,0 +1,59 @@
+<div *ngIf="causes && causes.length > 0" class="details-modal">
+  <h2>Détails des Actions pour {{ causes[0].nomCause }}</h2>
+
+  <!-- Bouton de rafraîchissement -->
+  <button class="custom-button refresh-button" (click)="refreshActions()" title="Actualiser">
+    <i class="fas fa-sync-alt"></i> Actualiser
+  </button>
+  
+  <table class="action-table">
+    <thead>
+      <tr>
+        <th>Action</th>
+        <th>Type</th>
+        <th>Responsable</th>
+        <th>Planification</th>
+        <th>Réalisation</th>
+        <th>Critère</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let action of causes[0].actions; let i = index">
+        <td (click)="editCell(i, 'action')" [ngClass]="{ 'editable': editedIndex === i }">
+          <span *ngIf="editedIndex !== i">{{ action.action }}</span>
+          <input *ngIf="editedIndex === i" type="text" [(ngModel)]="causes[0].actions[i].action" (blur)="saveCell(i)">
+        </td>
+        <td (click)="editCell(i, 'typeAction')" [ngClass]="{ 'editable': editedIndex === i }">
+          <span *ngIf="editedIndex !== i">{{ action.typeAction }}</span>
+          <input *ngIf="editedIndex === i" type="text" [(ngModel)]="causes[0].actions[i].typeAction" (blur)="saveCell(i)">
+        </td>
+        <td (click)="editCell(i, 'responsable')" [ngClass]="{ 'editable': editedIndex === i }">
+          <span *ngIf="editedIndex !== i">{{ action.responsable }}</span>
+          <input *ngIf="editedIndex === i" type="text" [(ngModel)]="causes[0].actions[i].responsable" (blur)="saveCell(i)">
+        </td>
+        <td (click)="editCell(i, 'datePlanification')" [ngClass]="{ 'editable': editedIndex === i }">
+          <span *ngIf="editedIndex !== i">{{ action.datePlanification | date: 'yyyy-MM-dd' }}</span>
+          <input *ngIf="editedIndex === i" type="date" [(ngModel)]="causes[0].actions[i].datePlanification" (blur)="saveCell(i)">
+        </td>
+        <td (click)="editCell(i, 'dateRealisation')" [ngClass]="{ 'editable': editedIndex === i }">
+          <span *ngIf="editedIndex !== i">{{ action.dateRealisation | date: 'yyyy-MM-dd' }}</span>
+          <input *ngIf="editedIndex === i" type="date" [(ngModel)]="causes[0].actions[i].dateRealisation" (blur)="saveCell(i)">
+        </td>
+        <td (click)="editCell(i, 'critereEfficacite')" [ngClass]="{ 'editable': editedIndex === i }">
+          <span *ngIf="editedIndex !== i">{{ action.critereEfficacite }}</span>
+          <input *ngIf="editedIndex === i" type="text" [(ngModel)]="causes[0].actions[i].critereEfficacite" (blur)="saveCell(i)">
+        </td>
+        <td>
+          <button class="custom-button delete-button" (click)="deleteAction(i)" title="Supprimer">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!causes || causes.length === 0" class="loading-message">
+  <p>Chargement en cours ou aucune donnée disponible...</p>
+</div>

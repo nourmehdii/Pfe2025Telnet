@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Modifier l'historique des KPI</h1>
+<div mat-dialog-content>
+  <form [formGroup]="historyForm" (ngSubmit)="submitHistory()">
+    <mat-form-field>
+      <mat-label>Date de début</mat-label>
+      <input matInput type="date" formControlName="startDateP" required>
+      <mat-error *ngIf="historyForm.get('startDateP')?.hasError('required')">La date de début est requise</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date de fin</mat-label>
+      <input matInput type="date" formControlName="endDateP" required>
+      <mat-error *ngIf="historyForm.get('endDateP')?.hasError('required')">La date de fin est requise</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Valeur</mat-label>
+      <input matInput type="number" formControlName="value" required>
+      <mat-error *ngIf="historyForm.get('value')?.hasError('required')">La valeur est requise</mat-error>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit" [disabled]="historyForm.invalid">Enregistrer</button>
+      <button mat-raised-button color="warn" type="button" (click)="closeDialog()">Annuler</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,119 @@
+/* General navbar styles */
+#page-topbar .navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #ffffff, #d5e6ed);
+    padding: 10px;
+}
+#page-topbar .navbar-header .app-search {
+    margin-left: 40px;  /* Déplace la barre de recherche vers la gauche */
+}
+
+#page-topbar .navbar-header .dropdown {
+    margin-left: 40px;  /* Déplace le bouton "Rapport" vers la gauche */
+}
+
+
+/* Logo styles */
+.navbar-brand-box .logo img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand-box .logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Search input styles */
+.app-search .form-control {
+    width: 100%;
+    padding: 8px 35px 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure glassmorphism */
+    background: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+    backdrop-filter: blur(5px); /* Effet glassmorphism */
+    color: #1e1666; /* Texte sombre */
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Transitions fluides */
+}
+
+.app-search .form-control:focus {
+    border-color: #22a4d9; /* Couleur d'accent */
+    box-shadow: 0 0 8px rgba(34, 164, 217, 0.4); /* Ombre plus douce */
+    background: rgba(255, 255, 255, 0.15); /* Légère variation au focus */
+}
+
+.app-search .bx-search-alt {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #96979A; /* Couleur neutre moderne */
+    font-size: 18px; /* Légère augmentation pour la visibilité */
+    pointer-events: none;
+    transition: transform 0.3s ease, color 0.3s ease; /* Animation fluide */
+}
+
+/* Animation de l'icône au focus de l'input */
+.app-search .form-control:focus + .bx-search-alt {
+    transform: translateY(-50%) scale(1.1); /* Léger zoom */
+    color: #22a4d9; /* Accent au focus */
+}
+
+/* Dropdown button styles */
+.dropdown .btn {
+    font-size: 16px;
+    font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: clamp(8px, 1vw, 10px) clamp(12px, 1.5vw, 15px);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #1e1666;
+  transition: transform 0.2s ease-in-out, background 0.3s, box-shadow 0.3s;
+}
+
+
+.dropdown-menu {
+    left: 0;
+    right: auto;
+    margin-top: 0;
+}
+
+/* Power BI button */
+.power-bi-button {
+    color: #22a4d9;
+    text-decoration: none;
+}
+
+.power-bi-button:hover {
+    color: #187398;
+}
+
+/* Notification styles */
+.notification-item .d-flex {
+    display: flex;
+    align-items: center;
+}
+
+.notification-item .avatar-xs {
+    margin-right: 15px;
+}
+
+.notification-item .notification-item-content {
+    flex-grow: 1;
+}
+
+/* User Profile Dropdown styles */
+.header-profile-user {
+    height: 40px;
+    width: 40px;
+}
+
+/* Icon hover effects */
+.header-item:hover {
+    background-color: #f0f0f0;
+}

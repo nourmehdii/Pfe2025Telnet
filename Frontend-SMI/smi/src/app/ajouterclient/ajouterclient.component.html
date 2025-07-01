@@ -1,0 +1,64 @@
+<form [formGroup]="clientForm" (ngSubmit)="ajouterClient()">
+  <!-- Champ pour le nom du client -->
+  <div class="form-group">
+    <label for="clientName">Nom</label>
+    <input type="text" class="form-control" id="clientName" formControlName="name">
+    <div *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched">
+      <small class="text-danger">Nom requis (minimum 3 caractères)</small>
+    </div>
+  </div>
+
+  <!-- Champ pour le téléphone du client -->
+  <div class="form-group">
+    <label for="clientPhone">Téléphone</label>
+    <input type="tel" class="form-control" id="clientPhone" formControlName="phone">
+    <div *ngIf="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched">
+      <small class="text-danger">Téléphone requis (10 chiffres)</small>
+    </div>
+  </div>
+
+  <!-- Champ pour l'email du client -->
+  <div class="form-group">
+    <label for="clientEmail">Email</label>
+    <input type="email" class="form-control" id="clientEmail" formControlName="email">
+    <div *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+      <small class="text-danger">Email invalide</small>
+    </div>
+  </div>
+
+  <!-- Champ pour l'adresse du client -->
+  <div class="form-group">
+    <label for="clientStreetAddress">Adresse</label>
+    <input type="text" class="form-control" id="clientStreetAddress" formControlName="streetAddress">
+  </div>
+
+  <!-- Champ pour la ville -->
+  <div class="form-group">
+    <label for="clientCity">Ville</label>
+    <input type="text" class="form-control" id="clientCity" formControlName="city">
+  </div>
+
+  <!-- Champ pour l'état -->
+  <div class="form-group">
+    <label for="clientState">État</label>
+    <input type="text" class="form-control" id="clientState" formControlName="state">
+  </div>
+
+  <!-- Champ pour le pays -->
+  <div class="form-group">
+    <label for="clientCountry">Pays</label>
+    <input type="text" class="form-control" id="clientCountry" formControlName="country">
+  </div>
+
+  <!-- Champ pour le statut du client -->
+  <div class="form-group">
+    <label for="clientStatus">Statut</label>
+    <select class="form-select" id="clientStatus" formControlName="active">
+      <option [ngValue]="true">Actif</option>
+      <option [ngValue]="false">Inactif</option>
+    </select>
+  </div>
+
+  <!-- Bouton de soumission du formulaire -->
+  <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>

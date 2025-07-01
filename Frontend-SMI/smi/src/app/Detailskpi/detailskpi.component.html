@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <h5 class="modal-title">Détails des KPIs</h5>
+    <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<button class="custom-button-plus" (click)="openAddkpisModal(data.processusId)">
+    <i class="fas fa-plus-circle"></i>
+</button>
+
+<div class="modal-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Objectif</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let kpi of kpis | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                <td>
+                    <div *ngIf="editedIndex !== i" (click)="editCell(i)" class="editable">
+                        {{ kpi.name }}
+                    </div>
+                    <div *ngIf="editedIndex === i">
+                        <input type="text" [(ngModel)]="kpi.name" />
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="editedIndex !== i" (click)="editCell(i)" class="editable">
+                        {{ kpi.objectif }}
+                    </div>
+                    <div *ngIf="editedIndex === i">
+                        <input type="number" [(ngModel)]="kpi.objectif" />
+                    </div>
+                </td>
+                <td>
+                    <button *ngIf="editedIndex !== i" class="btn btn-warning btn-round" (click)="editCell(i)">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button *ngIf="editedIndex === i" class="btn btn-success btn-round" (click)="saveKpi(kpi)">
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="btn btn-danger btn-round" (click)="deleteKpi(kpi)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+</div>

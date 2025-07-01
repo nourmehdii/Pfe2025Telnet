@@ -1,0 +1,49 @@
+<h2>Ajouter un KPI</h2>
+
+<form>
+  <div class="form-group">
+    <label for="name">Nom du KPI :</label>
+    <input type="text" class="form-control" id="name" name="name" [formControl]="kpiNameFormControl">
+      <div *ngIf="kpiNameFormControl.invalid && (kpiNameFormControl.dirty || kpiNameFormControl.touched)" class="error-message">
+        <div *ngIf="kpiNameFormControl.errors.required">
+          Le nom du KPI est requis.
+        </div>
+      
+      
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="objectif">Objectif (%) :</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="objectif" name="objectif" [formControl]="kpiObjectifFormControl">
+      <div class="input-group-append">
+        <span class="input-group-text">%</span>
+      </div>
+    </div>
+    <div *ngIf="kpiObjectifFormControl.invalid && (kpiObjectifFormControl.dirty || kpiObjectifFormControl.touched)">
+      <div *ngIf="kpiObjectifFormControl.errors.required">
+        L'objectif est requis.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="frequence">Fréquence :</label>
+    <select class="form-control" id="frequence" name="frequence" [formControl]="kpiFrequenceFormControl">
+      <option value="">Choisissez une fréquence</option>
+      <option value="Semestrielle">Semestrielle</option>
+      <option value="Annuelle">Annuelle</option>
+      <option value="Mensuelle">Mensuelle</option>
+      <option value="Trimestrielle">Trimestrielle</option>
+    </select>
+    <div *ngIf="kpiFrequenceFormControl.invalid && (kpiFrequenceFormControl.dirty || kpiFrequenceFormControl.touched)">
+      <div *ngIf="kpiFrequenceFormControl.errors.required">
+        La fréquence est requise.
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="button-group">
+    <button type="button" class="btn btn-primary" (click)="onAddKpi()">Ajouter</button>
+    <button type="button" class="btn btn-secondary" (click)="onClose()">Annuler</button>
+  </div>
+</form>

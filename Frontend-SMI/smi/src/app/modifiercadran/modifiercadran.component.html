@@ -1,0 +1,13 @@
+<div class="cadran-form-container">
+    <h2 class="form-title">Modifier le nom du Cadran</h2>
+    <form class="cadran-form" (ngSubmit)="updateCadran()" #cadranForm="ngForm">
+        <div class="form-group">
+            <label for="nouveauNomCadran" class="form-label">Nouveau Nom du Cadran :</label>
+            <input type="text" id="nouveauNomCadran" name="nouveauNomCadran" [(ngModel)]="cadranDetails.name" class="form-control">
+        </div>
+        <br/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,73 @@
+<div class="cadran-form-container">
+  <h2>Ajouter un Cadran</h2>
+  <form class="cadran-form" (ngSubmit)="ajouterCadran()" #cadranForm="ngForm">
+
+    <!-- Axe -->
+    <div class="form-group">
+      <label for="axe">Axe :</label>
+      <div class="radio-group">
+        <input type="radio" id="interne" name="axe" value="INTERNE" [(ngModel)]="selectedAxe" required>
+        <label for="interne">Interne</label>
+        <input type="radio" id="externe" name="axe" value="EXTERNE" [(ngModel)]="selectedAxe" required>
+        <label for="externe">Externe</label>
+      </div>
+    </div>
+
+    <!-- Type -->
+    <div *ngIf="selectedAxe === 'INTERNE'" class="form-group">
+      <label for="type">Type de Cadran :</label>
+      <select id="type" name="type" [(ngModel)]="selectedType" required>
+        <option value="STRENGTH">Force</option>
+        <option value="WEAKNESS">Faiblesse</option>
+      </select>
+    </div>
+    <div *ngIf="selectedAxe === 'EXTERNE'" class="form-group">
+      <label for="type">Type de Cadran :</label>
+      <select id="type" name="type" [(ngModel)]="selectedType" required>
+        <option value="OPPORTUNITY">Opportunité</option>
+        <option value="THREAT">Menace</option>
+      </select>
+    </div>
+
+    <!-- Nom du Cadran -->
+    <div class="form-group">
+      <label for="nomCadran">Nom du Cadran :</label>
+      <input type="text" id="nomCadran" name="nomCadran" [(ngModel)]="nomCadran" required>
+    </div>
+
+    <!-- Secteur -->
+    <div class="form-group">
+      <label for="secteur">Secteur :</label>
+      <input type="text" id="secteur" name="secteur" [(ngModel)]="secteur">
+    </div>
+
+    <!-- Contexte -->
+    <div class="form-group">
+      <label for="contexte">Contexte :</label>
+      <input type="text" id="contexte" name="contexte" [(ngModel)]="contexte">
+    </div>
+
+    <!-- Processus -->
+    <div class="form-group">
+      <label for="processus">Processus :</label>
+      <input type="text" id="processus" name="processus" [(ngModel)]="processus">
+    </div>
+
+    <!-- Origine de l'info -->
+    <div class="form-group">
+      <label for="origineInfo">Origine de l'information :</label>
+      <input type="text" id="origineInfo" name="origineInfo" [(ngModel)]="origineInfo">
+    </div>
+
+    <!-- Créé par -->
+    <div class="form-group">
+      <label for="creePar">Créé par :</label>
+      <input type="text" id="creePar" name="creePar" [(ngModel)]="creePar">
+    </div>
+
+    <!-- Bouton -->
+    <div class="form-group">
+      <button type="submit" [disabled]="!cadranForm.valid">Ajouter</button>
+    </div>
+  </form>
+</div>

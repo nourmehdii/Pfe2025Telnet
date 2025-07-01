@@ -1,0 +1,48 @@
+<div class="modifier-resultat-pip">
+  <h2>Modifier le résultat PIP</h2>
+  <form (ngSubmit)="updateResultsPip()">
+  
+    <!-- Zone de saisie pour expectation -->
+    <div class="form-group">
+      <label for="expectation">Attente</label>
+      <input type="text" class="form-control" id="expectation" [(ngModel)]="resultsPip.expectation" name="expectation">
+    </div>
+    <!-- Zone de saisie pour risk -->
+    <div class="form-group">
+      <label for="risk">Risque</label>
+      <input type="text" class="form-control" id="risk" [(ngModel)]="resultsPip.risk" name="risk">
+    </div>
+    <!-- Zone de saisie pour existantMonitoring -->
+    <div class="form-group">
+      <label for="existantMonitoring">Surveillance existante</label>
+      <input type="text" class="form-control" id="existantMonitoring" [(ngModel)]="resultsPip.existantMonitoring" name="existantMonitoring">
+    </div>
+    <!-- Zone de saisie pour setupMonitoring -->
+    <div class="form-group">
+      <label for="setupMonitoring">Surveillance à mettre en place</label>
+      <input type="text" class="form-control" id="setupMonitoring" [(ngModel)]="resultsPip.setupMonitoring" name="setupMonitoring">
+    </div>
+    
+    <!-- Sélection du Pip -->
+    <div class="mb-3">
+      <label for="selectPip" class="form-label">Sélectionner le Pip :</label>
+      <select [(ngModel)]="selectedPipId" name="selectedPipId" class="form-select" required (change)="onPipSelectionChange()">
+        <option value="" disabled>Sélectionner le Pip</option>
+        <option *ngFor="let pip of pips" [ngValue]="pip.id">{{ pip.name }}</option>
+      </select>
+    </div>
+    
+
+    <!-- Sélection des Processus -->
+    <div class="mb-3">
+      <label for="selectProcessus" class="form-label">Sélectionner les Processus :</label>
+      <select id="selectProcessus" name="selectProcessus" [(ngModel)]="selectedProcessusIds" class="form-select" multiple required>
+        <option value="" disabled>Sélectionner les Processus</option>
+        <option *ngFor="let processus of processus" [ngValue]="processus.id">{{ processus.name }}</option>
+      </select>
+    </div>
+    
+    <!-- Bouton de soumission du formulaire -->
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+  </form>
+</div>

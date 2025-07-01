@@ -1,0 +1,59 @@
+<div class="modal-body">
+  <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName" required aria-label="First Name">
+      <div *ngIf="updateUserForm.get('firstName').errors?.required && updateUserForm.get('firstName').touched" class="text-danger">First Name is required</div>
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName" required aria-label="Last Name">
+      <div *ngIf="updateUserForm.get('lastName').errors?.required && updateUserForm.get('lastName').touched" class="text-danger">Last Name is required</div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email" required aria-label="Email">
+      <div *ngIf="updateUserForm.get('email').errors?.required && updateUserForm.get('email').touched" class="text-danger">Email is required</div>
+      <div *ngIf="updateUserForm.get('email').errors?.email && updateUserForm.get('email').touched" class="text-danger">Invalid email format</div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password" required aria-label="Password">
+      <div *ngIf="updateUserForm.get('password').errors?.required && updateUserForm.get('password').touched" class="text-danger">Password is required</div>
+      <div *ngIf="updateUserForm.get('password').errors?.minlength && updateUserForm.get('password').touched" class="text-danger">Password must be at least 6 characters long</div>
+    </div>
+   
+    <div class="mb-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Activities</mat-label>
+        <mat-select formControlName="activities" multiple required aria-label="Choose Activities">
+          <!-- Affiche les activités sélectionnées -->
+          <mat-option *ngFor="let activity of selectedActivities" [value]="activity">
+            {{ activity.name }}
+          </mat-option>
+          <!-- Affiche la liste des autres activités non sélectionnées -->
+          <mat-option *ngFor="let activity of getUnselectedActivities()" [value]="activity">
+            {{ activity.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="updateUserForm.get('activities').errors?.required && updateUserForm.get('activities').touched" class="text-danger">Please select at least one activity</div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="role" class="form-label">Role</label>
+      <select class="form-select" formControlName="role" id="role" required aria-label="Role">
+        <option value="ADMIN">Admin</option>
+        <option value="RESPONSABLEQUALITE">Responsable Qualité</option>
+        <option value="DIRECTEUR">Directeur</option>
+        <option value="CHEFDEPROJET">Chef de Projet</option>
+      </select>
+      <div *ngIf="updateUserForm.get('role').errors?.required && updateUserForm.get('role').touched" class="text-danger">Role is required</div>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </form>
+</div>

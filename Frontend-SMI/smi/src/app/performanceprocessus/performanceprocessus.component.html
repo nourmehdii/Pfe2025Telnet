@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+    
+<!-- Mirrored from themesbrand.com/skote/layouts/layouts-colored-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Feb 2024 15:33:52 GMT -->
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Colored Sidebar | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+      
+
+    </head>
+
+    <body data-sidebar="colored">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-header></app-header>
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <app-app-menu></app-app-menu>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content">
+                  <div class="container-fluid">
+              
+                    <!-- start page title -->
+                    <!-- end page title -->
+              
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="card">
+                          <div class="card-body">
+              
+                            <h4 class="card-title mb-4 performance-title">Performance processus</h4>
+              
+                            <div class="card-body border-bottom" style="background-color: #C5ECF6; border-radius: 12px;">
+                              <div class="row g-3">
+              
+                                <div class="col-xxl-2 col-lg-6">
+                                  <select class="form-select" id="idStatus" aria-label="Default select example" [(ngModel)]="selectedActivity" (change)="filterKpiByActivity()">
+                                    <option value="all">Toutes les activités</option>
+                                    <option *ngFor="let activity of activities" [value]="activity.id">{{ activity.name }}</option>
+                                  </select>
+                                </div>
+              
+                                <div class="col-xxl-2 col-lg-6">
+                                  <select class="form-select" id="idType" aria-label="Default select example" [(ngModel)]="selectedProcessusType" (change)="filterKpiByProcessus()">
+                                    <option value="all">Sélectionnez processus</option>
+                                    <option *ngFor="let process of processus" [value]="process.id">{{ process.name }}</option>
+                                  </select>
+                                </div>
+              
+                                <div class="col-xxl-4">
+                                  <form [formGroup]="form" (ngSubmit)="onFilterButtonClick()" class="d-flex align-items-center gap-2">
+                                    <input type="date" id="startDateP" formControlName="startDateP" class="form-control">
+                                    <input type="date" id="endDateP" formControlName="endDateP" class="form-control">
+                                    <button type="submit" class="filter-button">Filtrer</button>
+                                  </form>
+                                </div>
+              
+                              </div> <!-- end row -->
+                            </div> <!-- end card-body -->
+              
+                            <div class="table-responsive mt-4">
+                              <table class="table align-middle table-nowrap mb-0">
+                                <thead class="table-light" style="background-color: #C5ECF6;">
+                                  <tr>
+                                    <th style="width: 20px;"></th>
+                                    <th class="align-middle">KPI</th>
+                                    <th class="align-middle">Valeur</th>
+                                    <th class="align-middle">Objectif</th>
+                                    <th class="align-middle">Analyse causale</th>
+                                    <th class="align-middle">Tendance de mesure</th>
+                                    <th class="align-middle">Évolution</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <ng-container *ngFor="let kpi of filteredKpis | paginate: { itemsPerPage: 4, currentPage: p }; let i = index">
+                                    <tr>
+                                      <td>{{ i + 1 }}</td>
+                                      <td>{{ kpi.name }}</td>
+                                      <td>
+                                        <button mat-button class="value-circle" [disabled]="shouldDisableButton()" 
+                                          [ngClass]="{'enabled-button': !shouldDisableButton(), 'disabled-button1': shouldDisableButton()}"
+                                          (click)="editValue(kpi.id)">
+                                          <span *ngIf="!kpiValues[kpi.id]" class="icon-container">
+                                            <mat-icon class="icon-plus">add</mat-icon>
+                                          </span>
+                                          <span class="value" *ngIf="kpiValues[kpi.id]">{{ kpiValues[kpi.id] }}</span>
+                                        </button>
+                                      </td>
+                                      <td>{{ kpi.objectif }}</td>
+                                      <td>
+                                        <button mat-button class="analysis-btn" *ngIf="kpiValues[kpi.id] <= kpi.objectif" [routerLink]="['/analysecausale', kpi.id]">
+                                          <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button mat-button class="analysis-btn rounded-circle purple-btn" [routerLink]="['/linechart', kpi.id]">
+                                          <i class="fas fa-chart-line icon-custom-color" aria-hidden="true"></i>
+                                        </button>
+                                      </td>
+                                      <td class="button-container">
+                                        <ng-container *ngIf="kpiValues[kpi.id] !== undefined">
+                                          <i class="fas fa-caret-down fa-2x" *ngIf="kpiValues[kpi.id] <= kpi.objectif" style="color: red;"></i>
+                                          <i class="fas fa-caret-up fa-2x" *ngIf="kpiValues[kpi.id] > kpi.objectif" style="color: green;"></i>
+                                        </ng-container>
+                                      </td>
+                                    </tr>
+                                  </ng-container>
+                                </tbody>
+                              </table>
+                            </div>
+              
+                            <br/>
+              
+                            <pagination-controls
+                              (pageChange)="p = $event"
+                              previousLabel="&#9664;"
+                              nextLabel="&#9654;"
+                              firstLabel="&#171;"
+                              lastLabel="&#187;"
+                              itemsPerPageLabel="Éléments par page"
+                              totalItemsLabel="Total des éléments"
+                              currentPageLabel="Page actuelle">
+                            </pagination-controls>
+              
+                          </div> <!-- end card-body -->
+                        </div> <!-- end card -->
+                      </div> <!-- end col -->
+                    </div> <!-- end row -->
+              
+                  </div> <!-- container-fluid -->
+                </div> <!-- page-content -->
+              </div> <!-- main-content -->
+              </div>
+            <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+       
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+    
+    </body>
+
+<!-- Mirrored from themesbrand.com/skote/layouts/layouts-colored-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Feb 2024 15:33:52 GMT -->
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+
+    
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Colored Sidebar | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+      
+
+    </head>
+
+    <body data-sidebar="colored">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-header></app-header>
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <app-app-menu></app-app-menu>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+                    
+                        <!-- start page title -->
+                     
+                        <!-- end page title -->
+                        <div class="row">
+                            <div class="col-xl-6" *ngIf="projectDetails">
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold mb-3">Description</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <span class="fw-bold">Nom du projet:</span>
+                                                <span class="badge bg-secondary text-light" *ngIf="projectDetails.type">{{ projectDetails.name }}</span>
+                                            </li>
+                                            <li class="list-group-item" *ngIf="projectDetails.activity">
+                                                <span class="fw-bold">Activity</span>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-light text-dark">{{ projectDetails.activity.name }}</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div><!--end col-->
+                            <div class="col-xl-6" *ngIf="projectDetails && projectDetails.cli">
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold mb-3">Information</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <span class="fw-bold">Client</span>
+                                                <span class="badge bg-dark">{{ projectDetails.cli.name }}</span>
+                                            </li>
+                                            <li class="list-group-item" >
+                                                <span class="fw-bold">Date d'identification:</span>
+                                                <ul class="list-group">
+                                                    <li  class="list-group-item">
+                                                        <span class="badge bg-warning text-dark">Date d'identification: {{ currentDate | date: 'longDate' }}</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                      
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Formulaire d'Analyse Causale</h4>
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-8">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <form [formGroup]="analyseForm" (ngSubmit)="onSubmit()">
+                                                            <div class="form-group row">
+                                                                <label for="typeProbleme" class="col-sm-3 col-form-label">Type de Problème</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-control" id="typeProbleme" formControlName="typeProbleme">
+                                                                        <option value="INTERNE">Interne</option>
+                                                                        <option value="EXTERNE">Externe</option>
+                                                                    </select>
+                                                                    <div *ngIf="analyseForm.get('typeProbleme').invalid && analyseForm.get('typeProbleme').touched" class="invalid-feedback">
+                                                                        Veuillez sélectionner le type de problème.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="identificationProbleme" class="col-sm-3 col-form-label">Identification du Problème</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="identificationProbleme" formControlName="identificationProbleme">
+                                                                    <div *ngIf="analyseForm.get('identificationProbleme').invalid && analyseForm.get('identificationProbleme').touched" class="invalid-feedback">
+                                                                        Veuillez indiquer l'identification du problème.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="methodeUtilisee" class="col-sm-3 col-form-label">Méthode Utilisée</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-control" id="methodeUtilisee" formControlName="methodeUtilisee">
+                                                                        <option value="5PK">5PK</option>
+                                                                        <option value="Hybride">Hybride</option>
+                                                                        <option value="Ichikawa">Ichikawa</option>
+                                                                    </select>
+                                                                    <div *ngIf="analyseForm.get('methodeUtilisee').invalid && analyseForm.get('methodeUtilisee').touched" class="invalid-feedback">
+                                                                        Veuillez sélectionner la méthode à utiliser.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ng-container *ngIf="analyseForm.get('methodeUtilisee').value === '5PK'">
+                                                                <div class="form-group row" formArrayName="causes">
+                                                                    <div *ngFor="let causeGroup of causesFormArray.controls; let i = index" [formGroupName]="i">
+                                                                        <div class="col-sm-9 offset-sm-3">
+                                                                            <hr>
+                                                                            <label class="col-form-label">Cause {{i + 1}}</label>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <div class="col-sm-6">
+                                                                                <label for="nomCause{{i}}" class="col-form-label">Nom du Cause</label>
+                                                                                <input type="text" class="form-control" id="nomCause{{i}}" formControlName="nomCause">
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <label for="pourcentage{{i}}" class="col-form-label">Pourcentage</label>
+                                                                                <div class="input-group">
+                                                                                    <input type="number" class="form-control" id="pourcentage{{i}}" formControlName="pourcentage">
+                                                                                    <div class="input-group-append">
+                                                                                        <span class="input-group-text">%</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br/>
+                                                                <!-- Automatic display of cause name and percentage fields -->
+                                                                <div *ngIf="showNomCauseAndPourcentage">
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-9 offset-sm-3">
+                                                                            <button type="button" class="btn btn-primary mr-2" (click)="addCause()">Ajouter une cause</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </ng-container>
+                                                            <br/>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-9 offset-sm-3">
+                                                                    <button type="submit" [disabled]="!isValidForm() || analyseForm.invalid" class="btn btn-primary">Soumettre</button>
+                                                                    <button type="button" class="btn btn-secondary ml-2" (click)="resetForm()">Réinitialiser</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                    <!-- Button to trigger PDF export -->
+
+                    <div  class="table-responsive" id="analysesTable">
+                        <table class="table align-middle table-nowrap mb-0" id="table-analyses">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="align-middle">Probleme</th>
+                                    <th class="align-middle">Type de Probleme</th>
+                                    <th class="align-middle">Date d'identification</th>
+                                    <th class="align-middle">Methode utulisée</th>
+                                    
+                                    <th class="align-middle">identificationCause</th>
+                                    <th class="align-middle">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let analyse of analyses">
+                                    <tr>
+
+                                        <td>{{ analyse.identificationProbleme }}</td>
+                                        <td>{{analyse.typeProbleme}}</td>
+                                        <td>{{ analyse.date | date }}</td>
+                                        <td>{{analyse.methodeUtilisee}}</td>
+                                    
+                                        <td class="button-container1">
+                                            <!-- Bouton pour ouvrir la modal -->
+                                            <button mat-raised-button class="small-rounded-button custom-button" color="primary" (click)="openModal(analyse.id)"
+                                                style="border-radius: 20%; padding: 4px; min-width: unset !important; max-width: fit-content; height: fit-content; font-size: 8px;">
+                                                <mat-icon>keyboard_arrow_right</mat-icon> <!-- Utilisation de l'icône de flèche vers la droite -->
+                                            </button>
+                                        </td>
+                                        
+                                        
+                                        
+                                        <td class="button-container">
+                                            <!-- Bouton de suppression avec icône Font Awesome -->
+                                            <button class="custom-button1 delete-button" (click)="onDeleteAnalyseCausale(analyse.id)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                            
+                                              
+                                              <button class="custom-button1 edit-button" (click)="openModifierAnalyseModal(analyse.id)">
+                                                <i class="fas fa-pencil-alt"></i>
+                                              </button>
+                                        
+                                           
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                        
+                        
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+             
+                <!-- Modal -->
+
+              <!-- Modale pour ajouter une activité -->
+
+          <!-- Modal d'ajout de processus -->
+<!-- Button to open the Material modal -->
+
+
+<!-- Material modal for adding processus -->
+
+  
+               <!-- Modale pour ajouter une activité -->
+
+  
+                <!-- end modal -->
+                
+         
+            </div>
+            <!-- end main content-->
+
+        </div>
+    
+        <div class="rightbar-overlay"></div>
+
+    
+    </body>
+
+</html>

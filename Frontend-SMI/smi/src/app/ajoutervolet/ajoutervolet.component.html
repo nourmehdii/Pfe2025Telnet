@@ -1,0 +1,25 @@
+<!-- ajoutervolet.component.html -->
+
+<h2 mat-dialog-title class="animate__animated" [ngClass]="{'animate__fadeIn': isOpen, 'animate__fadeOut': !isOpen}">Ajouter un volet</h2>
+
+<form (ngSubmit)="onSubmit()" class="modal-form animate__animated" [ngClass]="{'animate__fadeInUp': isOpen, 'animate__fadeOutDown': !isOpen}">
+  <mat-dialog-content>
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom :</mat-label>
+        <input matInput type="text" [(ngModel)]="volet.name" name="name" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-label>Axe :</mat-label><br>
+      <mat-radio-group [(ngModel)]="volet.axe" name="axe">
+        <mat-radio-button *ngFor="let axe of axes" [value]="axe" class="radio-button">{{axe}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="btn btn-secondary animate__animated" [ngClass]="{'animate__fadeInLeft': isOpen, 'animate__fadeOutLeft': !isOpen}">Annuler</button>
+    <button mat-raised-button color="primary" type="submit" class="btn btn-primary animate__animated" [ngClass]="{'animate__fadeInRight': isOpen, 'animate__fadeOutRight': !isOpen}">Ajouter</button>
+  </mat-dialog-actions>
+</form>

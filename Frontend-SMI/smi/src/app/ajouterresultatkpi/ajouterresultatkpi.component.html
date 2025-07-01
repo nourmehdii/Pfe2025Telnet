@@ -1,0 +1,19 @@
+<div>
+    <h2>Ajouter un résultat pour le KPI</h2>
+    <!-- Formulaire pour ajouter un résultat pour le KPI -->
+    <form (submit)="onSubmit()">
+      <div>
+        <label for="startDate">Date de début :</label>
+        <input type="date" id="startDate" name="startDate" [(ngModel)]="startDate">
+      </div>
+      <div>
+        <label for="endDate">Date de fin :</label>
+        <input type="date" id="endDate" name="endDate" [(ngModel)]="endDate">
+      </div>
+      <div>
+        <label for="value">Valeur :</label>
+        <input type="number" id="value" name="value" [(ngModel)]="value">
+      </div>
+      <button type="submit">Ajouter</button>
+    </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="client-details-container" id="client-details-content">
+    <div class="client-header">
+      <div class="client-photo">
+        <img class="client-img" src="assets/images/do-utilizador.png" alt="Photo du client">
+      </div>
+      <div class="client-info">
+        <h2>{{ data.clientDetails.name }}</h2>
+        <div class="info-item">
+          <p><strong>Téléphone:</strong> {{ data.clientDetails.phone }}</p>
+        </div>
+        <div class="info-item">
+          <p><strong>Email:</strong> {{ data.clientDetails.email }}</p>
+        </div>
+        <div class="info-item">
+          <p><strong>Adresse:</strong> {{ data.clientDetails.streetAddress }}</p>
+        </div>
+        <div class="info-item">
+          <p><strong>Ville:</strong> {{ data.clientDetails.city }}</p>
+        </div>
+        <div class="info-item">
+          <p><strong>État:</strong> {{ data.clientDetails.state }}</p>
+        </div>
+        <div class="info-item">
+          <p><strong>Pays:</strong> {{ data.clientDetails.country }}</p>
+        </div>
+        <div class="info-item">
+          <p><strong>Statut:</strong> {{ data.clientDetails.active ? 'Actif' : 'Inactif' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <button mat-raised-button class="btn-close" (click)="closeModal()"></button>
+      <button mat-raised-button class="btn-print" (click)="printPdf()">Imprimer en PDF</button>
+    </div>
+  </div>
+  

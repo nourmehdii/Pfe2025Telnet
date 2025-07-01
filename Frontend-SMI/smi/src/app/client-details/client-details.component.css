@@ -1,0 +1,128 @@
+.client-details-container {
+    padding: 20px;
+    max-width: 600px; /* Réduit la largeur de la fiche */
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .client-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .client-photo {
+    margin-right: 15px;
+  }
+  
+  .client-img {
+    border-radius: 50%;
+    width: 80px; /* Réduit la taille de l'image */
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #007bff;
+  }
+  
+  .client-info {
+    flex: 1;
+  }
+  
+  .client-info h2 {
+    font-size: 22px; /* Réduit la taille du titre */
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 10px 0;
+  }
+  
+  .info-item {
+    margin-bottom: 10px;
+  }
+  
+  .info-item p {
+    margin: 0;
+    font-size: 14px; /* Réduit la taille du texte */
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .info-item strong {
+    color: #007bff;
+  }
+  
+  button.mat-raised-button {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button.mat-raised-button.mat-primary {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+  }
+  
+  button.mat-raised-button.mat-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  button.mat-raised-button.mat-primary:active {
+    background-color: #004494;
+    transform: translateY(1px);
+  }
+  
+  .client-details-container {
+    padding: 10px; /* Réduit le padding */
+    max-width: 400px; /* Largeur adaptée pour le PDF */
+    margin: 0 auto;
+    border: 1px solid #000; /* Bordure pour le contenu */
+    border-radius: 5px; /* Coins arrondis */
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Style pour le conteneur des boutons */
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Aligne les boutons à droite */
+    margin-top: 20px; /* Espace au-dessus des boutons */
+  }
+  
+  /* Style pour le bouton "Fermer" */
+  .btn-close {
+    background-color: #f44336; /* Couleur rouge */
+    color: white; /* Texte blanc */
+    margin-right: 10px; /* Espace entre les boutons */
+    font-size: 16px; /* Taille du texte */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée */
+  }
+  
+  .btn-close:hover {
+    background-color: #d32f2f; /* Couleur rouge foncé au survol */
+  }
+  
+  /* Style pour le bouton "Imprimer en PDF" */
+  .btn-print {
+    background-color: #3f51b5; /* Couleur bleue */
+    color: white; /* Texte blanc */
+    font-size: 16px; /* Taille du texte */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée */
+  }
+  
+  .btn-print:hover {
+    background-color: #303f9f; /* Couleur bleue foncée au survol */
+  }
+  

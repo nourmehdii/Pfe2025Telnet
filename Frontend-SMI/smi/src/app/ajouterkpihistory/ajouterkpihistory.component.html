@@ -1,0 +1,20 @@
+<h2 class="modal-title">Créer un historique de KPI</h2>
+
+<form [formGroup]="historyForm" (ngSubmit)="submitHistory()" class="history-form">
+  <div class="form-group">
+    <label for="startDate">Date de début:</label>
+    <input type="date" id="startDate" formControlName="startDateP" required class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="endDate">Date de fin:</label>
+    <input type="date" id="endDate" formControlName="endDateP" required class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="value">Valeur:</label>
+    <input type="number" id="value" formControlName="value" required class="form-control">
+  </div>
+  <div class="button-group">
+    <button type="submit" [disabled]="!historyForm.valid" class="btn btn-primary">Créer historique</button>
+    <button type="button" (click)="closeDialog()" class="btn btn-secondary">Annuler</button>
+  </div>
+</form>

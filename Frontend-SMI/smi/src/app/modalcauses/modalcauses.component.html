@@ -1,0 +1,80 @@
+
+<button class="custom-button1 refresh-button" (click)="refreshActions()" title="Actualiser">
+  <i class="fas fa-sync-alt"></i> Actualiser
+</button>
+<div class="custom-modal-content">
+  <div class="custom-table-container" style="max-height: 500px; overflow-y: auto;">
+  
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Nom Cause</th>
+          <th>Pourcentage</th>
+          <th>Actions</th>
+          <!-- <th>Actions</th> Nouvelle colonne pour les boutons Supprimer et Éditer -->
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let cause of causes; let i = index">
+          <tr>
+            <!-- Colonne Nom Cause -->
+            <td>
+              <div *ngIf="editedIndex !== i" (click)="editCell(i, 'nomCause')" class="editable">
+                {{ cause.nomCause }}
+              </div>
+              <div *ngIf="editedIndex === i">
+                <input type="text" [(ngModel)]="cause.nomCause">
+              </div>
+            </td>
+            <!-- Colonne Pourcentage -->
+            <td>
+              <div *ngIf="editedIndex !== i" (click)="editCell(i, 'pourcentage')" class="editable">
+                {{ cause.pourcentage }} %
+              </div>
+              <div *ngIf="editedIndex === i">
+                <input type="number" [(ngModel)]="cause.pourcentage">
+              </div>
+            </td>
+            <!-- Colonne Actions - Planifier Action ou Détails -->
+            <td>
+              <!-- Affiche "Planifier Action" si cause.actions est vide, sinon affiche "Détails" -->
+              <button class="plan-button" *ngIf="!cause.actions || cause.actions.length === 0" (click)="openModalaction(cause.id)">Planifier Action</button>
+
+
+              <button class="custom-button details-button" *ngIf="cause.actions && cause.actions.length > 0" (click)="openDetailsModal(cause)">Détails</button>
+            </td>
+
+            <!-- <td>
+              <button class="custom-button sms-button" (click)="sendRappelSms(cause.id)">
+                <i class="fas fa-comment"></i> Rappel SMS
+              </button>
+            </td> -->
+            <!-- Colonne Actions - Supprimer et Éditer -->
+            <td>
+              <!-- Bouton "Planifier Action" rond -->
+              <button class="round-button" *ngIf="cause.actions && cause.actions.length > 0 && editedIndex === -1" (click)="openModalaction(cause.id)">
+                <i class="fas fa-plus"></i>
+              </button>
+              <!-- Bouton Sauvegarder -->
+              <button class="custom-button save-button" (click)="saveCell(i)" *ngIf="editedIndex === i">
+                <i class="fas fa-check"></i>
+              </button>
+              <!-- Bouton Annuler -->
+              <button class="custom-button cancel-button" (click)="cancelEdit()" *ngIf="editedIndex === i">
+                <i class="fas fa-times"></i>
+              </button>
+              <!-- Bouton Supprimer -->
+              <button class="custom-button delete-button" (click)="confirmDelete(cause.id)" *ngIf="editedIndex !== i">
+                <i class="fas fa-trash"></i>
+              </button>
+              <!-- Bouton Éditer -->
+              <button class="custom-button edit-button" (click)="editCell(i, 'nomCause'); editCell(i, 'pourcentage')" *ngIf="editedIndex !== i">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

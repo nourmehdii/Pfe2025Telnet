@@ -1,0 +1,46 @@
+<div class="custom-form-container">
+    <h2>Modifier une action</h2>
+  
+    <form [formGroup]="actionForm" (ngSubmit)="modifierAction()" class="plan-action-form">
+        <div class="form-group">
+            <label for="type">Type d'action:</label>
+            <select id="type" name="typeAction" formControlName="typeAction" required [(ngModel)]="newAction.typeAction">
+                <option *ngFor="let actionType of typeActions" [ngValue]="actionType">{{ actionType }}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="responsable">Responsable:</label>
+            <input type="text" id="responsable" name="responsable" formControlName="responsable" required>
+        </div>
+        
+        <div class="date-group">
+            <div class="form-group">
+                <label for="datePlanification">Date de planification:</label>
+                <input type="date" id="datePlanification" name="datePlanification" formControlName="datePlanification" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dateRealisation">Date de réalisation:</label>
+                <input type="date" id="dateRealisation" name="dateRealisation" formControlName="dateRealisation" required>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="critereEfficacite">Critère d'efficacité:</label>
+            <textarea id="critereEfficacite" name="critereEfficacite" formControlName="critereEfficacite" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <input type="checkbox" id="efficace" name="efficace" formControlName="efficace">
+            <label for="efficace">Efficace</label>
+        </div>
+        
+        <div class="form-group">
+            <label for="commentaire">Commentaire:</label>
+            <textarea id="commentaire" name="commentaire" formControlName="commentaire"></textarea>
+        </div>
+        
+        <button type="submit">Modifier</button>
+    </form>
+</div>

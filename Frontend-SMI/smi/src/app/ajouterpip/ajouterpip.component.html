@@ -1,0 +1,38 @@
+<div class="modal-container">
+    <h2 class="mb-4">Ajouter PIP</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="category" class="form-label">Catégorie :</label>
+        <select id="category" name="category" [(ngModel)]="newPip.category" class="form-select" required>
+          <option value="" disabled>Sélectionner la catégorie</option>
+          <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Nom PIP :</label>
+        <input type="text" id="name" name="name" [(ngModel)]="newPip.name" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Type :</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="internal" name="type" value="Interne" [(ngModel)]="newPip.type" required>
+          <label class="form-check-label" for="internal">Interne</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="external" name="type" value="Externe" [(ngModel)]="newPip.type" required>
+          <label class="form-check-label" for="external">Externe</label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="interaction" class="form-label">Interaction :</label>
+        <select id="interaction" name="interaction" [(ngModel)]="newPip.interaction" class="form-select" required>
+          <option value="" disabled>Sélectionner l'interaction</option>
+          <option value="Forte">Forte</option>
+          <option value="Moyenne">Moyenne</option>
+          <option value="Faible">Faible</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Ajouter PIP</button>
+    </form>
+  </div>
+  

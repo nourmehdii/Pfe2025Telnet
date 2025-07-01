@@ -1,0 +1,94 @@
+.vertical-dates div {
+    margin-bottom: 5px; /* Espace entre les dates */
+  }
+  
+  .circle-btn {
+    border-radius: 50%; /* Rend les boutons circulaires */
+    width: 20px; /* Ajustez la largeur du bouton selon vos préférences */
+    height: 20px; /* Ajustez la hauteur du bouton selon vos préférences */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .circle-btn:focus {
+    outline: none; /* Supprime la bordure de focus par défaut */
+  }
+
+  .analysis-btn {
+    background-color: red; /* Couleur de fond rouge */
+    color: white; /* Couleur de texte blanche */
+    border: none; /* Supprime les bordures */
+    width: 30px; /* Largeur du bouton */
+    height: 30px; /* Hauteur du bouton */
+    border-radius: 50%; /* Rend le bouton circulaire */
+    display: flex; /* Affiche en tant que conteneur flex */
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+    cursor: pointer; /* Change le curseur au survol */
+    transition: background-color 0.3s; /* Animation de transition */
+  }
+  
+  .analysis-btn:focus {
+    outline: none; /* Supprime la bordure de focus */
+  }
+  
+  .analysis-btn:hover {
+    background-color: darkred; /* Change la couleur de fond au survol */
+  }
+  
+  
+  .purple-btn {
+    background-color: purple;
+    color: white; /* Text color */
+    border: none; /* Remove default button border */
+  }
+  
+  /* Styles for the new icon */
+ 
+  .icon-custom-color {
+    color: #c6b5b5; /* Couleur personnalisée pour l'icône (rouge dans cet exemple) */
+  }
+  .circle-btn {
+    border-radius: 50%; /* Assurez-vous que le bouton est parfaitement circulaire */
+    border: 2px solid #ccc; /* Ajoutez une bordure pour créer un effet de cercle */
+    padding: 10px 20px; /* Ajustez le rembourrage selon vos besoins */
+    background-color: transparent; /* Assurez-vous que le fond est transparent */
+  }
+  
+  .circle-btn:hover {
+    background-color: #f0f0f0; /* Changez la couleur de fond au survol si nécessaire */
+  }
+  .green-text {
+    color: green;
+  }
+  
+  .red-text {
+    color: red;
+  }
+  
+  .round-icon-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px; /* Ajustez la largeur selon vos besoins */
+    height: 30px; /* Ajustez la hauteur selon vos besoins */
+    border-radius: 50%; /* Rend le bouton rond */
+    background-color: #2196F3; /* Couleur de fond */
+    color: white; /* Couleur de l'icône */
+    border: none; /* Supprime la bordure */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Ajoute une transition douce */
+  }
+  
+  .round-icon-button:hover {
+    background-color: #0D47A1; /* Change la couleur de fond au survol */
+  }
+  
+  /* Réglez la taille de l'icône */
+  .round-icon-button mat-icon {
+    font-size: 24px; /* Ajustez la taille de l'icône selon vos besoins */
+  }
+  
+  
+   

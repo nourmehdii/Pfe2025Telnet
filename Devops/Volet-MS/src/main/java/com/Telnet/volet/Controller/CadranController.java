@@ -1,0 +1,111 @@
+package com.Telnet.volet.Controller;
+
+import com.Telnet.volet.Service.CadranService;
+import com.Telnet.volet.model.Cadran;
+import com.Telnet.volet.model.EType;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@CrossOrigin("*")
+@RestController
+@RequestMapping("/api/cadran")
+public class CadranController {
+
+    @Autowired
+    private CadranService cadranService;
+
+    @PostMapping("/volet/{volet_id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<?> createCadran(@PathVariable(value = "volet_id") Long voletId, @RequestBody Cadran cadran) {
+        try {
+            Cadran newCadran = cadranService.createCadran(voletId, cadran);
+            return ResponseEntity.ok().body(newCadran);
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body("Error creating Cadran: " + ex.getMessage());
+        }
+    }
+
+    @GetMapping("/list")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<Cadran> getCadranList() {
+        return cadranService.getAllCadrans();
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Cadran> getCadranById(@PathVariable(value = "id") Long cadranId) {
+        Cadran cadran = cadranService.getCadranById(cadranId);
+        return ResponseEntity.ok().body(cadran);
+    }
+
+    @GetMapping("/list/{axe}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<Cadran> getCadranListByAxeVolet(@PathVariable(value = "axe") String axe) {
+        return cadranService.getCadransByAxe(axe);
+    }
+
+    @GetMapping("/list/strength")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<Cadran> getCadranListByTypeS() {
+        return cadranService.getCadransByType(EType.STRENGTH);
+    }
+
+    @GetMapping("/list/weakness")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<Cadran> getCadranListByTypeW() {
+        return cadranService.getCadransByType(EType.WEAKNESS);
+    }
+
+    @GetMapping("/list/opportunity")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<Cadran> getCadranListByTypeO() {
+        return cadranService.getCadransByType(EType.OPPORTUNITY);
+    }
+
+    @GetMapping("/list/threat")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<Cadran> getCadranListByTypeT() {
+        return cadranService.getCadransByType(EType.THREAT);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Cadran> updateCadran(@PathVariable(value = "id") Long cadranId, @RequestBody Cadran cadranDetails) {
+        Cadran updatedCadran = cadranService.updateCadran(cadranId, cadranDetails);
+        return ResponseEntity.ok(updatedCadran);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Map<String, Boolean> deleteCadran(@PathVariable(value = "id") Long cadranId) {
+        cadranService.deleteCadran(cadranId);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Cadran successfully deleted", Boolean.TRUE);
+        return response;
+    }
+
+    @GetMapping("/volet/{voletId}/cadrans")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<List<Cadran>> getCadransByVoletId(@PathVariable(value = "voletId") Long voletId) {
+        List<Cadran> cadrans = cadranService.getCadransByVoletId(voletId);
+        return ResponseEntity.ok(cadrans);
+    }
+
+    @GetMapping("/statistiques")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Map<String, Long>> getStatisticsByType() {
+        Map<String, Long> statistics = new HashMap<>();
+        statistics.put("forceCount", cadranService.countByType(EType.STRENGTH));
+        statistics.put("faiblesseCount", cadranService.countByType(EType.WEAKNESS));
+        statistics.put("opportuniteCount", cadranService.countByType(EType.OPPORTUNITY));
+        statistics.put("menaceCount", cadranService.countByType(EType.THREAT));
+        return ResponseEntity.ok(statistics);
+    }
+}

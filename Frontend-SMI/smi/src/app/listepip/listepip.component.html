@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Colored Sidebar | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+    </head>
+
+    <body data-sidebar="colored">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-header></app-header>
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <app-app-menu></app-app-menu>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+              <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+
+  <div class="main-content">
+    <div class="page-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card modern-card">
+              <div class="card-body">
+                <div class="card-header">
+                  <h2>Partie prenante selon interaction avec Telnet</h2>
+                  <button class="bouton-vert" (click)="openAjouterpipModal()">Ajouter Pip</button>
+                </div>
+
+                <div class="glass-radio-group">
+                  <input type="radio" name="plan" id="glass-all" value="all" [(ngModel)]="selectedFilter" (ngModelChange)="filterByInteraction($event)" checked />
+                  <label for="glass-all">Toutes</label>
+                  <input type="radio" name="plan" id="glass-close" value="CLOSE" [(ngModel)]="selectedFilter" (ngModelChange)="filterByInteraction($event)" />
+                  <label for="glass-close">Forte</label>
+                  <input type="radio" name="plan" id="glass-medium" value="MEDIUM" [(ngModel)]="selectedFilter" (ngModelChange)="filterByInteraction($event)" />
+                  <label for="glass-medium">Moyenne</label>
+                  <input type="radio" name="plan" id="glass-far" value="FAR" [(ngModel)]="selectedFilter" (ngModelChange)="filterByInteraction($event)" />
+                  <label for="glass-far">Faible</label>
+                  <div class="glass-glider"></div>
+                </div>
+
+                <div class="masonry-grid">
+                  <div class="masonry-item category-card" *ngFor="let category of filteredCategories | paginate: { itemsPerPage: 9, currentPage: p }"
+                       [ngClass]="getInteractionClass(category.interaction)"
+                       [id]="getBoxId(category.name)"
+                       (click)="getPipsByCategoryId(category.id)">
+                    <span class="category-name">{{ category.name }}</span>
+                    <div class="rating" [ngClass]="getRatingClass(category.interaction)">
+                      <span class="star" [ngClass]="{'filled': isStarFilled(category.interaction, 1)}"></span>
+                      <span class="star" [ngClass]="{'filled': isStarFilled(category.interaction, 2)}"></span>
+                      <span class="star" [ngClass]="{'filled': isStarFilled(category.interaction, 3)}"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <pagination-controls
+                  (pageChange)="p = $event"
+                  previousLabel="◀"
+                  nextLabel="▶"
+                  firstLabel="«"
+                  lastLabel="»"
+                  itemsPerPageLabel="Éléments par page"
+                  totalItemsLabel="Total des éléments"
+                  currentPageLabel="Page actuelle">
+                </pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

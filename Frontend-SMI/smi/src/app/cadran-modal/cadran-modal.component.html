@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Détails du Cadran</h2>
+
+
+  <div *ngIf="data.cadran" class="cadran-table-container">
+    <i class="fas fa-sync-alt refresh-icon" (click)="refreshCadran(data.cadranId)"></i>
+
+    <table class="cadran-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Secteur</th>
+          <th>Contexte</th>
+          <th>Processus</th>
+          <th>Origine Info</th>
+          <th>Créé par</th>
+          <th>Date de création</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ data.cadran.name }}</td>
+          <td>{{ data.cadran.secteur }}</td>
+          <td>{{ data.cadran.contexte }}</td>
+          <td>{{ data.cadran.processus }}</td>
+          <td>{{ data.cadran.origineInfo }}</td>
+          <td>{{ data.cadran.creePar }}</td>
+          <td>{{ data.cadran.dateCreation | date:'dd/MM/yyyy' }}</td>
+          <td>
+            <button class="action-button edit" (click)="editCadran()">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="action-button delete" (click)="deleteCadran()">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="closeModal()">Fermer</button>
+</div>

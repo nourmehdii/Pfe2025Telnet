@@ -1,0 +1,64 @@
+/* Style du titre */
+h1.mat-dialog-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Style des champs de formulaire */
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Style des libellés des champs */
+  .mat-form-field-label {
+    color: #555;
+  }
+  
+  /* Style des champs de formulaire */
+  input.mat-input {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* Style des messages d'erreur */
+  .mat-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Style du bouton Enregistrer */
+  button.mat-raised-button[color="primary"] {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Style du bouton Annuler */
+  button.mat-raised-button[color="warn"] {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  /* Style du groupe de boutons */
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Style des espacements entre les boutons */
+  .button-group button {
+    flex-basis: 48%;
+  }
+  
+  .mat-dialog-container {
+    max-width: 800px; /* Définissez la largeur souhaitée */
+  }
+  .error-snackbar {
+    background-color: #d32f2f !important; /* Rouge */
+    color: white !important;
+  }
+  

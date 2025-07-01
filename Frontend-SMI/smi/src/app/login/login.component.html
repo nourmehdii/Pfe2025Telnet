@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Skote - Admin & Dashboard Template</title>
+   
+</head>
+
+<body>
+    <div class="left-side">
+        <div class="triangle"></div>
+        <img src="assets/images/backend.jpg" alt="Background Image" class="image">
+    </div>
+    <div class="right-side">
+        <div class="container">
+   
+            <div class="form-group">
+                <img src="assets/images/LogoSmi.png" alt="Your Image" style="width: 100%;">
+            </div>
+            <form (ngSubmit)="login()" [formGroup]="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Enter email" formControlName="email">
+                    <div *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" class="text-danger">
+                        Email is required and must be valid
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" formControlName="password">
+                    <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" class="text-danger">
+                        Password is required
+                    </div>
+                </div>
+             
+                <div class="form-group">
+                    <input type="checkbox" id="remember-check">
+                    <label for="remember-check">Remember me</label>
+                </div>
+                <div class="form-group">
+                    <button class="btn-primary" type="submit">Log In</button>
+                </div>
+            </form>
+            
+            
+            <div class="text-muted forgot-password">
+                <a href="auth-recoverpw.html">Forgot your password?</a>
+            </div>
+            <div class="signup-link">
+                <p>Don't have an account? <a href="auth-register.html">Sign up now</a></p>
+            </div>
+            <div class="copyright">
+                © <script>document.write(new Date().getFullYear())</script> Skote. Crafted with <span style="color: #f44336;">❤️</span> by Themesbrand
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

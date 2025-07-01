@@ -1,0 +1,43 @@
+<div class="custom-form-container">
+  <h2>Planifier une action</h2>
+
+  <form (ngSubmit)="planifierAction()" class="plan-action-form">
+    <div class="form-group">
+      <label for="type">Type d'action:</label>
+      <select id="type" name="type" [(ngModel)]="actionForm.type" class="form-control" required>
+        <option value="PREVENTIVE">PRÉVENTIVE</option>
+        <option value="CORRECTIVE">CORRECTIVE</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="action">Action:</label>
+      <input type="text" id="action" name="action" [(ngModel)]="actionForm.action" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="responsable">Responsable:</label>
+      <input type="text" id="responsable" name="responsable" [(ngModel)]="actionForm.responsable" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="datePlanification">Date de planification:</label>
+      <input type="date" id="datePlanification" name="datePlanification" [(ngModel)]="actionForm.datePlanification" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="dateRealisation">Date de réalisation:</label>
+      <input type="date" id="dateRealisation" name="dateRealisation" [(ngModel)]="actionForm.dateRealisation" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="critereEfficacite">Critère d'efficacité:</label>
+      <textarea id="critereEfficacite" name="critereEfficacite" [(ngModel)]="actionForm.critereEfficacite" class="form-control" required></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="commentaire">Commentaire:</label>
+      <textarea id="commentaire" name="commentaire" [(ngModel)]="actionForm.commentaire" class="form-control"></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Planifier</button>
+
+    </div>
+  </form>
+</div>

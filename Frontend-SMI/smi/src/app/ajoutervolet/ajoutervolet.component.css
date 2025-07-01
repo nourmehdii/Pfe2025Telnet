@@ -1,0 +1,31 @@
+/* ajoutervolet.component.css */
+@import '~animate.css/animate.css';
+.modal-form {
+    width: 400px; /* Ajustez la largeur selon vos besoins */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .mat-radio-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .radio-button {
+    margin-bottom: 10px;
+  }
+  
+  .cancel-button {
+    margin-right: 10px;
+  }
+  
+  .submit-button {
+    min-width: 100px; /* Ajustez la largeur selon vos besoins */
+  }
+  

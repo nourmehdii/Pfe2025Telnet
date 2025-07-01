@@ -1,0 +1,26 @@
+<div class="container p-4">
+    <h3 class="text-center mb-4" style="color: #007bff;">Détails des processus</h3>
+    <div class="table-wrapper">
+      <table class="table table-bordered table-hover">
+        <thead class="bg-primary text-white">
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="processus && processus.length > 0">
+          <tr *ngFor="let proc of processus">
+            <td>{{ proc.name }}</td>
+            <td>{{ proc.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="!processus || processus.length === 0" class="alert alert-info" role="alert">
+      Aucun processus trouvé.
+    </div>
+    <div class="text-center mt-4">
+      <button class="btn btn-primary" (click)="closeModal()">Fermer</button>
+    </div>
+  </div>
+  

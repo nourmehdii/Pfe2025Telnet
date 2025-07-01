@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProcessModalLabel">Ajouter Processus</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulaire pour ajouter un processus -->
+        <form (submit)="addProcess()">
+          <div class="mb-3">
+            <label for="processName" class="form-label">Nom du Processus</label>
+            <input type="text" class="form-control" id="processName" [(ngModel)]="newProcess.name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="processDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="processDescription" [(ngModel)]="newProcess.description" name="description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="fill">
+              <mat-label>Sélectionner les KPIs</mat-label>
+              <mat-select [(ngModel)]="selectedKPIs" multiple name="kpis" required>
+                <mat-option *ngFor="let kpi of kpiList" [value]="kpi.id">{{ kpi.name }}</mat-option>
+              </mat-select>
+              
+            </mat-form-field>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

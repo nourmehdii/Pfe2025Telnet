@@ -1,0 +1,30 @@
+
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ajouterCategoryModalLabel">Ajouter une catégorie</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire d'ajout de catégorie -->
+          <form (submit)="ajouterCategory()">
+            <div class="mb-3">
+              <label for="categoryName" class="form-label">Nom de la catégorie</label>
+              <input type="text" class="form-control" id="categoryName" name="categoryName" [(ngModel)]="newCategory.name" required>
+            </div>
+            <div class="mb-3">
+          <label for="categoryInteraction" class="form-label">Niveau d'interaction</label>
+          <select class="form-control" id="categoryInteraction" name="categoryInteraction" [(ngModel)]="newCategory.interaction" required>
+            <option *ngFor="let interaction of interactions" [value]="interaction">
+              {{ interaction }}
+            </option>
+          </select>
+        </div>
+            <!-- Bouton de soumission du formulaire -->
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+  

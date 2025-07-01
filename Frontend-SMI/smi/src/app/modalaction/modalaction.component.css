@@ -1,0 +1,75 @@
+.details-modal {
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .action-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+  }
+  
+  .action-table th,
+  .action-table td {
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+    font-size: 0.8rem; /* Taille de police réduite pour les cellules */
+  }
+  
+  .action-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .action-table td {
+    color: #666;
+  }
+  
+  .custom-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  
+  .custom-button:hover {
+    opacity: 0.8;
+  }
+  
+  .delete-button {
+    color: #d9534f;
+  }
+  
+  .edit-button {
+    color: #5bc0de;
+  }
+  
+  p {
+    color: #888;
+    font-style: italic;
+    margin-top: 5px;
+  }
+ 
+  .plan-button {
+    border: 1px solid #007bff;
+    background-color: transparent;
+    color: #007bff;
+    border-radius: 4px; /* Coins légèrement arrondis */
+    padding: 3px 10px; /* Rembourrage réduit */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.plan-button:hover {
+    background-color: #007bff;
+    color: #fff;
+}

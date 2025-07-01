@@ -1,0 +1,59 @@
+<form (ngSubmit)="updateClient()" #clientForm="ngForm">
+  <!-- Champ pour le nom du client -->
+  <div class="form-group">
+    <label for="name">Nom:</label>
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="updatedClient.name" required>
+  </div>
+
+  <!-- Champ pour le téléphone du client -->
+  <div class="form-group">
+    <label for="phone">Téléphone:</label>
+    <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="updatedClient.phone" required>
+  </div>
+
+  <!-- Champ pour l'email du client -->
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="updatedClient.email">
+  </div>
+
+  <!-- Champ pour l'adresse du client -->
+  <div class="form-group">
+    <label for="streetAddress">Adresse:</label>
+    <input type="text" class="form-control" id="streetAddress" name="streetAddress" [(ngModel)]="updatedClient.streetAddress">
+  </div>
+
+  <!-- Champ pour la ville -->
+  <div class="form-group">
+    <label for="city">Ville:</label>
+    <input type="text" class="form-control" id="city" name="city" [(ngModel)]="updatedClient.city">
+  </div>
+
+  <!-- Champ pour l'état -->
+  <div class="form-group">
+    <label for="state">État:</label>
+    <input type="text" class="form-control" id="state" name="state" [(ngModel)]="updatedClient.state">
+  </div>
+
+
+  <!-- Champ pour le pays -->
+  <div class="form-group">
+    <label for="country">Pays:</label>
+    <input type="text" class="form-control" id="country" name="country" [(ngModel)]="updatedClient.country">
+  </div>
+
+
+
+  <!-- Champ pour le statut du client -->
+  <div class="form-group">
+    <label for="active">Statut:</label>
+    <select class="form-control" id="active" name="active" [(ngModel)]="updatedClient.active" required>
+      <option [ngValue]="true">Actif</option>
+      <option [ngValue]="false">Inactif</option>
+    </select>
+  </div>
+
+  <!-- Bouton pour soumettre le formulaire -->
+  <button type="submit" class="btn btn-primary">Enregistrer</button>
+  <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+</form>

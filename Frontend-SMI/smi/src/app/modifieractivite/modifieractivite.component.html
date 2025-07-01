@@ -1,0 +1,27 @@
+<div>
+  <h2>Modifier l'activité</h2>
+  <form class="form-container" (ngSubmit)="updateActivity()">
+    <div class="form-group">
+      <label for="name">Nom:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="activity.name" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" id="description" name="description" [(ngModel)]="activity.description" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="processus">Sélectionner les processus:</label>
+      <mat-form-field appearance="fill" class="example-form-field">
+        <mat-label>Sélectionner les processus</mat-label>
+        <mat-select name="processus" multiple [(ngModel)]="selectedProcessus" [compareWith]="compareProcessus" class="custom-mat-select">
+          <mat-option *ngFor="let processus of processusList" [value]="processus">{{ processus.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+    <div class="button-group">
+      <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Mettre à jour</button>
+      <button type="button" class="btn btn-secondary" (click)="onNoClick()"><i class="fa fa-times"></i> Annuler</button>
+    </div>
+  </form>
+</div>

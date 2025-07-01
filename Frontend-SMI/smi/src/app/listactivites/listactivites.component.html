@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+    
+<!-- Mirrored from themesbrand.com/skote/layouts/layouts-colored-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Feb 2024 15:33:52 GMT -->
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Colored Sidebar | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+      
+
+    </head>
+
+    <body data-sidebar="colored">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-header></app-header>
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <app-app-menu></app-app-menu>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                       
+                        <!-- end page title -->
+
+                        
+                        <!-- end row -->
+
+                        <!-- end row -->
+                  
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                      
+                                    
+                                        <br/><br/>
+                                        <h4 class="card-title mb-4">Listes des activités</h4>
+                                        <button mat-raised-button class="rounded-button custom-button" color="accent" (click)="openAjouterActiviteModal()">Ajouter </button>
+                                      <br/> <br/>
+                                        <div class="table-responsive">
+                                            <table class="table align-middle table-nowrap mb-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th style="width: 20px;"></th>
+                                                        <th class="align-middle">Nom</th>
+                                                        <th class="align-middle">Description</th>
+                                                        <th class="align-middle">Processus</th>
+                                                        <th class="align-middle">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let activity of activities  | paginate: { itemsPerPage: 4, currentPage: p }">
+                                                        <td></td>
+                                                        <td>{{ activity.name }}</td>
+                                                        <td>{{ activity.description }}</td>
+                                                        <td>
+                                                         
+                                                            <button class="custom-button1 arrow-button" (click)="openDetailsprocessuseModal(activity.id)">
+                                                                <i class="fas fa-arrow-right"></i> <!-- Icône de flèche vers la droite -->
+                                                            </button>
+                                                            
+                                                            
+                                                        </td>
+                                                     
+                                                            
+                                                        <td class="button-container">
+                                                            <!-- Bouton de suppression avec icône Font Awesome -->
+                                                            <button class="custom-button1 delete-button" (click)="deleteActivity(activity.id)">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                            
+                                                            
+                                                            <!-- Bouton de modification avec icône Font Awesome -->
+                                                         
+                                                                <!-- Bouton de modification avec icône Font Awesome -->
+                                                                <button class="custom-button1 edit-button" (click)="openUpdateModal(activity.id)">
+                                                                    <i class="fas fa-pencil-alt"></i>
+                                                                </button>
+                                                        
+                                                            
+                                                        </td>
+                                                        
+                                                            
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <br/>
+                                            <pagination-controls 
+                                            (pageChange)="p = $event"
+                                            previousLabel="&#9664;"
+                                            nextLabel="&#9654;"
+                                            firstLabel="&#171;"
+                                            lastLabel="&#187;"
+                                            itemsPerPageLabel="Éléments par page"
+                                            totalItemsLabel="Total des éléments"
+                                            currentPageLabel="Page actuelle"
+                                          ></pagination-controls>
+                                          
+                                          
+                                          
+                                        </div>
+                                        <!-- end table-responsive -->
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                <!-- Modal -->
+
+              <!-- Modale pour ajouter une activité -->
+
+  
+               <!-- Modale pour ajouter une activité -->
+
+  
+                <!-- end modal -->
+                
+         
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+       
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+    
+    </body>
+
+<!-- Mirrored from themesbrand.com/skote/layouts/layouts-colored-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Feb 2024 15:33:52 GMT -->
+</html>
