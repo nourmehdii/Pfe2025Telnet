@@ -52,12 +52,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>com.services.candidates</groupId>
             <artifactId>offre_emploi-MS</artifactId>
             <version>1.0.1-SNAPSHOT</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

@@ -1,0 +1,8 @@
+
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÿæ¤®ÿÿÿÿÿ8½Ýô‘ý2J$41725cf2-2537-4a51-be4c-adb5a7f14129
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8ÐÝô‘ý2J$f0afad99-60a3-4bfa-b7cc-961c57854f62
+¡
+java:S3305"YInject this field value directly into "requestInterceptor", the only method that uses it.(Ùíì£üÿÿÿÿ8ÓÝô‘ý2J$1f6c058a-77a1-46b1-a862-1bb2af89cab3
+q
+java:S1874!".Remove this use of "<init>"; it is deprecated.(Šñ¢¨8ÜÝô‘ý2J$eb88aba6-81ec-4770-9813-f25b3f555b60

@@ -1,0 +1,9 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ìİß½øÿÿÿÿ
+N
+java:S11729"8Remove this unused method parameter "impactedProcessus".(ŞÓëÓ
+V	java:S125/"<This block of commented-out lines of code should be removed.(ŞÄ£•ıÿÿÿÿ
+o
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(îßµıÿÿÿÿÿ
+j
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(–Æ‡Ù

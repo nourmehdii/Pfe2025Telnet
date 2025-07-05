@@ -1,4 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Smi/SMI/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Smi/SMI/Auth-MS/pom.xml" />
+        <option value="$PROJECT_DIR$/Smi/SMI/discovery-server/pom.xml" />
+        <option value="$PROJECT_DIR$/Smi/SMI/enjeux-strategique-MS/pom.xml" />
+        <option value="$PROJECT_DIR$/Smi/SMI/Pip-MS/pom.xml" />
+        <option value="$PROJECT_DIR$/Smi/SMI/Projet_MS/pom.xml" />
+        <option value="$PROJECT_DIR$/Smi/SMI/Volet-MS/pom.xml" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

@@ -29,12 +29,12 @@
         </dependency>
 
 
-        <!-- Offre d'emploi-MS -->
+        <!-- Offre d'emploi-MS
         <dependency>
             <groupId>com.services.candidates</groupId>
             <artifactId>offre_emploi-MS</artifactId>
             <version>1.0.1-SNAPSHOT</version>
-        </dependency>
+        </dependency> -->
 
         <!-- Spring Cloud Netflix Eureka Client -->
         <dependency>
