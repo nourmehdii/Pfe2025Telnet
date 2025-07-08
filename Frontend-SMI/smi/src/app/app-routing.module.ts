@@ -21,6 +21,11 @@ import { EvolutionkpiComponent } from './evolutionkpi/evolutionkpi.component';
 import { PerformanceprocessusComponent } from './performanceprocessus/performanceprocessus.component';
 import { LinechartComponent } from './linechart/linechart.component';
 import { AnalyseforkpiComponent } from './analyseforkpi/analyseforkpi.component';
+
+import { ListenjeuxComponent } from './listenjeux/listenjeux.component';
+import { AjouterenjeuxComponent } from './ajouterenjeux/ajouterenjeux.component';
+
+
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -48,6 +53,10 @@ const routes: Routes = [
   { path: 'performanceprocessus', component: PerformanceprocessusComponent, canActivate: [AuthGuard] },
   { path: 'linechart/:id', component: LinechartComponent, canActivate: [AuthGuard] },
   { path: 'analysecausale/:kpiId', component: AnalyseforkpiComponent, canActivate: [AuthGuard] },
+  { path: 'enjeuxstrategique', component: ListenjeuxComponent, canActivate: [AuthGuard] },
+  { path: 'ajouterenjeux', component: AjouterenjeuxComponent, canActivate: [AuthGuard] },
+
+  
 
   
 ];

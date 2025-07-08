@@ -77,7 +77,11 @@ import { EmailModalComponent } from './email-modal/email-modal.component';
 import { PipsModalComponentComponent } from './pips-modal-component/pips-modal-component.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { CadranModalComponent } from './cadran-modal/cadran-modal.component';
+import { ListenjeuxComponent } from './listenjeux/listenjeux.component';
+import { AjouterenjeuxComponent } from './ajouterenjeux/ajouterenjeux.component';
 
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -145,40 +149,36 @@ import { CadranModalComponent } from './cadran-modal/cadran-modal.component';
     PipsModalComponentComponent,
     ClientDetailsComponent,
     CadranModalComponent,
+    ListenjeuxComponent,
+    AjouterenjeuxComponent,
     //InteractionFilterPipe
    
   
   
   ],
   imports: [
-    MatIconModule,
-    MatDialogModule,
-    BrowserModule,
-    HttpClientModule ,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatDialogModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatSnackBarModule,
-    MatRadioModule ,
-    CommonModule,
-    MatIconModule,
-    MatCardModule,
-    NgxPaginationModule,
-    CommonModule
- 
 
-   
+BrowserModule,
+  BrowserAnimationsModule,
+  AppRoutingModule,
+  HttpClientModule,
+  FormsModule,
+  ReactiveFormsModule,
+  CommonModule,
 
-
+  // Angular Material modules
+  MatDialogModule,
+  MatSelectModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCheckboxModule,
+  MatSnackBarModule,
+  MatRadioModule,
+  MatIconModule,
+  MatCardModule,
+  MatStepperModule,
+  MatButtonModule,
+  NgxPaginationModule
 
   ],
   providers: [],

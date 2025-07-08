@@ -92,5 +92,16 @@
         <span>Attentes PIP</span>
       </a>
     </li>
+
+
+<li *ngIf="isAny('RESPONSABLEQUALITE', 'CHEFDEPROJET')">
+  <a routerLink="/enjeuxstrategique" routerLinkActive="active" class="waves-effect" (click)="setActiveLink('enjeuxstrategique')">
+    <i class="bx bx-target-lock"></i>
+    <span>Enjeux Stratégiques</span>
+  </a>
+</li>
+
+
+
   </ul>
 </div>

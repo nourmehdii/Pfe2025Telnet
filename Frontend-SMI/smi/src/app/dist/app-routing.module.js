@@ -31,6 +31,9 @@ var performanceprocessus_component_1 = require("./performanceprocessus/performan
 var linechart_component_1 = require("./linechart/linechart.component");
 var analyseforkpi_component_1 = require("./analyseforkpi/analyseforkpi.component");
 var auth_guard_1 = require("./auth.guard");
+
+//var enjeuxstrategique_1 = require("./listenjeux/listenjeux.component");
+
 var routes = [
     { path: 'home', component: dashboard_component_1.DashboardComponent, canActivate: [auth_guard_1.AuthGuard] },
     { path: 'listactivites', component: listactivites_component_1.ListactivitesComponent, canActivate: [auth_guard_1.AuthGuard] },
@@ -52,6 +55,9 @@ var routes = [
     { path: 'performanceprocessus', component: performanceprocessus_component_1.PerformanceprocessusComponent, canActivate: [auth_guard_1.AuthGuard] },
     { path: 'linechart/:id', component: linechart_component_1.LinechartComponent, canActivate: [auth_guard_1.AuthGuard] },
     { path: 'analysecausale/:kpiId', component: analyseforkpi_component_1.AnalyseforkpiComponent, canActivate: [auth_guard_1.AuthGuard] },
+    
+    //{ path: 'enjeuxstrategique', component: enjeuxstrategique_1.ListenjeuxComponent, canActivate: [auth_guard_1.AuthGuard] },
+
     // Route sans AuthGuard
     { path: 'login', component: login_component_1.LoginComponent },
 ];

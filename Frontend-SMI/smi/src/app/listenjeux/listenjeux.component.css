@@ -1,0 +1,215 @@
+/* ===== Boutons ===== */
+button,
+.saisir-kpi-btn,
+.custom-button,
+.custom-button1 {
+  border: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 18px;
+  background-color:#96979a ;
+  padding: 14px 15px; /* Espacement à l'intérieur du bouton */
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.saisir-kpi-btn {
+    background: linear-gradient(135deg, #187398, #22a4d9);
+  padding: 12px 24px;
+  font-size: 12px;
+}
+
+.saisir-kpi-btn:hover {
+    background: linear-gradient(135deg, #22a4d9, #187398);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.delete-button {
+    background: linear-gradient(135deg,#22a4d9, #187398 );
+    padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 22px;
+}
+.delete-button:hover {
+    background: linear-gradient(135deg, #e67a7a, #f4f6f7);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.edit-button {
+    background: linear-gradient(135deg,#22a4d9, #187398 );
+    padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 22px;
+}
+
+.edit-button:hover {
+    background: linear-gradient(135deg, #7ae69a, #f4f6f7);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+/* ===== Tableaux ===== */
+.table-responsive {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f5f7f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-light th,
+.table thead {
+  background-color: #187398;
+  color: #1e1666;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #ffffff;
+  font-size: 13px;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+  background-color: #eef6fb;
+  transition: background-color 0.3s;
+}
+
+.table td.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.table td p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* ===== Pagination ===== */
+.pagination-controls {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #22a4d9;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Autres éléments ===== */
+.card-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #1e1666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #22a4d9;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #1e1666;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1e1666;
+  background-color: #c5ecf6;
+  border: 1px solid #22a4d9;
+  border-radius: 10px;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  box-shadow: 0 2px 4px rgba(30, 22, 102, 0.1);
+}
+
+.form-select:focus {
+  border-color: #187398;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 164, 217, 0.25);
+}
+
+/* ===== Export Buttons ===== */
+.button-container {
+    display: flex; /* Utilise flexbox pour organiser les éléments dans une ligne */
+    justify-content: flex-end; /* Aligne les boutons à droite du conteneur */
+    gap: 20px; /* Ajoute un espacement de 20px entre les boutons */
+  }
+
+.pdf-button,
+.excel-button {
+  background: linear-gradient(135deg, #c5ecf6, #187398);
+  padding: 8px 20px;
+  font-size: 14px;
+  display: inline-block; /* Garde les boutons en ligne */
+
+}
+
+.pdf-button:hover,
+.excel-button:hover {
+  background: linear-gradient(135deg, #96979a, #c5ecf6);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ===== Responsive Table ===== */
+@media screen and (max-width: 768px) {
+  .table thead {
+    display: none;
+  }
+
+  .table, .table tbody, .table tr, .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+  }
+
+  .table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+    color: #187398;
+  }
+}

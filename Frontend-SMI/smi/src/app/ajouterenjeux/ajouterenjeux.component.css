@@ -1,0 +1,164 @@
+.swot-item {
+  padding: 8px;
+  margin-bottom: 4px;
+  border-radius: 5px;
+  color: #000;
+}
+
+/* Couleurs des différents types SWOT */
+.force { background-color: #b3e5fc; }
+.faiblesse { background-color: #fff9b3; }
+.opportunite { background-color: #3599c0; color: white; }
+.menace { background-color: #ffe0b3; }
+
+/* === Global === */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+h4.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e1666;
+  border-bottom: 2px solid #22a4d9;
+  display: inline-block;
+  padding-bottom: 6px;
+  text-transform: uppercase;
+}
+
+/* === Boutons === */
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-button {
+  background: linear-gradient(135deg, #c5ecf6, #96979a);
+  color: #1e1666;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-button:hover {
+  background: linear-gradient(135deg, #22a4d9, #187398);
+  transform: scale(1.05);
+  color: #ffffff;
+}
+
+.saisir-kpi-btn {
+  background: linear-gradient(135deg, #187398, #22a4d9);
+  color: #ffffff;
+  font-size: 14px;
+  padding: 12px 26px;
+  font-weight: 600;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.saisir-kpi-btn:hover {
+  background: linear-gradient(135deg, #22a4d9, #187398);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* === Labels & Champs === */
+.form-label {
+  font-weight: 600;
+  color: #1e1666;
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+mat-form-field {
+  margin-top: 10px;
+}
+
+mat-form-field.mat-form-field {
+  background-color: #f5f7f8;
+  border-radius: 10px;
+}
+
+mat-select, input[matInput], textarea[matInput] {
+  font-size: 14px;
+  color: #1e1666;
+}
+
+/* === Étapes SWOT === */
+.swot-item {
+  background-color: #eef6fb;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 6px 0;
+  font-size: 14px;
+  color: #1e1666;
+  transition: background-color 0.3s ease;
+}
+
+.swot-item:hover {
+  background-color: #c5ecf6;
+}
+
+/* === Résumé de la 3e étape === */
+mat-step h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #187398;
+  margin-bottom: 15px;
+}
+
+mat-step p,
+mat-step ul,
+mat-step li {
+  font-size: 14px;
+  color: #333;
+}
+
+mat-step ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+mat-step li {
+  margin-bottom: 4px;
+}
+
+/* === Container boutons étapes === */
+.mt-3 {
+  margin-top: 20px !important;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 15px;
+}
+
+/* === Responsive (optionnel) === */
+@media screen and (max-width: 768px) {
+  .card {
+    padding: 15px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button-container button {
+    width: 100%;
+  }
+}
+
