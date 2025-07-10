@@ -23,4 +23,11 @@ export class EnjeuxService {
     const headers = this.getHeaders();
     return this.http.get<any[]>(this.baseUrl, { headers });
   }
+
+
+  addEnjeu(enjeu: any): Observable<any> {
+  const headers = this.getHeaders();
+  return this.http.post(`${this.baseUrl}`, enjeu, { headers });
+}
+
 }

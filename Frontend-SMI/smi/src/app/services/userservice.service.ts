@@ -615,6 +615,12 @@ ajouterCadran(voletId: number, cadran: any): Observable<any> {
   return this.http.post<any>(`http://localhost:8763/volet-service/api/cadran/volet/${voletId}`, cadran, { headers });
 }
 
+getAllCadrans(): Observable<Cadran[]> {
+  const headers = this.getHeaders();
+  return this.http.get<Cadran[]>(`http://localhost:8800/api/cadran/list`, { headers });
+}
+
+
 getCadranListByTypeS(): Observable<Cadran[]> {
   const headers = this.getHeaders();
 

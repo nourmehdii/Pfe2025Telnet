@@ -36,7 +36,7 @@ public class CadranController {
     }
 
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     public List<Cadran> getCadranList() {
         return cadranService.getAllCadrans();
     }

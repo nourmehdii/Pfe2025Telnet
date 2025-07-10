@@ -113,3 +113,5 @@ p
 QSmi/SMI/Volet-MS/src/main/java/com/Telnet/volet/config/JwtRequestInterceptor.java,6\f\6fca0900bc17b9c152fa8a03bfde07ffc014e1a0
 ƒ
 SSmi/SMI/Volet-MS/src/main/java/com/Telnet/volet/filter/JwtAuthenticationFilter.java,2\5\25300d186cb82d8fda3a09e24a093408de80931c
+Š
+ZSmi/SMI/enjeux-strategique-MS/src/main/java/com/telnet/enjeux_strategique/model/Enjeu.java,c\b\cb3c3bbd5d5df4938e411faddd4bcd32ebdcaae2

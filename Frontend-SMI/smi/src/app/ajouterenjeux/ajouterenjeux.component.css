@@ -35,27 +35,19 @@ h4.card-title {
 }
 
 /* === Boutons === */
-button {
+ .custom-button {
+  background-color: #187398;
+  color: white;
+  padding: 8px 18px;
   border: none;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 10px 20px;
-  border-radius: 20px;
-  transition: all 0.3s ease-in-out;
-}
-
-.custom-button {
-  background: linear-gradient(135deg, #c5ecf6, #96979a);
-  color: #1e1666;
-  font-weight: 500;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
 }
 
 .custom-button:hover {
-  background: linear-gradient(135deg, #22a4d9, #187398);
-  transform: scale(1.05);
-  color: #ffffff;
-}
+  background-color: #145d73;
+} 
 
 .saisir-kpi-btn {
   background: linear-gradient(135deg, #187398, #22a4d9);
@@ -160,5 +152,67 @@ mat-step li {
   .button-container button {
     width: 100%;
   }
+}
+
+/*====Mini scroller vertical ======*/
+.swot-scroll-container {
+  max-height: 150px; /* ajuste selon ton besoin */
+  overflow-y: auto;
+  padding-right: 5px; /* évite le masquage par la scrollbar */
+  margin-bottom: 1rem;
+}
+
+
+/*========Review design ==========*/
+/* Bloc global */
+.review-summary {
+  background-color: #C5ECF6;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(24, 115, 152, 0.15);
+  color: #1e1666;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Titre */
+.review-summary h3 {
+  color: #187398;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Labels (ex: "Cadrans sélectionnés") */
+.review-summary p strong {
+  display: inline-block;
+  color: #1e1666;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* Listes */
+.review-summary ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  color: #187398;
+}
+
+/* Texte de paragraphe */
+.review-summary p {
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0.3rem 0;
+}
+
+/* Boutons */
+.mat-raised-button[color="primary"] {
+  background-color: #187398;
+  color: #fff;
+}
+
+.mat-button {
+  color: #187398;
 }
 
