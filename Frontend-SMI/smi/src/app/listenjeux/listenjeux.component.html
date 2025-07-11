@@ -69,39 +69,54 @@
         <!-- Tableau -->
         <div class="table-responsive">
           <table class="table table-bordered">
-            <thead class="thead-light">
-              <tr>
-                <th>Description</th>
-                <th>Cadrans liés</th>
-                <th>Attentes</th>
-                <th>Poids</th>
-                <th>Créé par</th>
-                <th>Date création</th>
-                <th>Modifications</th>
-                <th>Date dernière modification</th>
-              </tr>
-            </thead>
+           <thead class="thead-light">
+  <tr>
+    <th>Description</th>
+    <th>Cadrans liés</th>
+    <th>Attentes</th>
+    <th>Poids</th>
+    <th>Créé par</th>
+    <th>Date création</th>
+    <th>Modifications</th>
+    <th>Date dernière modification</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+
             <tbody>
-              <ng-container *ngFor="let enjeu of enjeux  | paginate: { itemsPerPage: 4, currentPage: p }">
-                <tr>
-                <td>{{ enjeu.description }}</td>
-                <td>{{ getCadranInfos(enjeu.cadransSources) }}</td>
-                <td>{{ getAttentesText(enjeu.attentesPartiesPrenantes) }}</td>
-                <td>{{ enjeu.poids }}</td>
-                <td>{{ enjeu.creePar }}</td>
-                <td>{{ enjeu.dateCreation | date:'short' }}</td>
-                <td>
-                  <ul *ngIf="enjeu.historiqueModifications?.length > 0; else aucun">
-                    <li *ngFor="let h of enjeu.historiqueModifications">
-                      {{ h }}
-                    </li>
-                  </ul>
-                  <ng-template #aucun>Aucune</ng-template>
-                </td>
-                <td>{{ enjeu.dateModification | date:'short' }}</td>
-              </tr>
-              </ng-container>
-            </tbody>
+  <ng-container *ngFor="let enjeu of enjeux | paginate: { itemsPerPage: 4, currentPage: p }">
+    <tr>
+      <td class="wrap-cell" style="font-weight: bold; color: #187398;">{{ enjeu.description }}</td>
+      <td class="wrap-cell" [innerHTML]="getCadranInfos(enjeu.cadransSources)" style="text-align: left;"></td>
+      <td class="wrap-cell">{{ getAttentesText(enjeu.attentesPartiesPrenantes) }}</td>
+      <td>{{ enjeu.poids }}</td>
+      <td>{{ enjeu.creePar }}</td>
+      <td>{{ enjeu.dateCreation | date:'short' }}</td>
+      <td>
+        <ul *ngIf="enjeu.historiqueModifications?.length > 0; else aucun">
+          <li *ngFor="let h of enjeu.historiqueModifications">
+            {{ h }}
+          </li>
+        </ul>
+        <ng-template #aucun>Aucune</ng-template>
+      </td>
+      <td>{{ enjeu.dateModification | date:'short' }}</td>
+      <td class="button-container">
+        <!-- les boutons d’action ici -->
+                                                      <!-- Bouton de suppression avec icône Font Awesome -->
+                                                      <button class="custom-button1 delete-button" (click)="deleteEnjeu()">
+                                                        <i class="fas fa-trash"></i>
+                                                      </button>
+                                                      <!-- Bouton de modification avec icône Font Awesome -->
+                                                      <button class="custom-button1 edit-button" (click)="openUpdateEnjeuModal()">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                      </button>
+                                                    
+      </td>
+    </tr>
+  </ng-container>
+</tbody>
+
           </table>
         </div>
 

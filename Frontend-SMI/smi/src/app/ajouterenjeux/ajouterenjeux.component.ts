@@ -167,4 +167,10 @@ export class AjouterenjeuxComponent implements OnInit {
   redirectToEnjeuxStrategique(): void {
     this.router.navigate(['/enjeuxstrategique']);
   }
+
+    openIASupport(): void {
+    console.log("HELLO IA")
+  }
+  //a modifier 
+  
 }

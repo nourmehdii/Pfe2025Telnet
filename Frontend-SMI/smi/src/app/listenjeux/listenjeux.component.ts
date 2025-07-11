@@ -45,12 +45,13 @@ export class ListenjeuxComponent implements OnInit {
     });
   }
 
-  getCadranInfos(cadranIds: number[]): string {
-    return this.allCadrans
-      .filter(c => cadranIds.includes(c.id!))
-      .map(c => `${c.name} (${c.type})`)
-      .join(', ');
-  }
+ getCadranInfos(cadranIds: number[]): string {
+  return this.allCadrans
+    .filter(c => cadranIds.includes(c.id!))
+    .map(c => `•  ${c.name} (${c.type})`)
+    .join('<br>');
+}
+
 
   getAttentesText(attentesIds: number[]): string {
     return this.allAttentes
@@ -58,12 +59,17 @@ export class ListenjeuxComponent implements OnInit {
       .map(a => a.expectation)
       .join(', ');
   }
-
-
-
-
     openAjouterEnjeux(): void {
     this.router.navigate(['/ajouterenjeux']);
   }
+
+deleteEnjeu() : void {
+  console.log("delete this enjeu")
+}
+
+openUpdateEnjeuModal(): void {
+  console.log("open update modal ")
+}
+
 }
 

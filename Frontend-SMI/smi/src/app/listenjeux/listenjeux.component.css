@@ -38,18 +38,38 @@ button {
   color: #1e1666;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+
 
 /* Tableau */
 .table-responsive {
   border-radius: 10px;
-  overflow: hidden;
+   overflow-x: auto; /*Ajoute un scroll horizontal si nécessaire */
   box-shadow: 0 2px 8px rgba(24, 115, 152, 0.1);
+  margin-top: 20px;
+  -webkit-overflow-scrolling: touch; /* Améliore le scroll sur mobile */
+  
+  /* overflow-x: scroll; Toujours afficher le scroll horizontal */
+  overflow-y: hidden;
+   white-space: nowrap; /*Empêche le retour à la ligne des cellules */
+  -webkit-overflow-scrolling: touch;
 }
 
 .table {
-  margin-bottom: 0;
-  background-color: white;
-  border-collapse: collapse;
+vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    font-size: 0.92rem;
+    color: #333;
 }
 
 /* En-tête du tableau */
@@ -70,6 +90,11 @@ button {
   color: #333;
 }
 
+/* Lignes alternées */
+.table tbody tr:nth-child(odd) {
+  background-color: #f8fcfd;
+}
+
 /*=== entete du tableau =====*/
 .table thead th {
   background-color: #e6f4f7 !important;  /* Fond bleu très clair */
@@ -84,11 +109,6 @@ button {
 }
 
 
-/* Lignes alternées */
-.table tbody tr:nth-child(odd) {
-  background-color: #f8fcfd;
-}
-
 /* Liste des modifications */
 .table ul {
   list-style: disc;
@@ -102,10 +122,37 @@ button {
   color: #187398;
 }
 
-/* Aucune modification */
+/* Aucun contenu dans une cellule personnalisée */
 .table ng-template {
   color: #96979A;
   font-style: italic;
+}
+
+/* Boutons Modifier/Supprimer */
+.custom-button1 {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
+}
+
+.delete-button {
+  color: #dc3545;
+}
+
+.edit-button {
+  color: #007bff;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+td.button-container {
+    background-color: white !important;
 }
 
 /* Responsive sur petits écrans */
@@ -130,3 +177,12 @@ button {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.table {
+  min-width: 1000px; /* Ajuste selon la largeur totale que tu veux */
+  width: auto;
+}
+
+
+
+

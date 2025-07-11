@@ -66,7 +66,7 @@
                                         <h4 class="card-title mb-4">Générer un enjeu stratégique</h4>
 
 <mat-horizontal-stepper linear #stepper>
-   <!-- ÉTAPE 1 : Facteurs sources -->
+   <!------------ ÉTAPE 1 : Facteurs sources --------------->
   <mat-step [stepControl]="step1Form">
   <form [formGroup]="step1Form">
     <ng-template matStepLabel>Facteurs source</ng-template>
@@ -86,8 +86,6 @@
     </div>
   </div>
 </div>
-
-
     <mat-form-field appearance="fill" class="w-100 mt-3">
       <mat-label>Attentes des parties prenantes</mat-label>
       <mat-select formControlName="attentesPartiesPrenantes" multiple>
@@ -106,33 +104,46 @@
   </form>
 </mat-step>
 
-  <!-- ÉTAPE 2 : Rédaction -->
-  <mat-step [stepControl]="step2Form">
-    <form [formGroup]="step2Form">
-      <ng-template matStepLabel>Enjeu stratégique</ng-template>
+ <!----------- Étape 2 : Rédaction ----------->
+<mat-step [stepControl]="step2Form">
+  <form [formGroup]="step2Form">
+    <ng-template matStepLabel>Enjeu stratégique</ng-template>
 
-      <mat-form-field appearance="fill" class="w-100">
+    <div class="step2-container">
+      <!-- Texte à gauche -->
+      <mat-form-field appearance="fill" class="description-field">
         <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description"></textarea>
+        <textarea matInput formControlName="description" rows="6"></textarea>
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Poids</mat-label>
-      <mat-select formControlName="poids">
-        <mat-option [value]="'FAIBLE'">1 - Faible</mat-option>
-        <mat-option [value]="'MOYEN'">2 - Moyen</mat-option>
-        <mat-option [value]="'FORT'">3 - Fort</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div class="mt-3">
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button matStepperNext>Suivant</button>
+      <!-- Robot IA à droite -->
+      <div class="ia-assist" (click)="openIASupport()" matTooltip="Assistance IA pour générer une description">
+        <svg height="24" width="24" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle">
+          <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
+        </svg>
+        <span class="text">Générer with IA</span>
       </div>
-    </form>
-  </mat-step>
+    </div>
 
-  <!-- ÉTAPE 3 : Revue -->
+    <!-- Sélecteur de poids -->
+    <mat-form-field appearance="fill" class="w-100 mt-3">
+      <mat-label>Poids</mat-label>
+      <mat-select formControlName="poids">
+        <mat-option value="FAIBLE">1 - Faible</mat-option>
+        <mat-option value="MOYEN">2 - Moyen</mat-option>
+        <mat-option value="FORT">3 - Fort</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Boutons navigation -->
+    <div class="mt-3">
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button matStepperNext>Suivant</button>
+    </div>
+  </form>
+</mat-step>
+
+  <!---------ÉTAPE 3 : Revue ---------->
 <mat-step>
   <ng-template matStepLabel>Revue</ng-template>
 

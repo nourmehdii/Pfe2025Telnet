@@ -82,6 +82,7 @@ import { AjouterenjeuxComponent } from './ajouterenjeux/ajouterenjeux.component'
 
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
+import { EnjeuDetailModalComponent } from './components/enjeu-detail-modal/enjeu-detail-modal.component';
 
 
 
@@ -151,6 +152,7 @@ import { MatButtonModule } from '@angular/material/button';
     CadranModalComponent,
     ListenjeuxComponent,
     AjouterenjeuxComponent,
+    EnjeuDetailModalComponent,
     //InteractionFilterPipe
    
   

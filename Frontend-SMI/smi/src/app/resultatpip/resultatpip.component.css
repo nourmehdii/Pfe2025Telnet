@@ -1,78 +1,161 @@
-.rounded-button {
-    border-radius: 20px; /* Ajustez ce chiffre pour obtenir l'arrondi désiré */
+/* Titre de la section */
+.card-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #1e1666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #22a4d9;
+  display: inline-block;
+  padding-bottom: 6px;
 }
 
+/* Bouton Ajouter */
 .custom-button {
-    background-color: #4CAF50; /* couleur de fond */
-    border: none;
-    color: white; /* couleur du texte */
-    padding: 10px 20px; /* Réduisez le padding pour un bouton plus petit */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px; /* Taille du texte plus petite */
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 20px; /* angles arrondis */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* ombre */
+  background: linear-gradient(135deg, #c5ecf6, #187398);
+  color: #1e1666;
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.button-container {
-    display: flex; /* Utilisation de Flexbox pour aligner les boutons horizontalement */
-    align-items: center; /* Centre les éléments verticalement */
+.custom-button:hover {
+  background: linear-gradient(135deg, #96979a, #c5ecf6);
+  transform: translateY(-2px);
+  color: #1e1666;
 }
 
-.button-container {
-    display: flex; /* Utilisation de Flexbox pour aligner les boutons horizontalement */
-    align-items: center; /* Centre les éléments verticalement */
+/* Tableau */
+.table-responsive {
+  border-radius: 10px;
+  overflow-x: auto; /* Ajoute un scroll horizontal si nécessaire */
+  overflow-y: hidden;
+  box-shadow: 0 2px 8px rgba(24, 115, 152, 0.1);
+  margin-top: 20px;
+  -webkit-overflow-scrolling: touch; /* Améliore le scroll sur mobile */
+}
+
+
+.table {
+  width: 100%;
+  background-color: white;
+  border-collapse: collapse;
+  margin-bottom: 0;
+}
+
+/* En-tête du tableau */
+.table thead th {
+  background-color: #e6f4f7 !important;
+  color: #1e1666 !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  text-transform: uppercase;
+  text-align: center !important;
+  padding: 12px 10px !important;
+  border-bottom: 2px solid #22a4D9 !important;
+  white-space: nowrap;
+}
+
+/* Cellules du tableau */
+.table td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  font-size: 0.92rem;
+  color: #333;
+}
+
+/* Lignes alternées */
+.table tbody tr:nth-child(odd) {
+  background-color: #f8fcfd;
+}
+
+/* Liste des processus dans la cellule */
+.table ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+  text-align: left;
+  margin: 0;
+}
+
+.table ul li {
+  font-size: 0.85rem;
+  color: #187398;
+}
+
+/* Aucun contenu dans une cellule personnalisée */
+.table ng-template {
+  color: #96979A;
+  font-style: italic;
+}
+
+/* Boutons Modifier/Supprimer */
+.custom-button1 {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
 }
 
 .delete-button {
-    border: none;
-    background-color: #b71c1c; /* Couleur de fond pour le bouton de suppression */
-    cursor: pointer;
-    padding: 0;
-    width: 30px; /* Ajustez la largeur selon vos préférences */
-    height: 30px; /* Ajustez la hauteur selon vos préférences */
-    border-radius: 50%; /* Rend le bouton rond */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s; /* Ajout d'une transition fluide */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajout d'une légère ombre */
-    margin-right: 5px; /* Ajout de marge à droite pour l'espace entre les boutons */
-    color: #fff; /* Couleur du texte */
-    font-size: 10px; /* Taille du texte */
+  color: #dc3545;
 }
 
 .edit-button {
-    border: none;
-    background-color: #52b6ec; /* Couleur de fond pour le bouton de modification */
-    cursor: pointer;
-    padding: 0;
-    width: 30px; /* Ajustez la largeur selon vos préférences */
-    height: 30px; /* Ajustez la hauteur selon vos préférences */
-    border-radius: 50%; /* Rend le bouton rond */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s; /* Ajout d'une transition fluide */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajout d'une légère ombre */
-    color: #fff; /* Couleur du texte */
-    font-size: 10px; /* Taille du texte */
+  color: #007bff;
 }
 
-/* Ajuster la taille des icônes */
-.custom-button1 i {
-    font-size: 16px; /* Taille des icônes */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Changement de couleur au survol */
-.delete-button:hover {
-    background-color: #d66565; /* Couleur de fond au survol pour le bouton de suppression */
+/* Pagination */
+pagination-controls {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
 }
 
-.edit-button:hover {
-    background-color: #3c8dbc; /* Couleur de fond au survol pour le bouton de modification */
+.pagination-controls .ngx-pagination {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #22a4d9;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-controls .ngx-pagination a {
+  color: white !important;
+  margin: 0 5px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.pagination-controls .ngx-pagination a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .custom-button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .table th,
+  .table td {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
 }
