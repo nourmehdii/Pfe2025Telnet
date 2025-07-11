@@ -261,4 +261,39 @@ border-radius: 22px;
   opacity: 1;
 }
 
+/*======eye button detail ========*/
+.cadran-item {
+  display: flex;
+  align-items: center;
+  background-color: #f8fcfd;
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(24, 115, 152, 0.05);
+}
+
+.cadran-item span {
+  font-weight: 500;
+  color: #1e1666;
+}
+
+.eye-button {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e1666;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.eye-button:hover {
+  background-color: #22a4d9;
+  color: white;
+}
 

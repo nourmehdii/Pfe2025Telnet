@@ -75,10 +75,10 @@
     <th>Cadrans liés</th>
     <th>Attentes</th>
     <th>Poids</th>
-    <th>Créé par</th>
-    <th>Date création</th>
+    <!-- <th>Créé par</th> -->
+    <!-- <th>Date création</th> -->
     <th>Modifications</th>
-    <th>Date dernière modification</th>
+    <!-- <th>Date dernière modification</th> -->
     <th>Actions</th>
   </tr>
 </thead>
@@ -90,8 +90,8 @@
       <td class="wrap-cell" [innerHTML]="getCadranInfos(enjeu.cadransSources)" style="text-align: left;"></td>
       <td class="wrap-cell">{{ getAttentesText(enjeu.attentesPartiesPrenantes) }}</td>
       <td>{{ enjeu.poids }}</td>
-      <td>{{ enjeu.creePar }}</td>
-      <td>{{ enjeu.dateCreation | date:'short' }}</td>
+      <!-- <td>{{ enjeu.creePar }}</td> -->
+      <!-- <td>{{ enjeu.dateCreation | date:'short' }}</td> -->
       <td>
         <ul *ngIf="enjeu.historiqueModifications?.length > 0; else aucun">
           <li *ngFor="let h of enjeu.historiqueModifications">
@@ -100,9 +100,12 @@
         </ul>
         <ng-template #aucun>Aucune</ng-template>
       </td>
-      <td>{{ enjeu.dateModification | date:'short' }}</td>
+      <!-- <td>{{ enjeu.dateModification | date:'short' }}</td> -->
       <td class="button-container">
-        <!-- les boutons d’action ici -->
+        <!-- les boutons d’affichage de details -->
+            <button class="custom-button1 view-button" (click)="openDetailModal(enjeu)">
+            <i class="fas fa-eye"></i>
+            </button>
                                                       <!-- Bouton de suppression avec icône Font Awesome -->
                                                       <button class="custom-button1 delete-button" (click)="deleteEnjeu()">
                                                         <i class="fas fa-trash"></i>

@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject} from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-enjeu-detail-modal',
   templateUrl: './enjeu-detail-modal.component.html',
   styleUrls: ['./enjeu-detail-modal.component.css']
 })
-export class EnjeuDetailModalComponent implements OnInit {
+export class EnjeuDetailModalComponent {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<EnjeuDetailModalComponent>
+  ) {}
 
-  ngOnInit(): void {
+  close(): void {
+    this.dialogRef.close();
   }
 
 }

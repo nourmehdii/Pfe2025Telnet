@@ -82,9 +82,7 @@ import { AjouterenjeuxComponent } from './ajouterenjeux/ajouterenjeux.component'
 
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
-import { EnjeuDetailModalComponent } from './components/enjeu-detail-modal/enjeu-detail-modal.component';
-
-
+import { EnjeuDetailModalComponent } from './enjeu-detail-modal/enjeu-detail-modal.component';
 
 
 @NgModule({
@@ -152,7 +150,7 @@ import { EnjeuDetailModalComponent } from './components/enjeu-detail-modal/enjeu
     CadranModalComponent,
     ListenjeuxComponent,
     AjouterenjeuxComponent,
-    EnjeuDetailModalComponent,
+    EnjeuDetailModalComponent
     //InteractionFilterPipe
    
   
@@ -167,7 +165,6 @@ BrowserModule,
   FormsModule,
   ReactiveFormsModule,
   CommonModule,
-
   // Angular Material modules
   MatDialogModule,
   MatSelectModule,

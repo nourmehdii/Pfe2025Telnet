@@ -25,7 +25,9 @@ export class MatriceswotComponent implements OnInit {
   cadran: Cadran[] = [];
   voletName: string;
  
-  constructor(private voletService: UserserviceService, public dialog: MatDialog) { }
+  constructor(private voletService: UserserviceService, 
+              public dialog: MatDialog) 
+              { }
 
   ngOnInit(): void {
     this.loadVolets();
@@ -195,16 +197,13 @@ getCadranById(cadranId: number): Cadran {
   }
 }
 
-
-  selectedCadran: Cadran | null = null;
-
   onCadranClick(cadran: Cadran): void {
-  this.selectedCadran = cadran;
-  this.cadranId = cadran.id; // Mettre à jour cadranId
-  setTimeout(() => {
-    this.goDown("cadranDetails");
-  }, 100);
+    this.dialog.open(CadranModalComponent, {
+    width: '600px',
+    data:  { cadran: cadran, cadranId: cadran.id }
+  });
 }
+
   
 
 }

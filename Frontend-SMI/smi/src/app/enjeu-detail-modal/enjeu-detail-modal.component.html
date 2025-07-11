@@ -1,1 +1,23 @@
-<p>enjeu-detail-modal works!</p>
+<h2 mat-dialog-title>Détails de l'enjeu</h2>
+
+<mat-dialog-content>
+
+  <p><strong>Description :</strong> {{ data.description }}</p>
+  <p><strong>Poids :</strong> {{ data.poids }}</p>
+  <p><strong>Date de création :</strong> {{ data.dateCreation | date:'short' }}</p>
+  <p><strong> Crée par :</strong> {{data.creePar }}</p>
+  <div class="field-block">
+    <strong>Historique de modifications :</strong>
+    <ul *ngIf="data.historiqueModifications?.length; else aucun">
+      <li *ngFor="let modif of data.historiqueModifications">{{ modif }}</li>
+    </ul>
+    <ng-template #aucun><em>Aucune</em></ng-template>
+  </div>
+
+  <p><strong>Dernière modification :</strong> {{ data.dateModification | date:'short' }}</p>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Fermer</button>
+</mat-dialog-actions>

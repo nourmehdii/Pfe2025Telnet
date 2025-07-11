@@ -1,45 +1,30 @@
 <h2 mat-dialog-title>Détails du Cadran</h2>
 
+<mat-dialog-content class="cadran-details-content">
 
-  <div *ngIf="data.cadran" class="cadran-table-container">
-    <i class="fas fa-sync-alt refresh-icon" (click)="refreshCadran(data.cadranId)"></i>
+  <i class="fas fa-sync-alt refresh-icon" (click)="refreshCadran(data.cadranId)" title="Rafraîchir les données"></i>
 
-    <table class="cadran-table">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Secteur</th>
-          <th>Contexte</th>
-          <th>Processus</th>
-          <th>Origine Info</th>
-          <th>Créé par</th>
-          <th>Date de création</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ data.cadran.name }}</td>
-          <td>{{ data.cadran.secteur }}</td>
-          <td>{{ data.cadran.contexte }}</td>
-          <td>{{ data.cadran.processus }}</td>
-          <td>{{ data.cadran.origineInfo }}</td>
-          <td>{{ data.cadran.creePar }}</td>
-          <td>{{ data.cadran.dateCreation | date:'dd/MM/yyyy' }}</td>
-          <td>
-            <button class="action-button edit" (click)="editCadran()">
-              <i class="fa fa-edit"></i>
-            </button>
-            <button class="action-button delete" (click)="deleteCadran()">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+     <div class="field-block">
+  <p><strong>Nom :</strong> {{ data.cadran.name }}</p>
+       </div>
+  <p><strong>Secteur :</strong> {{ data.cadran.secteur }}</p>
+  <p><strong>Contexte :</strong> {{ data.cadran.contexte }}</p>
+  <p><strong>Processus :</strong> {{ data.cadran.processus }}</p>
+  <p><strong>Origine Info :</strong> {{ data.cadran.origineInfo }}</p>
+  <p><strong>Créé par :</strong> {{ data.cadran.creePar }}</p>
+  <p><strong>Date de création :</strong> {{ data.cadran.dateCreation | date: 'short' }}</p>
+ 
 
+</mat-dialog-content>
 
-<div mat-dialog-actions>
+<mat-dialog-actions align="end">
   <button mat-button (click)="closeModal()">Fermer</button>
-</div>
+  <!-- Icône Modifier -->
+  <button class="custom-button1 edit-button" (click)="editCadran()" title="Modifier">
+    <i class="fas fa-pencil-alt"></i>
+  </button>
+   <!-- Icône Supprimer -->
+  <button class="custom-button1 delete-button" (click)="deleteCadran()" title="Supprimer">
+    <i class="fas fa-trash"></i>
+  </button>
+</mat-dialog-actions>

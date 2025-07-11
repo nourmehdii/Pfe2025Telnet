@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
  import { Cadran } from '../model/cadran.model';
  import { ResultsPip } from '../model/ResultsPip.model';
  import { Enjeu } from '../model/Enjeu.model';
+ import { MatDialog } from '@angular/material/dialog';
+import { EnjeuDetailModalComponent } from '../enjeu-detail-modal/enjeu-detail-modal.component';
+
 
 @Component({
   selector: 'app-listenjeux',
@@ -23,7 +26,8 @@ export class ListenjeuxComponent implements OnInit {
     private enjeuxService: EnjeuxService,
     private cadranService: UserserviceService,
     private pipService: UserserviceService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
 
   ) {}
 
@@ -69,6 +73,13 @@ deleteEnjeu() : void {
 
 openUpdateEnjeuModal(): void {
   console.log("open update modal ")
+}
+
+openDetailModal(enjeu: any): void {
+  this.dialog.open(EnjeuDetailModalComponent, {
+    width: '600px',
+    data: enjeu
+  });
 }
 
 }

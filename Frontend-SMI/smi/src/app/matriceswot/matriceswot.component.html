@@ -30,7 +30,7 @@
             <!-- Start right Content here -->
             <!-- ============================================================== -->
 
-            <div class="container">
+<div class="container">
   <div class="header">
     <h2>Matrice SWOT</h2>
     <button class="add-button" (click)="openAddCadranModal()">Ajouter Cadran</button>
@@ -38,24 +38,27 @@
 
   <!-- Toute la matrice SWOT ici -->
   <div class="swot-grid-labeled">
+
     <!-- Ligne 1 : INTERNE -->
     <div class="label-cell">Interne</div>
 
     <div class="swot-box force">
       <h3>Forces</h3>
       <div *ngFor="let item of voletsForce" class="cadran-item">
-        <span (click)="onCadranClick(item)">
-          {{ item?.name }}
-        </span>
+        <button class="eye-button" (click)="onCadranClick(item)" title="Voir les détails">
+          <i class="fas fa-eye"></i>
+        </button>
+        <span>   {{ item?.name }}</span>
       </div>
     </div>
 
     <div class="swot-box faiblesse">
       <h3>Faiblesses</h3>
       <div *ngFor="let item of voletsFaiblesse" class="cadran-item">
-        <span (click)="onCadranClick(item)">
-          {{ item?.name }}
-        </span>
+        <button class="eye-button" (click)="onCadranClick(item)" title="Voir les détails">
+          <i class="fas fa-eye"></i>
+        </button>
+        <span>   {{ item?.name }}</span>
       </div>
     </div>
 
@@ -65,18 +68,20 @@
     <div class="swot-box opportunite">
       <h3>Opportunités</h3>
       <div *ngFor="let item of voletsOpportunite" class="cadran-item">
-        <span (click)="onCadranClick(item)">
-          {{ item.volet?.name }} {{ item?.name }}
-        </span>
+        <button class="eye-button" (click)="onCadranClick(item)" title="Voir les détails">
+          <i class="fas fa-eye"></i>
+        </button>
+        <span>   {{ item.volet?.name }} {{ item?.name }}</span>
       </div>
     </div>
 
     <div class="swot-box menace">
       <h3>Menaces</h3>
       <div *ngFor="let item of voletsMenace" class="cadran-item">
-        <span (click)="onCadranClick(item)">
-          {{ item.volet?.name }} {{ item?.name }}
-        </span>
+         <button class="eye-button" (click)="onCadranClick(item)"title="Voir les détails">
+          <i class="fas fa-eye"></i>
+        </button>
+        <span>   {{ item.volet?.name }} {{ item?.name }}</span>
       </div>
     </div>
   </div>
