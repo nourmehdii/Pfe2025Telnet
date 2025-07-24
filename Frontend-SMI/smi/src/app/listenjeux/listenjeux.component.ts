@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
  import { Enjeu } from '../model/Enjeu.model';
  import { MatDialog } from '@angular/material/dialog';
 import { EnjeuDetailModalComponent } from '../enjeu-detail-modal/enjeu-detail-modal.component';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class ListenjeuxComponent implements OnInit {
   allCadrans: Cadran[] = [];
   allAttentes: ResultsPip[] = [];
   p: number = 1;
+  searchText: string = '';  
+
   constructor(
     private enjeuxService: EnjeuxService,
     private cadranService: UserserviceService,
@@ -67,13 +70,48 @@ export class ListenjeuxComponent implements OnInit {
     this.router.navigate(['/ajouterenjeux']);
   }
 
-deleteEnjeu() : void {
-  console.log("delete this enjeu")
+
+deleteEnjeu(id: number): void {
+  Swal.fire({
+    title: 'Êtes-vous sûr ?',
+    text: "Vous ne pourrez pas revenir en arrière !",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Oui, supprimer !',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.enjeuxService.deleteEnjeu(id).subscribe({
+        next: () => {
+          Swal.fire(
+            'Supprimé !',
+            'L\'enjeu a été supprimé avec succès.',
+            'success'
+          );
+          this.loadData(); // Recharge la liste après suppression
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          Swal.fire(
+            'Erreur !',
+            'Une erreur s\'est produite lors de la suppression de l\'enjeu.',
+            'error'
+          );
+        }
+      });
+    }
+  });
 }
 
-openUpdateEnjeuModal(): void {
-  console.log("open update modal ")
+
+redirectToEditEnjeu(enjeu: Enjeu): void {
+  this.router.navigate(['/modifier-enjeu', enjeu.id], {
+    state: { enjeuPreload: enjeu }
+  });
 }
+
 
 openDetailModal(enjeu: any): void {
   this.dialog.open(EnjeuDetailModalComponent, {

@@ -1,4 +1,6 @@
+import { EnjeuHistory } from "./EnjeuHistory";
 import { EPoids } from "./EPoids.model";
+
 
 export interface Enjeu {
   id?: number;
@@ -9,5 +11,5 @@ export interface Enjeu {
   creePar: string;
   dateCreation?: Date;
   dateModification?: Date;
-  historiqueModifications?: any; // à ignorer pour le moment
+  historiqueModifications?: EnjeuHistory[];
 }

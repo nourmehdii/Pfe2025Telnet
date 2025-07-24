@@ -1,0 +1,137 @@
+/* ===== Style global typographie admin ===== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e1666;
+  background-color: #f5f9fc; /* fond légèrement bleuté pour dashboard */
+}
+
+/* ===== Titre section principale ===== */
+h3 {
+  color: #187398;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ===== Table style professionnel ===== */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(30, 22, 102, 0.05);
+}
+
+.table th {
+  background-color: #187398;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table td {
+  vertical-align: middle;
+  color: #1e1666;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f2f7fb;
+}
+
+/* ===== Boutons personnalisés ===== */
+.custom-button1 {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  margin: 0 4px;
+  transition: transform 0.2s ease;
+}
+
+.custom-button1:hover {
+  transform: scale(1.1);
+}
+
+/* Couleurs spécifiques aux boutons */
+.view-button {
+  color: #17a2b8;
+}
+
+.delete-button {
+  color: #dc3545;
+}
+
+.edit-button {
+  color: #007bff;
+}
+
+.history-button {
+  color: #ffc107;
+}
+
+/* ===== Conteneur de boutons ===== */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== Pagination ===== */
+.pagination-controls {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #22a4d9;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-controls a {
+  color: white;
+  margin: 0 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.pagination-controls a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive Mobile Dashboard ===== */
+@media (max-width: 768px) {
+  .custom-button1 {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .table th, .table td {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .app-search {
+    width: 100%;
+  }
+}
+
+.app-search .bx-search-alt {
+    position: absolute;
+    right: 12px;
+    top: 54%; /* ✅ légèrement plus bas */
+    transform: translateY(-50%);
+    color: #96979A;
+    font-size: 18px;
+    pointer-events: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+
+/* ===== Contour focus bleu admin sur les inputs généraux ===== */
+input.form-control:focus {
+  border-color: #22a4d9;
+  box-shadow: 0 0 0 0.2rem rgba(34, 164, 217, 0.25);
+}

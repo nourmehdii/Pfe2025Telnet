@@ -83,6 +83,10 @@ import { AjouterenjeuxComponent } from './ajouterenjeux/ajouterenjeux.component'
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { EnjeuDetailModalComponent } from './enjeu-detail-modal/enjeu-detail-modal.component';
+import { EnjeuHistoryComponent } from './enjeu-history/enjeu-history.component';
+import { MatTableModule } from '@angular/material/table';
+import { AdminListeEnjeuxComponent } from './admin-liste-enjeux/admin-liste-enjeux.component';
+import { FilterBySearchPipe } from './pipes/filter-by-search.pipe';
 
 
 @NgModule({
@@ -150,7 +154,10 @@ import { EnjeuDetailModalComponent } from './enjeu-detail-modal/enjeu-detail-mod
     CadranModalComponent,
     ListenjeuxComponent,
     AjouterenjeuxComponent,
-    EnjeuDetailModalComponent
+    EnjeuDetailModalComponent,
+    EnjeuHistoryComponent,
+    AdminListeEnjeuxComponent,
+    FilterBySearchPipe
     //InteractionFilterPipe
    
   
@@ -177,7 +184,8 @@ BrowserModule,
   MatCardModule,
   MatStepperModule,
   MatButtonModule,
-  NgxPaginationModule
+  NgxPaginationModule,
+  MatTableModule
 
   ],
   providers: [],

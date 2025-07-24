@@ -182,6 +182,41 @@ td.button-container {
   min-width: 1000px; /* Ajuste selon la largeur totale que tu veux */
   width: auto;
 }
+/* barre de recherche  */
+.app-search .form-control {
+    width: 100%;
+    padding: 8px 35px 8px 12px; /* espace pour l’icône à droite */
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: #1e1666;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.app-search .form-control:focus {
+    border-color: #22a4d9;
+    box-shadow: 0 0 8px rgba(34, 164, 217, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.app-search .bx-search-alt {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #96979A;
+    font-size: 18px;
+    pointer-events: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.app-search .form-control:focus + .bx-search-alt {
+    transform: translateY(-50%) scale(1.1);
+    color: #22a4d9;
+}
 
 
 

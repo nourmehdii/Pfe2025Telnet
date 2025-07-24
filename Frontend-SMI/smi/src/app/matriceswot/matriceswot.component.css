@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f6f8;
@@ -150,9 +152,9 @@ body {
 
 /* Couleurs des différents types SWOT */
 .force { background-color:  #b3e5fc; }
-.faiblesse { background-color: #fff9b3 }
+.faiblesse { background-color: #faf299 }
 .opportunite { background-color: #3599c0; }
-.menace { background-color: #ffe0b3; }
+.menace { background-color: #f8c57b; }
 
 /* Titre des boîtes SWOT */
 .swot-box h3 {
@@ -244,7 +246,6 @@ border-radius: 22px;
     gap: 8px;
   }
 }
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
 .header-details h4 {
   font-family: 'Montserrat', sans-serif;

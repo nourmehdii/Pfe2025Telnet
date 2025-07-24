@@ -49,13 +49,18 @@ export class LoginComponent implements OnInit {
           if (res.userId) { // Changement ici de res.id à res.userId
             const token = res.token;
             const userId = res.userId.toString(); // Assurez-vous que l'ID est une chaîne de caractères
-  
+            const role = res.role;
+
             console.log('Token:', token);
             console.log('UserID:', userId);
   
             // Stockage du token et de l'ID de l'utilisateur dans le localStorage
             localStorage.setItem('token', token);
             localStorage.setItem('userId', userId);
+
+            //Stockage role 
+            localStorage.setItem('role',role);
+
   
             this.router.navigate(['/home']);
             Swal.fire('Success', 'Bienvenue ', 'success');

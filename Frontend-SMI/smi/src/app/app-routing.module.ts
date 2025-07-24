@@ -24,6 +24,8 @@ import { AnalyseforkpiComponent } from './analyseforkpi/analyseforkpi.component'
 
 import { ListenjeuxComponent } from './listenjeux/listenjeux.component';
 import { AjouterenjeuxComponent } from './ajouterenjeux/ajouterenjeux.component';
+import { AdminListeEnjeuxComponent } from './admin-liste-enjeux/admin-liste-enjeux.component';
+import { EnjeuHistoryComponent } from './enjeu-history/enjeu-history.component';
 
 
 import { AuthGuard } from './auth.guard';
@@ -55,6 +57,10 @@ const routes: Routes = [
   { path: 'analysecausale/:kpiId', component: AnalyseforkpiComponent, canActivate: [AuthGuard] },
   { path: 'enjeuxstrategique', component: ListenjeuxComponent, canActivate: [AuthGuard] },
   { path: 'ajouterenjeux', component: AjouterenjeuxComponent, canActivate: [AuthGuard] },
+  { path: 'modifier-enjeu/:id', component: AjouterenjeuxComponent, canActivate: [AuthGuard] },
+  { path: 'admin/enjeux',component: AdminListeEnjeuxComponent , canActivate: [AuthGuard] },
+  {path: 'admin/enjeux/:id/historique',component: EnjeuHistoryComponent, canActivate: [AuthGuard] },
+
 
   
 

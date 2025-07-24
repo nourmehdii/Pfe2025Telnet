@@ -5,8 +5,13 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.ToString;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
 @Entity
+@ToString(exclude = "historiqueModifications")
 public class Enjeu {
 
     @Id
@@ -29,8 +34,15 @@ public class Enjeu {
     private LocalDateTime dateCreation;
     private LocalDateTime dateModification;
 
-    @OneToMany(mappedBy = "enjeu", cascade = CascadeType.ALL)
+    //unused inutile
+    @Column(name = "commentaire_derniere_modification")
+    private String commentaireDerniereModification;
+
+
+    @OneToMany(mappedBy = "enjeu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("enjeu")
     private List<EnjeuHistory> historiqueModifications;
+
 
     @PrePersist
     protected void onCreate() {

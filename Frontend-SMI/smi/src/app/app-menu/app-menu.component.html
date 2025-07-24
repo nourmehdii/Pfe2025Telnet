@@ -32,14 +32,14 @@
 
     <li *ngIf="is('ADMIN')">
       <a routerLink="/listvolet" routerLinkActive="active" class="waves-effect" (click)="setActiveLink('listvolet')">
-        <i class="bx bx-target-lock"></i>
+        <i class="fas fa-th-large"></i>
         <span>Volets de la matrice SWOT</span>
       </a>
     </li>
 
     <li *ngIf="is('ADMIN')">
       <a routerLink="/categorie" routerLinkActive="active" class="waves-effect" (click)="setActiveLink('categorie')">
-        <i class="fas fa-th-large"></i>
+        <i class="fas fa-users"></i>
         <span>Catégories des pip</span>
       </a>
     </li>
@@ -48,6 +48,13 @@
       <a routerLink="/client" routerLinkActive="active" class="waves-effect" (click)="setActiveLink('client')">
         <i class="fas fa-user"></i>
         <span>Fiche client</span>
+      </a>
+    </li>
+
+    <li *ngIf="is('ADMIN')">
+      <a routerLink="/admin/enjeux" routerLinkActive="active" class="waves-effect" (click)="setActiveLink('client')">
+        <i class="fas fa-chess-knight"></i>
+        <span>Fiche enjeux stratégiques</span>
       </a>
     </li>
 
@@ -71,13 +78,6 @@
         <span>Matrice SWOT</span>
       </a>
     </li>
-
- <!-- <li *ngIf="isAny('RESPONSABLEQUALITE', 'CHEFDEPROJET')">
-      <a routerLink="/" routerLinkActive="active" class="waves-effect" (click)="setActiveLink('')">
-        <i class="bx bx-target-lock"></i>
-        <span>Enjeux stratégiques</span>
-      </a>
-    </li> -->
 
     <li *ngIf="isAny('RESPONSABLEQUALITE', 'CHEFDEPROJET')">
       <a routerLink="/listepip" routerLinkActive="active" class="waves-effect" (click)="setActiveLink('listepip')">

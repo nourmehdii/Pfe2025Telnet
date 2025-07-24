@@ -1,11 +1,13 @@
 package com.telnet.enjeux_strategique.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 @Data
 @Entity
+@ToString(exclude = "enjeu")
 public class EnjeuHistory {
 
     @Id
@@ -35,5 +37,6 @@ public class EnjeuHistory {
         this.dateModification = LocalDateTime.now();
     }
 
-    // Getters/setters par @Data
+
+
 }

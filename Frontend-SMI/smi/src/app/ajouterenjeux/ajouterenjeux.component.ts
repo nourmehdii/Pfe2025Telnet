@@ -1,6 +1,7 @@
+// ✅ ajouterenjeux.component.ts (version complète)
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, /*Validators*/ } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserserviceService } from '../services/userservice.service';
 import { Cadran } from '../model/cadran.model';
 import { ResultsPip } from '../model/ResultsPip.model';
@@ -15,6 +16,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./ajouterenjeux.component.css']
 })
 export class AjouterenjeuxComponent implements OnInit {
+  mode: 'create' | 'edit' = 'create';
+
+  enjeuIdToEdit!: number;
+  commentaire: string = '';
+
   step1Form!: FormGroup;
   step2Form!: FormGroup;
 
@@ -24,7 +30,6 @@ export class AjouterenjeuxComponent implements OnInit {
   menaces: Cadran[] = [];
 
   attentesPip: ResultsPip[] = [];
-
   allCadrans: Cadran[] = [];
   allAttentes: ResultsPip[] = [];
 
@@ -32,28 +37,66 @@ export class AjouterenjeuxComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
     private cadranService: UserserviceService,
     private enjeuxService: EnjeuxService
+
   ) {}
 
-  ngOnInit(): void {
-    this.step1Form = this.fb.group({
-      cadransSources: [[]],
-      attentesPartiesPrenantes: [[]],
-      redigePar: ['', /*Validators.required*/]
-    });
+ ngOnInit(): void {
+  const preloadEnjeu = history.state.enjeuPreload;
 
-    this.step2Form = this.fb.group({
-      description: ['', /*Validators.required*/],
-      poids: ['', /*Validators.required*/]
-    });
+  this.step1Form = this.fb.group({
+    cadransSources: [[]],
+    attentesPartiesPrenantes: [[]],
+    redigePar: ['']
+  });
 
-    this.loadCadrans();
-    this.loadPipAttentes();
+  this.step2Form = this.fb.group({
+    description: [''],
+    poids: [''],
+    commentaire: [''] // ajout du commentaire ici
+
+  });
+
+  this.route.paramMap.subscribe(params => {
+  const id = params.get('id');
+  if (id) {
+    this.mode = 'edit';
+    this.enjeuIdToEdit = +id;
+
+    this.loadCadransAndAttentesThen(() => {
+      // Priorité à l'objet déjà disponible en local
+      if (history.state.enjeuPreload) {
+        this.loadEnjeuFromPreload(history.state.enjeuPreload);
+      } else {
+        this.loadEnjeuForEdit(this.enjeuIdToEdit);
+      }
+    });
+  } else {
+    this.mode = 'create';
+    this.loadCadransAndAttentesThen();
   }
+});
 
-  loadCadrans(): void {
+}
+
+loadEnjeuFromPreload(enjeu: Enjeu): void {
+  this.step1Form.patchValue({
+    cadransSources: this.mapIdsToObjects(enjeu.cadransSources, this.allCadrans),
+    attentesPartiesPrenantes: this.mapIdsToObjects(enjeu.attentesPartiesPrenantes, this.allAttentes),
+    redigePar: enjeu.creePar
+  });
+
+  this.step2Form.patchValue({
+    description: enjeu.description,
+    poids: enjeu.poids
+  });
+}
+
+
+  loadCadransAndAttentesThen(callback?: () => void): void {
     this.cadranService.getAllCadrans().subscribe(data => {
       this.allCadrans = data;
       this.forces = data.filter(c => c.type === 'STRENGTH');
@@ -61,14 +104,33 @@ export class AjouterenjeuxComponent implements OnInit {
       this.opportunites = data.filter(c => c.type === 'OPPORTUNITY');
       this.menaces = data.filter(c => c.type === 'THREAT');
       this.updateSwotGroups();
+
+      this.cadranService.getResultsPipList().subscribe(attentes => {
+        this.attentesPip = attentes;
+        this.allAttentes = attentes;
+        if (callback) callback();
+      });
     });
   }
 
-  loadPipAttentes(): void {
-    this.cadranService.getResultsPipList().subscribe(data => {
-      this.attentesPip = data;
-      this.allAttentes = data;
-    });
+  loadEnjeuForEdit(id: number): void {
+   this.enjeuxService.getEnjeuById(id).subscribe(enjeu => {
+  this.step1Form.patchValue({
+    cadransSources: this.mapIdsToObjects(enjeu.cadransSources, this.allCadrans),
+    attentesPartiesPrenantes: this.mapIdsToObjects(enjeu.attentesPartiesPrenantes, this.allAttentes),
+    redigePar: enjeu.creePar
+  });
+
+  this.step2Form.patchValue({
+    description: enjeu.description,
+    poids: enjeu.poids
+  });
+});
+
+  }
+
+  mapIdsToObjects(ids: number[], fullList: any[]): any[] {
+    return fullList.filter(obj => ids.includes(obj.id));
   }
 
   updateSwotGroups(): void {
@@ -79,98 +141,71 @@ export class AjouterenjeuxComponent implements OnInit {
       { list: this.menaces, class: 'menace' }
     ];
   }
-  onToggleCadran(event: any, cadran: Cadran): void {
-  const isChecked = event.target.checked;
-  const selected: Cadran[] = this.step1Form.value.cadransSources || [];
 
-  if (isChecked) {
-    if (!selected.find(c => c.id === cadran.id)) {
-      this.step1Form.patchValue({ cadransSources: [...selected, cadran] });
+  onToggleCadran(event: any, cadran: Cadran): void {
+    const isChecked = event.target.checked;
+    const selected: Cadran[] = this.step1Form.value.cadransSources || [];
+
+    if (isChecked) {
+      if (!selected.find(c => c.id === cadran.id)) {
+        this.step1Form.patchValue({ cadransSources: [...selected, cadran] });
+      }
+    } else {
+      this.step1Form.patchValue({
+        cadransSources: selected.filter(c => c.id !== cadran.id)
+      });
     }
-  } else {
-    this.step1Form.patchValue({
-      cadransSources: selected.filter(c => c.id !== cadran.id)
-    });
   }
 
-  console.log("🟨 Cadrans sélectionnés (temporaire) :", this.step1Form.value.cadransSources);
+  isSelected(cadran: Cadran): boolean {
+  return (this.step1Form.value.cadransSources || []).some(
+    (c: Cadran) => c.id === cadran.id
+  );
 }
 
 
-  isSelected(cadran: Cadran): boolean {
-    return (this.step1Form.value.cadransSources || []).some(
-      (c: Cadran) => c.id === cadran.id
-    );
-  }
-
-  /** ✅ Mapping pour l'étape 3 (revue) **/
-  getCadranInfos(cadranObjs: Cadran[]): string {
-    return cadranObjs
-      .map(c => `${c.name} (${c.type})`)
-      .join(', ');
-  }
-
-  getAttentesText(attenteObjs: ResultsPip[]): string {
-    return attenteObjs
-      .map(a => a.expectation)
-      .join(', ');
-  }
 
   submit(): void {
-    if (this.step1Form.invalid || this.step2Form.invalid) {
-      console.warn('⛔ Formulaire invalide');
-      return;
-    }
+  if (this.step1Form.invalid || this.step2Form.invalid) return;
+  this.commentaire = this.step2Form.value.commentaire; 
+  const payload: Enjeu = {
+    cadransSources: this.step1Form.value.cadransSources.map((c: Cadran) => c.id),
+    attentesPartiesPrenantes: this.step1Form.value.attentesPartiesPrenantes.map((a: ResultsPip) => a.id),
+    description: this.step2Form.value.description,
+    poids: this.step2Form.value.poids,
+    creePar: this.step1Form.value.redigePar
+  };
 
-    const formValue1 = this.step1Form.value;
-    const formValue2 = this.step2Form.value;
+ if (this.mode === 'edit') {
+  console.log(localStorage.getItem('role'));
+    console.log(payload);
+    console.log(this.commentaire); 
+  this.enjeuxService.updateEnjeu(this.enjeuIdToEdit, payload, this.commentaire).subscribe(() => {
+    Swal.fire({ icon: 'success', title: 'Mis à jour avec succès' });
+    if (localStorage.getItem('role')=='ADMIN'){ this.router.navigate(['/admin/enjeux']); }
+    else { this.router.navigate(['/enjeuxstrategique']);}
+    
+  });
 
-  
 
-    const payload: Enjeu = {
-      cadransSources: formValue1.cadransSources.map((c: Cadran) => c.id),
-      attentesPartiesPrenantes: formValue1.attentesPartiesPrenantes.map((a: ResultsPip) => a.id),
-      description: formValue2.description,
-      poids: formValue2.poids,
-      creePar: formValue1.redigePar
-    };
-
-    console.log("📤 Envoi du payload :", payload);
-
-    this.enjeuxService.addEnjeu(payload).subscribe({
-      next: () => {
-        console.log("✅ Enjeu ajouté avec succès !");
-
-        Swal.fire({
-        icon: 'success',
-        title: 'Succès',
-        text: 'L\'enjeu stratégique a été ajouté avec succès'
-      }).then(() => {
-        this.router.navigate(['/enjeuxstrategique']);
-      });
-
-        this.router.navigate(['/enjeuxstrategique']);
-      },
-      error: err => {
-        console.error("❌ Erreur lors de l'ajout :", err);
-
-         Swal.fire({
-        icon: 'error',
-        title: 'Erreur',
-        text: 'Une erreur est survenue lors de l\'ajout de l\'enjeu stratégique'
-      });
-
-      }
+  } else {
+    this.enjeuxService.addEnjeu(payload).subscribe(() => {
+    console.log(localStorage.getItem('role'));
+    console.log(payload);
+    console.log(this.commentaire); 
+      Swal.fire({ icon: 'success', title: 'Ajouté avec succès' });
+      this.router.navigate(['/enjeuxstrategique']);
     });
   }
+}
 
-  redirectToEnjeuxStrategique(): void {
+ redirectToEnjeuxStrategique(): void {
     this.router.navigate(['/enjeuxstrategique']);
+    
   }
 
-    openIASupport(): void {
-    console.log("HELLO IA")
-  }
-  //a modifier 
-  
+ openIASupport(): void {
+  return console.log("HELLO IA");
+}
+
 }
