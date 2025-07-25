@@ -5,12 +5,11 @@ export interface Cadran {
   id?: number;
   name: string;
   type: EType;
-  volet: Partial<Volet>;  // <-- ici Partial permet d'avoir juste l'id sans name et axe
-
-  secteur?: string;
-  contexte?: string;
-  processus?: string;
-  origineInfo?: string;
-  creePar?: string;
+  volet?: Volet;  // 👈 ici on utilise tout l'objet complet Volet
+  secteur: string;
+  contexte: string;
+  processus: string;
+  origineInfo: string;
+  creePar: string;
   dateCreation?: Date;
 }

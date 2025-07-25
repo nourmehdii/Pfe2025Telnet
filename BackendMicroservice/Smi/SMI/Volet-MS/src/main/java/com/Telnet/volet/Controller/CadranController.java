@@ -23,7 +23,6 @@ public class CadranController {
     private CadranService cadranService;
 
     @PostMapping("/new")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> createCadran(@RequestBody CadranDto dto) {
         try {
             Cadran newCadran = cadranService.createCadran(dto);
@@ -36,7 +35,6 @@ public class CadranController {
     }
 
     @GetMapping("/list")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public List<Cadran> getCadranList() {
         return cadranService.getAllCadrans();
     }
@@ -55,32 +53,27 @@ public class CadranController {
     }
 
     @GetMapping("/list/strength")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public List<Cadran> getCadranListByTypeS() {
         return cadranService.getCadransByType(EType.STRENGTH);
     }
 
     @GetMapping("/list/weakness")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public List<Cadran> getCadranListByTypeW() {
         return cadranService.getCadransByType(EType.WEAKNESS);
     }
 
     @GetMapping("/list/opportunity")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public List<Cadran> getCadranListByTypeO() {
         return cadranService.getCadransByType(EType.OPPORTUNITY);
     }
 
     @GetMapping("/list/threat")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public List<Cadran> getCadranListByTypeT() {
         return cadranService.getCadransByType(EType.THREAT);
     }
 
     // ✅ Nouvelle méthode PUT avec DTO
     @PutMapping("/{id}")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Cadran> updateCadran(@PathVariable(value = "id") Long cadranId, @RequestBody CadranDto cadranDto) {
         Cadran result = cadranService.updateCadran(cadranId, cadranDto);
         return ResponseEntity.ok(result);

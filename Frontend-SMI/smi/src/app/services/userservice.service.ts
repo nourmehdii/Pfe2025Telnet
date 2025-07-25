@@ -609,10 +609,10 @@ getProjectsByActivity(activityId: number, token: string): Observable<Project[]> 
 }
  /* --------------CadranServiceee ---------------- */
  
-ajouterCadran(voletId: number, cadran: any): Observable<any> {
+ajouterCadran(cadran: any): Observable<any> {
   const headers = this.getHeaders();
 
-  return this.http.post<any>(`http://localhost:8763/volet-service/api/cadran/volet/${voletId}`, cadran, { headers });
+  return this.http.post<any>(`http://localhost:8800/api/cadran/new`, cadran, { headers });
 }
 
 getAllCadrans(): Observable<Cadran[]> {
