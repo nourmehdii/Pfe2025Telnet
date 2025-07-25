@@ -1,13 +1,49 @@
-<div class="cadran-form-container">
-    <h2 class="form-title">Modifier le nom du Cadran</h2>
-    <form class="cadran-form" (ngSubmit)="updateCadran()" #cadranForm="ngForm">
-        <div class="form-group">
-            <label for="nouveauNomCadran" class="form-label">Nouveau Nom du Cadran :</label>
-            <input type="text" id="nouveauNomCadran" name="nouveauNomCadran" [(ngModel)]="cadranDetails.name" class="form-control">
-        </div>
-        <br/>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Modifier</button>
-        </div>
-    </form>
+<div class="form-wrapper">
+<form [formGroup]="cadranForm" (ngSubmit)="updateCadran()">
+     <h2 class="form-title">
+    Modifier le cadran 
+    <br>
+    <span class="cadran-titre">{{ cadranForm.get('name')?.value }}</span>
+  </h2>
+
+  <!-- Reste du formulaire... -->
+
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Nom du cadran</label>
+    <input id="name" class="form-control" type="text" formControlName="name" placeholder="Nom du cadran" />
+  </div>
+
+  <div class="mb-3">
+    <label for="type" class="form-label">Type</label>
+    <select id="type" class="form-select" formControlName="type">
+      <option value="STRENGTH">Force</option>
+      <option value="WEAKNESS">Faiblesse</option>
+      <option value="OPPORTUNITY">Opportunité</option>
+      <option value="THREAT">Menace</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="secteur" class="form-label">Secteur</label>
+    <input id="secteur" class="form-control" type="text" formControlName="secteur" placeholder="Secteur" />
+  </div>
+
+  <div class="mb-3">
+    <label for="contexte" class="form-label">Contexte</label>
+    <textarea id="contexte" class="form-control" formControlName="contexte" placeholder="Contexte"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="processus" class="form-label">Processus</label>
+    <textarea id="processus" class="form-control" formControlName="processus" placeholder="Processus"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="origineInfo" class="form-label">Origine info</label>
+    <input id="origineInfo" class="form-control" type="text" formControlName="origineInfo" placeholder="Origine info" />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Mettre à jour</button>
+</form>
 </div>

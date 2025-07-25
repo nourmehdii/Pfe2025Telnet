@@ -654,19 +654,19 @@ getCadranListByTypeT(): Observable<Cadran[]> {
 deleteCadran(cadranId: number): Observable<any> {
   const headers = this.getHeaders();
 
-  return this.http.delete<any>(`${this.apiUrl}/volet-service/api/cadran/${cadranId}`, { headers });
+  return this.http.delete<any>(`http://localhost:8800/api/cadran/${cadranId}`, { headers });
 }
 
 getCadranById(cadranId: number): Observable<Cadran> {
   const headers = this.getHeaders();
 
-  return this.http.get<Cadran>(`${this.apiUrl}/volet-service/api/cadran/${cadranId}`, { headers });
+  return this.http.get<Cadran>(`http://localhost:8800/api/cadran/${cadranId}`, { headers });
 }
 
 updateCadran(cadranId: number, cadranDetails: Cadran): Observable<Cadran> {
   const headers = this.getHeaders();
 
-  return this.http.put<Cadran>(`${this.apiUrl}/volet-service/api/cadran/${cadranId}`, cadranDetails, { headers });
+  return this.http.put<Cadran>(`http://localhost:8800/api/cadran/${cadranId}`, cadranDetails, { headers });
 }
 
 

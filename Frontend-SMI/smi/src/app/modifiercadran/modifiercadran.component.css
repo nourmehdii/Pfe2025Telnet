@@ -1,0 +1,93 @@
+/* Style global du formulaire */
+form {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre du formulaire */
+.form-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #187398;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.cadran-titre{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --bs-text-opacity: 0.8;
+    color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+    font-size: 1.2rem;
+    font-weight: 300 !important;
+}
+
+.cadran-nom {
+  max-width: 100%;
+  white-space: nowrap;
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: #187398;
+}
+
+
+/* Libellés */
+.form-label {
+  font-weight: 500;
+  color: #1e1666;
+}
+
+/* Champs de saisie */
+.form-control,
+.form-select,
+textarea {
+  border-radius: 8px;
+  border: 1px solid #c2c3c5;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+  border-color: #22a4D9;
+  box-shadow: 0 0 0 0.2rem rgba(34, 164, 217, 0.25);
+}
+
+/* Bouton */
+button[type="submit"] {
+  background-color: #187398;
+  border: none;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #22a4D9;
+}
+
+/* Espacement entre champs */
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  form {
+    padding: 20px;
+  }
+
+  .form-title {
+    font-size: 1.3rem;
+  }
+}
+/* scroll */
+.form-wrapper {
+  max-height: 75vh;
+  overflow-y: visible;
+  padding-right: 10px; /* évite que la scroll-bar cache le contenu */
+}

@@ -71,7 +71,7 @@ public class CadranController {
     public List<Cadran> getCadranListByTypeT() {
         return cadranService.getCadransByType(EType.THREAT);
     }
-
+Gg
     // ✅ Nouvelle méthode PUT avec DTO
     @PutMapping("/{id}")
     public ResponseEntity<Cadran> updateCadran(@PathVariable(value = "id") Long cadranId, @RequestBody CadranDto cadranDto) {

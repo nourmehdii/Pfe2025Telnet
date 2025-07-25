@@ -298,3 +298,11 @@ border-radius: 22px;
   color: white;
 }
 
+.custom-dialog-cadran {
+  max-height: 80vh !important; 
+     
+  overflow-y: auto !important;    
+  display: flex;
+  align-items: center;           
+  justify-content: cente
+}
