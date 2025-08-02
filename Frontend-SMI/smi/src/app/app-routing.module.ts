@@ -27,8 +27,12 @@ import { AjouterenjeuxComponent } from './ajouterenjeux/ajouterenjeux.component'
 import { AdminListeEnjeuxComponent } from './admin-liste-enjeux/admin-liste-enjeux.component';
 import { EnjeuHistoryComponent } from './enjeu-history/enjeu-history.component';
 
+import { AnalyseRoListComponent } from './ro-list/ro-list.component';
+//import { AnalyseRoFormComponent } from './analyse-ro-form/analyse-ro-form.component';
+
 
 import { AuthGuard } from './auth.guard';
+import { AjouterRoComponent } from './ajouter-ro/ajouter-ro.component';
 
 const routes: Routes = [
   // Routes accessibles sans authentification
@@ -60,6 +64,9 @@ const routes: Routes = [
   { path: 'modifier-enjeu/:id', component: AjouterenjeuxComponent, canActivate: [AuthGuard] },
   { path: 'admin/enjeux',component: AdminListeEnjeuxComponent , canActivate: [AuthGuard] },
   {path: 'admin/enjeux/:id/historique',component: EnjeuHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'risques-opportunites', component: AnalyseRoListComponent, canActivate: [AuthGuard] },
+  { path: 'ajouter-ro', component: AjouterRoComponent, canActivate: [AuthGuard] },
+
 
 
   

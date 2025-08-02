@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+
+    
+<!-- Mirrored from themesbrand.com/skote/layouts/layouts-colored-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Feb 2024 15:33:52 GMT -->
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Colored Sidebar | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+      
+
+    </head>
+
+    <body data-sidebar="colored">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-header></app-header>
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <app-app-menu></app-app-menu>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                       
+                        <!-- end page title -->
+
+                        
+                        <!-- end row -->
+
+                        <!-- end row -->
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                      
+                                      <div class="d-flex justify-content-end">
+                                         <button mat-raised-button class="rounded-button custom-button" color="accent" (click)="redirectToROList()">Retour</button>
+                                        </div>  
+                                      
+                                        <br/><br/>
+                                        <h4 class="card-title mb-4">Générer une Analyse d'un enjeu stratégique</h4><form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-sm bg-white">
+
+  <!-- Type d'analyse -->
+  <div class="mb-3">
+    <label><strong>Type d'analyse :</strong></label><br>
+    <div class="form-check form-check-inline">
+      <input type="radio" class="form-check-input" value="RISQUE" formControlName="type" id="risqueRadio">
+      <label class="form-check-label" for="risqueRadio">Risque</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input type="radio" class="form-check-input" value="OPPORTUNITE" formControlName="type" id="opportuniteRadio">
+      <label class="form-check-label" for="opportuniteRadio">Opportunité</label>
+    </div>
+  </div>
+
+<style>
+  .description-highlight {
+    font-weight: bold;
+    color: #343a40; /* Matches your form’s label color */
+  }
+  .poids-text {
+    font-size: 0.9em;
+    color: #666; /* Subtle color for secondary info */
+  }
+</style>
+<!-- Enjeu stratégique -->
+<div class="mb-3">
+  <label>Enjeu stratégique :</label>
+  <mat-select class="form-select" formControlName="enjeuId">
+    <mat-option *ngFor="let enjeu of enjeux" [value]="enjeu.id">
+      <span class="description-highlight">{{enjeu.description}}</span>
+      <span class="poids-text"> | Poids: {{enjeu.poids}}</span>
+      <!-- Cadran: {{enjeu.cadran}} -->
+    </mat-option>
+  </mat-select>
+</div>
+
+  <!-- Champs communs -->
+  <div class="mb-3">
+    <label>Probabilité : (1 à 5)</label>
+    <input type="number" class="form-control" formControlName="probabilite" min="1" max="5">
+  </div>
+
+  <div class="mb-3">
+    <label>Acteur responsable :</label>
+    <input type="text" class="form-control" formControlName="acteurResponsable">
+  </div>
+
+  <div class="mb-3">
+    <label>Date de suivi :</label>
+    <input type="date" class="form-control" formControlName="dateSuivi">
+  </div>
+
+  <!-- RISQUE -->
+  <div *ngIf="form.get('type')?.value === 'RISQUE'">
+    <hr>
+    <h5>Informations Risque</h5>
+    <div class="mb-3">
+      <label>Impact : (1 à 5) </label>
+      <input type="number" class="form-control" formControlName="impact" min="1" max="5">
+    </div>
+
+    <div class="mb-3">
+      <label>Évaluation du risque (calculée) :</label>
+      <input type="number" class="form-control" [value]="form.value.probabilite * form.value.impact" readonly>
+    </div>
+
+    <div class="mb-3">
+      <label>Description :</label>
+      <textarea class="form-control" formControlName="descriptionRisque"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Origine :</label>
+      <input type="text" class="form-control" formControlName="origine">
+    </div>
+
+    <div class="mb-3">
+      <label>Catégorie :</label>
+      <input type="text" class="form-control" formControlName="categorie">
+    </div>
+
+    <div class="mb-3">
+      <label>Plan d'action :</label>
+      <textarea class="form-control" formControlName="planAction"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Statut :</label>
+      <select class="form-select" formControlName="statut">
+        <option value="OUVERT">Ouvert</option>
+        <option value="EN_COURS">En cours</option>
+        <option value="TRAITE">Traité</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Severité :</label>
+      <input type="text" class="form-control" formControlName="severite">
+    </div>
+  </div>
+
+  <!-- OPPORTUNITE -->
+  <div *ngIf="form.get('type')?.value === 'OPPORTUNITE'">
+    <hr>
+    <h5>Informations Opportunité</h5>
+
+    <div class="mb-3">
+      <label>Bénéfice potentiel : (1 à 5) </label>
+      <input type="number" class="form-control" formControlName="beneficePotentiel" min="1" max="5">
+    </div>
+
+    <div class="mb-3">
+      <label>Valeur de l'opportunité (calculée) :</label>
+      <input type="number" class="form-control" [value]="form.value.probabilite * form.value.beneficePotentiel" readonly>
+    </div>
+
+    <div class="mb-3">
+      <label>Description :</label>
+      <textarea class="form-control" formControlName="descriptionOpportunite"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Action recommandée :</label>
+      <textarea class="form-control" formControlName="actionRecommandee"></textarea>
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-3" type="submit">Enregistrer</button>
+</form>

@@ -34,6 +34,7 @@ export class AjouterenjeuxComponent implements OnInit {
   allAttentes: ResultsPip[] = [];
 
   swotGroups: { list: Cadran[]; class: string }[] = [];
+  attentesAffichees: any;
 
   constructor(
     private fb: FormBuilder,
@@ -189,6 +190,7 @@ loadEnjeuFromPreload(enjeu: Enjeu): void {
 
 
   } else {
+    console.log(payload);
     this.enjeuxService.addEnjeu(payload).subscribe(() => {
     console.log(localStorage.getItem('role'));
     console.log(payload);

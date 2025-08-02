@@ -444,3 +444,25 @@ mat-step li {
   75% { transform: rotate(5deg); }
   100% { opacity: 0; }
 }
+/* zone de pip */
+.zone-selection {
+  border-left: 3px solid #187398; /* bleu foncé discret */
+  padding: 3px 12px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  background-color: #f8f9fa; /* gris très clair */
+  color: #1e1666;
+}
+
+.zone-selection strong {
+  font-weight: 500;
+  color: #04c;
+}
+
+.zone-selection span {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  color: #000000;
+  font-size: 0.85rem;
+  margin-left: 6px;
+}
+

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+    
+<!-- Mirrored from themesbrand.com/skote/layouts/layouts-colored-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Feb 2024 15:33:52 GMT -->
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Colored Sidebar | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+      
+
+    </head>
+
+    <body data-sidebar="colored">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-header></app-header>
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <app-app-menu></app-app-menu>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                       
+                        <!-- end page title -->
+
+                        
+                        <!-- end row -->
+
+                        <!-- end row -->
+                         <div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+
+        <br /><br />
+        <h4 class="card-title mb-4">Liste des Risques & Opportunités</h4><div class="container mt-3">
+          <div class="d-flex justify-content-end mb-3">
+          <a routerLink="/ajouter-ro" class="btn btn-primary">Ajouter une analyseeeeeeeee</a>
+            </div>
+
+  <!-- 🔍 Filtres -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label>Enjeu stratégique :</label>
+      <select class="form-select" [(ngModel)]="selectedEnjeuId">
+        <option [ngValue]="null">-- Tous --</option>
+        <option *ngFor="let enjeu of enjeux" [ngValue]="enjeu.id">
+          {{ enjeu.description }}
+        </option>
+      </select>
+    </div>
+
+     <!-- Barre de recherche  -->
+<div class="app-search form-group mb-3" style="position: relative; width: 300px;">
+  <input type="text" class="form-control" placeholder="          Rechercher..." [(ngModel)]="searchText" />
+  <span class="bx bx-search-alt"></span>
+</div>
+
+  <!-- Onglets -->
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#risques">⚠️ Risques</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#opportunites">🌟 Opportunités</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <!-- Risques -->
+    <div class="tab-pane fade show active" id="risques">
+      <table class="table table-bordered table-striped">
+        <thead class="table-light">
+          <tr>
+            <th>Enjeu</th>
+            <th>Score de criticité</th>
+            <th>Acteur</th>
+            <th>Description</th>
+            <th>Plan d'action</th>
+            <th>Statut</th>
+            <th>Date de suivi</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of filterRisques()">
+           <td class="max-width-col">{{ r.enjeu?.description }}</td>
+            <td>{{ r.evaluationRisque }}</td>
+            <td>{{ r.acteurResponsable }}</td>
+            <td class="max-width-col">{{ r.descriptionRisque }}</td>
+            <td class="max-width-col">{{ r.planAction }}</td>
+            <td>{{r.statut}}</td>
+            <td>{{ r.dateSuivi }}</td>
+          <td class="button-container">
+            <button class="custom-button1 delete-button" (click)="deleteRisque(r.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button class="custom-button1 edit-button" (click)="redirectToEditRisque(r)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Opportunités -->
+    <div class="tab-pane fade" id="opportunites">
+      <table class="table table-bordered table-striped">
+        <thead class="table-light">
+          <tr>
+            <th>Enjeu</th>
+            <th>Valeur de l’opportunité</th>
+            <th>Acteur</th>
+            <th>Description</th>
+            <th>Plan d'action</th>
+            <th>Date de suivi</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let o of filterOpportunites()">
+            <td class="max-width-col">{{ o.enjeu?.description }}</td>
+            <td>{{ o.valeurOpportunite }}</td>
+            <td>{{ o.acteurResponsable }}</td>
+            <td class="max-width-col">{{ o.descriptionOpportunite }}</td>
+            <td class="max-width-col">{{ o.actionRecommandee }}</td>
+            <td>{{ o.dateSuivi }}</td>
+            <td class="button-container">
+            <button class="custom-button1 delete-button" (click)="deleteOpp(o.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button class="custom-button1 edit-button" (click)="redirectToEditOpp(o)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+                        
+                     

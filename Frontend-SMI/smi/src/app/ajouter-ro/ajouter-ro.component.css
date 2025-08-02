@@ -1,0 +1,67 @@
+form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  color: #1e1666;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: #187398;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+  border-radius: 8px;
+  border: 1px solid #c2c3c5;
+  padding: 0.5rem 0.75rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #22a4D9;
+  box-shadow: 0 0 0 2px rgba(34, 164, 217, 0.2);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+hr {
+  margin: 2rem 0 1.5rem;
+  border: none;
+  border-top: 2px dashed #C5ECF6;
+}
+
+h5 {
+  color: #1e1666;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+button[type="submit"] {
+  background-color: #187398;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0e5f7c;
+}
+

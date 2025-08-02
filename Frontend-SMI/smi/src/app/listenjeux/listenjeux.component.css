@@ -12,7 +12,6 @@
 }
 
 /* Bouton Ajouter */
-
 button {
   border: none;
   cursor: pointer;
@@ -23,201 +22,182 @@ button {
 }
 
 .custom-button {
-  background: linear-gradient(135deg, #c5ecf6, #96979a);
-  color: #1e1666;
-   cursor: pointer; /* Change le curseur en pointer pour indiquer que c'est cliquable */
-  border-radius: 25px;
   background: linear-gradient(135deg, #c5ecf6, #187398);
+  color: #1e1666;
+  cursor: pointer;
+  border-radius: 25px;
   font-weight: 500;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .custom-button:hover {
   background: linear-gradient(135deg, #96979a, #c5ecf6);
-    transform: translateY(-2px);
+  transform: translateY(-2px);
   color: #1e1666;
 }
 
+/* Barre de recherche */
+.app-search .form-control {
+  width: 100%;
+  padding: 8px 35px 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  color: #1e1666;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.app-search .form-control:focus {
+  border-color: #22a4d9;
+  box-shadow: 0 0 8px rgba(34, 164, 217, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.app-search .bx-search-alt {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #96979A;
+  font-size: 18px;
+  pointer-events: none;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.app-search .form-control:focus + .bx-search-alt {
+  transform: translateY(-50%) scale(1.1);
+  color: #22a4d9;
+}
+
+/* Table */
+.enjeux-table {
+  min-width: 1000px;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.enjeux-table th,
+.enjeux-table td {
+  vertical-align: middle;
+  padding: 12px 10px;
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
+  font-size: 0.92rem;
+}
+
+.enjeux-table th {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #1e1666;
+  background-color: #e6f4f7;
+  border-bottom: 2px solid #22a4D9;
+}
+
+/* Colonnes larges (texte long) */
+.col-description,
+.col-swot,
+.col-attente {
+  width: 23%;
+  min-width: 200px;
+  text-align: left;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Colonnes étroites */
+.col-poids {
+  width: 7%;
+  min-width: 70px;
+  text-align: center;
+}
+
+.col-risque,
+.col-opportunite {
+  width: 5%;
+  min-width: 60px;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Colonne actions */
+.col-actions {
+  width: 75px;
+  min-width: 70px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Organisation verticale des boutons */
 .button-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-  box-shadow: none;
+  gap: 4px; /* réduit l’espacement */
 }
 
-
-
-/* Tableau */
-.table-responsive {
-  border-radius: 10px;
-   overflow-x: auto; /*Ajoute un scroll horizontal si nécessaire */
-  box-shadow: 0 2px 8px rgba(24, 115, 152, 0.1);
-  margin-top: 20px;
-  -webkit-overflow-scrolling: touch; /* Améliore le scroll sur mobile */
-  
-  /* overflow-x: scroll; Toujours afficher le scroll horizontal */
-  overflow-y: hidden;
-   white-space: nowrap; /*Empêche le retour à la ligne des cellules */
-  -webkit-overflow-scrolling: touch;
-}
-
-.table {
-vertical-align: middle;
-    text-align: center;
-    padding: 12px;
-    border: 1px solid #dee2e6;
-    font-size: 0.92rem;
-    color: #333;
-}
-
-/* En-tête du tableau */
-.table thead {
-  background-color: #C5ECF6;
-  color: #1e1666;
-  font-weight: bold;
-  font-size: 0.95rem;
-}
-
-/* Lignes du tableau */
-.table td {
-  vertical-align: middle;
-  text-align: center;
-  padding: 12px;
-  border: 1px solid #dee2e6;
-  font-size: 0.92rem;
-  color: #333;
-}
-
-/* Lignes alternées */
-.table tbody tr:nth-child(odd) {
-  background-color: #f8fcfd;
-}
-
-/*=== entete du tableau =====*/
-.table thead th {
-  background-color: #e6f4f7 !important;  /* Fond bleu très clair */
-  color: #1e1666 !important;              /* Texte bleu foncé sérieux */
-  font-weight: 600 !important;            /* Gras */
-  font-size: 0.95rem !important;          /* Taille moyenne, lisible */
-  text-transform: uppercase;             /* Majuscules (optionnel) */
-  text-align: center !important;
-  padding: 12px 10px !important;
-  border-bottom: 2px solid #22a4D9 !important;
-  white-space: nowrap;
-}
-
-
-/* Liste des modifications */
-.table ul {
-  list-style: disc;
-  padding-left: 1.2rem;
-  text-align: left;
-  margin: 0;
-}
-
-.table ul li {
-  font-size: 0.85rem;
-  color: #187398;
-}
-
-/* Aucun contenu dans une cellule personnalisée */
-.table ng-template {
-  color: #96979A;
-  font-style: italic;
-}
-
-/* Boutons Modifier/Supprimer */
 .custom-button1 {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 16px;
-  margin: 0 5px;
+  font-size: 15px;
+  transition: transform 0.2s ease;
 }
 
-.delete-button {
+.custom-button1.view-button {
+  color: #17a2b8;
+}
+.custom-button1.edit-button {
+  color: #007bff;
+}
+.custom-button1.delete-button {
   color: #dc3545;
 }
 
-.edit-button {
-  color: #007bff;
+.custom-button1:hover i {
+  transform: scale(1.1);
 }
 
-.button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-td.button-container {
-    background-color: white !important;
-}
-
-/* Responsive sur petits écrans */
+/* Responsive */
 @media (max-width: 768px) {
-  .custom-button {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .table th, .table td {
+  .enjeux-table th,
+  .enjeux-table td {
     font-size: 0.85rem;
     padding: 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .custom-button1 {
+    font-size: 14px;
+  }
+
+  .col-description,
+  .col-swot,
+  .col-attente {
+    min-width: 150px;
+    width: 100%;
+  }
+
+  .col-poids,
+  .col-risque,
+  .col-opportunite,
+  .col-actions {
+    min-width: 50px;
+    width: auto;
   }
 }
 
-/* ===== Pagination ===== */
-.pagination-controls {
-  margin-top: 20px;
-  text-align: center;
-  background-color: #22a4d9;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Scroll horizontal si nécessaire */
+.table-responsive {
+  overflow-x: auto;
 }
 
-.table {
-  min-width: 1000px; /* Ajuste selon la largeur totale que tu veux */
-  width: auto;
+/* Évite tout débordement */
+.container-fluid {
+  max-width: 100%;
+  overflow-x: hidden;
 }
-/* barre de recherche  */
-.app-search .form-control {
-    width: 100%;
-    padding: 8px 35px 8px 12px; /* espace pour l’icône à droite */
-    border-radius: 20px;
-    font-size: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    color: #1e1666;
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.app-search .form-control:focus {
-    border-color: #22a4d9;
-    box-shadow: 0 0 8px rgba(34, 164, 217, 0.4);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.app-search .bx-search-alt {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #96979A;
-    font-size: 18px;
-    pointer-events: none;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.app-search .form-control:focus + .bx-search-alt {
-    transform: translateY(-50%) scale(1.1);
-    color: #22a4d9;
-}
-
-
-
-

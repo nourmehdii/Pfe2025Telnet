@@ -101,7 +101,12 @@
   </a>
 </li>
 
-
+<li *ngIf="isAny('RESPONSABLEQUALITE', 'CHEFDEPROJET')">
+  <a routerLink="/risques-opportunites" routerLinkActive="active" class="waves-effect" (click)="setActiveLink('risques-opportunites')">
+    <i class="bx bx-target-lock"></i>
+    <span>Risque/Opportunité</span>
+  </a>
+</li>
 
   </ul>
 </div>

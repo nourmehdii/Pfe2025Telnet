@@ -1,6 +1,15 @@
 <div class="modifier-resultat-pip">
   <h2>Modifier le résultat PIP</h2>
   <form (ngSubmit)="updateResultsPip()">
+
+     <!-- Sélection du Pip -->
+    <div class="mb-3">
+      <label for="selectPip" class="form-label">Sélectionner le Pip :</label>
+      <select [(ngModel)]="selectedPipId" name="selectedPipId" class="form-select" required (change)="onPipSelectionChange()">
+        <option value="" disabled>Sélectionner le Pip</option>
+        <option *ngFor="let pip of pips" [ngValue]="pip.id">{{ pip.name }}</option>
+      </select>
+    </div>
   
     <!-- Zone de saisie pour expectation -->
     <div class="form-group">
@@ -21,15 +30,6 @@
     <div class="form-group">
       <label for="setupMonitoring">Surveillance à mettre en place</label>
       <input type="text" class="form-control" id="setupMonitoring" [(ngModel)]="resultsPip.setupMonitoring" name="setupMonitoring">
-    </div>
-    
-    <!-- Sélection du Pip -->
-    <div class="mb-3">
-      <label for="selectPip" class="form-label">Sélectionner le Pip :</label>
-      <select [(ngModel)]="selectedPipId" name="selectedPipId" class="form-select" required (change)="onPipSelectionChange()">
-        <option value="" disabled>Sélectionner le Pip</option>
-        <option *ngFor="let pip of pips" [ngValue]="pip.id">{{ pip.name }}</option>
-      </select>
     </div>
     
 

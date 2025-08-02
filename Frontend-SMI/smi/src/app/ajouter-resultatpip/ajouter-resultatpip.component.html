@@ -7,6 +7,13 @@
   <div class="modal-body">
     <form [formGroup]="resultsPipForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
+        <label for="pip">PIP</label>
+        <select class="form-control" id="pip" formControlName="pip">
+          <option [ngValue]="null" disabled>Sélectionner un PIP</option>
+          <option *ngFor="let pip of pips" [ngValue]="pip">{{ pip.name }}</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label for="expectation">Attente</label>
         <input type="text" class="form-control" id="expectation" formControlName="expectation">
       </div>
@@ -22,13 +29,7 @@
         <label for="setupMonitoring">Surveillance à mettre en place</label>
         <input type="text" class="form-control" id="setupMonitoring" formControlName="setupMonitoring">
       </div>
-      <div class="form-group">
-        <label for="pip">PIP</label>
-        <select class="form-control" id="pip" formControlName="pip">
-          <option [ngValue]="null" disabled>Sélectionner un PIP</option>
-          <option *ngFor="let pip of pips" [ngValue]="pip">{{ pip.name }}</option>
-        </select>
-      </div>
+      
       <div class="form-group">
         <label for="processus">Processus</label>
         <select multiple class="form-control" id="processus" formControlName="processus">

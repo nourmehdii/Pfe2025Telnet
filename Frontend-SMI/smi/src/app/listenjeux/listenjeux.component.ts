@@ -63,8 +63,8 @@ export class ListenjeuxComponent implements OnInit {
   getAttentesText(attentesIds: number[]): string {
     return this.allAttentes
       .filter(a => attentesIds.includes(a.id))
-      .map(a => a.expectation)
-      .join(', ');
+      .map(a => `• ${a.expectation}`)
+      .join('<br>');
   }
     openAjouterEnjeux(): void {
     this.router.navigate(['/ajouterenjeux']);

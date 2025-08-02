@@ -44,6 +44,19 @@ public class Enjeu {
     private List<EnjeuHistory> historiqueModifications;
 
 
+
+    // 🔽 Relations vers risques et opportunités
+    @OneToMany(mappedBy = "enjeu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("enjeu")
+    private List<Risque> risques;
+
+    @OneToMany(mappedBy = "enjeu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("enjeu")
+    private List<Opportunite> opportunites;
+
+
+
+
     @PrePersist
     protected void onCreate() {
         this.dateCreation = LocalDateTime.now();
