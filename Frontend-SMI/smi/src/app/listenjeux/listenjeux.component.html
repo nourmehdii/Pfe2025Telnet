@@ -76,7 +76,7 @@
                   <tbody>
                     <ng-container *ngFor="let enjeu of (enjeux | filterBySearch:searchText) | paginate: { itemsPerPage: 6, currentPage: p }">
                       <tr>
-                        <td class="col-description">{{ enjeu.description }}</td>
+                        <td class="col-description" style="">{{ enjeu.description }}</td>
                         <td class="col-swot" [innerHTML]="getCadranInfos(enjeu.cadransSources)"></td>
                         <td  class="col-attente" [innerHTML]="getAttentesText(enjeu.attentesPartiesPrenantes)"></td>
                         <td class="col-poids">{{ enjeu.poids }}</td>

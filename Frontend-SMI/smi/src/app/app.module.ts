@@ -89,7 +89,7 @@ import { AdminListeEnjeuxComponent } from './admin-liste-enjeux/admin-liste-enje
 import { FilterBySearchPipe } from './pipes/filter-by-search.pipe';
 import { AnalyseRoListComponent } from './ro-list/ro-list.component';
 import { AjouterRoComponent } from './ajouter-ro/ajouter-ro.component';
-
+import { HighlighterrPipe } from './pipes/highlighterr.pipe';
 
 
 @NgModule({
@@ -163,6 +163,7 @@ import { AjouterRoComponent } from './ajouter-ro/ajouter-ro.component';
     FilterBySearchPipe,
     AnalyseRoListComponent,
     AjouterRoComponent,
+    HighlighterrPipe,
     //InteractionFilterPipe
    
   

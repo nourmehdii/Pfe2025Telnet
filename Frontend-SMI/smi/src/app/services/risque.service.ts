@@ -45,4 +45,11 @@ export class RisqueService {
     const headers = this.getHeaders(role);
     return this.http.get<any>(`${this.baseUrl}/${id}`, { headers });
   }
+
+  // ✏️ Mettre à jour un risque
+updateRisque(id: number, risque: any, role: 'user' | 'admin' = 'user'): Observable<any> {
+  const headers = this.getHeaders(role);
+  return this.http.put<any>(`${this.baseUrl}/${id}`, risque, { headers });
+}
+
 }

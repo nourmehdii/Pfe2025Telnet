@@ -22,6 +22,9 @@ public class EnjeuService {
     private EnjeuHistoryRepository enjeuHistoryRepository;
 
 
+    private ObjectMapper mapper = new ObjectMapper();
+
+
     public Enjeu createEnjeu(Enjeu enjeu) {
         return enjeuRepository.save(enjeu);
     }
@@ -36,6 +39,70 @@ public class EnjeuService {
     public void deleteEnjeu(Long id) {
         enjeuRepository.deleteById(id);
     }
+
+  /*  public Enjeu updateEnjeu(Long id, Enjeu updatedEnjeu, String commentaire) {
+        Optional<Enjeu> existingOpt = enjeuRepository.findById(id);
+        if (existingOpt.isPresent()) {
+            Enjeu existingEnjeu = existingOpt.get();
+
+            if (updatedEnjeu.getCadransSources() == null) {
+                updatedEnjeu.setCadransSources(existingEnjeu.getCadransSources());
+            }
+            if (updatedEnjeu.getAttentesPartiesPrenantes() == null) {
+                updatedEnjeu.setAttentesPartiesPrenantes(existingEnjeu.getAttentesPartiesPrenantes());
+            }
+
+            try {
+                String etatAvant = convertToJson(existingEnjeu);
+                String etatApres = convertToJson(updatedEnjeu);
+
+
+                if (!etatAvant.equals(etatApres)) {
+                    EnjeuHistory history = new EnjeuHistory();
+                    history.setEnjeu(existingEnjeu);
+                    history.setCommentaire(commentaire != null ? commentaire : "Modification de l’enjeu");
+                    history.setEtatAvant(etatAvant);
+                    history.setEtatApres(etatApres);
+
+                    enjeuHistoryRepository.save(history);
+                }
+            } catch (JsonProcessingException e) {
+                    throw new RuntimeException("Erreur lors de la conversion JSON pour l’historique d’Enjeu", e);
+            }
+
+            updatedEnjeu.setId(id);
+            updatedEnjeu.setDateCreation(existingEnjeu.getDateCreation());
+            return enjeuRepository.save(updatedEnjeu);
+        } else {
+            throw new RuntimeException("Enjeu non trouvé avec ID : " + id);
+        }
+    } */
+
+
+
+   /* private String convertToJson(Enjeu enjeu) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        EnjeuHistoryDTO dto = new EnjeuHistoryDTO();
+        dto.setCadransSources(enjeu.getCadransSources());
+        dto.setAttentesPartiesPrenantes(enjeu.getAttentesPartiesPrenantes());
+        dto.setDescription(enjeu.getDescription());
+        dto.setPoids(enjeu.getPoids());
+
+        return mapper.writeValueAsString(dto);
+    } }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public Enjeu updateEnjeu(Long id, Enjeu updatedEnjeu, String commentaire) {
         Optional<Enjeu> existingOpt = enjeuRepository.findById(id);
@@ -73,13 +140,13 @@ public class EnjeuService {
             return enjeuRepository.save(updatedEnjeu);
         } else {
             throw new RuntimeException("Enjeu non trouvé avec ID : " + id);
-        }
-    }
+        } } }
 
 
 
 
-}
+
+
 
 
 

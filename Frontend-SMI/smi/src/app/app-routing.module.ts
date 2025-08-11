@@ -66,6 +66,9 @@ const routes: Routes = [
   {path: 'admin/enjeux/:id/historique',component: EnjeuHistoryComponent, canActivate: [AuthGuard] },
   { path: 'risques-opportunites', component: AnalyseRoListComponent, canActivate: [AuthGuard] },
   { path: 'ajouter-ro', component: AjouterRoComponent, canActivate: [AuthGuard] },
+  { path: 'modifier-risque/:risqueId', component: AjouterRoComponent , canActivate: [AuthGuard]},
+  { path: 'modifier-opportunite/:opportuniteId', component: AjouterRoComponent , canActivate: [AuthGuard]},
+
 
 
 

@@ -206,3 +206,16 @@ label {
     max-width: 150px;
   }
 }
+.highlighted {
+  background-color: #ffff99;
+  font-weight: bold;
+}
+
+ .width-description-col{
+    width: 23% !important;
+    text-align: left !important;
+     color: #2b398b !important;
+    font-weight: 500 !important; /* plus léger que bold mais plus marqué que normal */
+  word-wrap: break-word;
+  }
+

@@ -21,8 +21,8 @@ public class EnjeuHistoryService {
             EnjeuHistory historique = new EnjeuHistory();
             historique.setEnjeu(nouveau); // lien vers l'enjeu actuel
             historique.setCommentaire(commentaire);
-            historique.setEtatAvant(objectMapper.writeValueAsString(ancien));
-            historique.setEtatApres(objectMapper.writeValueAsString(nouveau));
+            /*historique.setEtatAvant(objectMapper.writeValueAsString(ancien));
+            historique.setEtatApres(objectMapper.writeValueAsString(nouveau));*/
 
             historyRepository.save(historique);
         } catch (Exception e) {

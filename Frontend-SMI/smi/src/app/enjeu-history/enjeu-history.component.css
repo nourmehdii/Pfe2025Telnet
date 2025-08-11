@@ -1,0 +1,6 @@
+.enjeu-history .changed-row {
+  background-color: #A8E4A0 !important;
+}
+.enjeu-history .unchanged-row {
+  background-color: #FFFDE7 !important;
+}

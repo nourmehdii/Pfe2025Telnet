@@ -1,11 +1,11 @@
 
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8×˜3J$0252b071-23f0-42de-bb67-916d308a1da6
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8×˜3J$c3fff21b-8d05-423e-8344-6aeb5182e7c2
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8×˜3J$a5507648-78cd-421d-b344-e9f2ea1be91d
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8×˜3J$3a32e8c9-23dd-48d1-895c-694f084a1483
 ƒ
-java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(¢ÁÈ8¤×˜3J$c73c7ff2-9178-45fb-b119-d5d828fa1ec3
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(¢ÁÈ8¤×˜3J$f66016d2-0436-41d3-83da-31e6cf81d0b4
 n
-java:S14528"&Remove usage of generic wildcard type.(ÜÜ»›ÿÿÿÿÿ8éùœ˜3J$69d9e933-661a-466b-89c6-c92203c660eb
-p
-java:S1128	"(Remove this unused import 'lombok.Data'.(÷í«ÿÿÿÿÿ8ñ˜3J$6c4bb914-aaf3-4da7-8546-cfba31c8a34c
+java:S14528"&Remove usage of generic wildcard type.(ÜÜ»›ÿÿÿÿÿ8éùœ˜3J$27769124-39c7-45bb-be18-083acc0ec6b6
+J
+java:S1128	"(Remove this unused import 'lombok.Data'.(÷í«ÿÿÿÿÿ8¡®ÔÇ‰3

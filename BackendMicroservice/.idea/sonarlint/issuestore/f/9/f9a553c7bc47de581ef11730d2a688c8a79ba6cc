@@ -1,8 +1,10 @@
 
-ˆ	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(èÄ¡ë8ı–Ç¨‚3J$743596d8-763c-49c9-a376-f0b4fe58292e
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ª—Ç¨‚3J$2bd3b278-ed09-4d3a-b150-8811280c0cef
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8«—Ç¨‚3J$e13c9640-e9e3-46c4-bdd8-e741310a1c6d
-e
-java:S1128	"HRemove this unused import 'com.fasterxml.jackson.databind.ObjectMapper'.(´‘¨™8ã…›Ä‚3
+c	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(èÄ¡ë8ÂšÕÇ‰3
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÖšÕÇ‰3
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÖšÕÇ‰3
+X	java:S125+"<This block of commented-out lines of code should be removed.(»ÕÌÆ8ìšÕÇ‰3
+X	java:S125S"<This block of commented-out lines of code should be removed.(ˆµ8ìšÕÇ‰3
+G
+java:S1068"*Remove this unused "mapper" private field.(ëæúÌ8òšÕÇ‰3

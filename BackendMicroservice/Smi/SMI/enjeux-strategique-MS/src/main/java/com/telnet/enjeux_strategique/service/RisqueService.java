@@ -25,5 +25,26 @@ public class RisqueService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public Risque update(Long id, Risque risque) {
+        Risque existing = repository.findById(id).orElse(null);
+        if (existing == null) return null;
+
+        existing.setEnjeu(risque.getEnjeu());
+        existing.setProbabilite(risque.getProbabilite());
+        existing.setImpact(risque.getImpact());
+        existing.setEvaluationRisque(risque.getImpact() * risque.getProbabilite());
+        existing.setActeurResponsable(risque.getActeurResponsable());
+        existing.setDateSuivi(risque.getDateSuivi());
+        existing.setDescriptionRisque(risque.getDescriptionRisque());
+        existing.setOrigine(risque.getOrigine());
+        existing.setCategorie(risque.getCategorie());
+        existing.setPlanAction(risque.getPlanAction());
+        existing.setStatut(risque.getStatut());
+        existing.setSeverite(risque.getSeverite());
+
+        return repository.save(existing);
+    }
+
 }
 

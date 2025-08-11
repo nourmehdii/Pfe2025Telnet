@@ -4,6 +4,7 @@ package com.telnet.enjeux_strategique.controller;
 import com.telnet.enjeux_strategique.model.Opportunite;
 import com.telnet.enjeux_strategique.service.OpportuniteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,21 +15,33 @@ import java.util.List;
 public class OpportuniteController {
 
     @Autowired
-    private OpportuniteService service;
+    private OpportuniteService opportuniteService;
 
     @GetMapping
     public List<Opportunite> getAll() {
-        return service.getAll();
+        return opportuniteService.getAll();
     }
 
     @PostMapping
     public Opportunite save(@RequestBody Opportunite opportunite) {
-        return service.save(opportunite);
+        return opportuniteService.save(opportunite);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        service.delete(id);
+       opportuniteService.delete(id);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Opportunite> updateOpportunite(@PathVariable Long id, @RequestBody Opportunite opportunite) {
+        Opportunite updated = opportuniteService.update(id, opportunite);
+        if (updated == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updated);
+    }
+
+
+
 }
 

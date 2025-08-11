@@ -22,6 +22,21 @@ public class OpportuniteService {
         opportunite.setValeurOpportunite(opportunite.getProbabilite() * opportunite.getBeneficePotentiel());
         return repository.save(opportunite);
     }
+    public Opportunite update(Long id, Opportunite opportunite) {
+        Opportunite existing = repository.findById(id).orElse(null);
+        if (existing == null) return null;
+
+        existing.setEnjeu(opportunite.getEnjeu());
+        existing.setProbabilite(opportunite.getProbabilite());
+        existing.setBeneficePotentiel(opportunite.getBeneficePotentiel());
+        existing.setValeurOpportunite(opportunite.getProbabilite() * opportunite.getBeneficePotentiel());
+        existing.setActeurResponsable(opportunite.getActeurResponsable());
+        existing.setDateSuivi(opportunite.getDateSuivi());
+        existing.setDescriptionOpportunite(opportunite.getDescriptionOpportunite());
+        existing.setActionRecommandee(opportunite.getActionRecommandee());
+
+        return repository.save(existing);
+    }
 
     public void delete(Long id) {
         repository.deleteById(id);

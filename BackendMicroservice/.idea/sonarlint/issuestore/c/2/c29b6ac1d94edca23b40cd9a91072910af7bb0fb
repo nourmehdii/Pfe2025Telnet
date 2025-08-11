@@ -1,6 +1,9 @@
 
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8ÞˆŠô€3
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8ö‡ª ‰3
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8ÞˆŠô€3
-G	java:S106"+Replace this use of System.err by a logger.(æ«ÿï8êˆŠô€3
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8ö‡ª ‰3
+J
+java:S1172"-Remove this unused method parameter "ancien".(ü¦Ëö8ÿ‡ª ‰3
+]	java:S125"<This block of commented-out lines of code should be removed.(˜ôú ùÿÿÿÿ8‚ˆª ‰3
+G	java:S106"+Replace this use of System.err by a logger.(æ«ÿï8…ˆª ‰3

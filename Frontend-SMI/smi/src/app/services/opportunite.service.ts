@@ -45,4 +45,12 @@ export class OpportuniteService {
     const headers = this.getHeaders(role);
     return this.http.get<any>(`${this.baseUrl}/${id}`, { headers });
   }
+
+  // ✏️ Mettre à jour une opportunité
+updateOpportunite(id: number, opportunite: any, role: 'user' | 'admin' = 'user'): Observable<any> {
+  const headers = this.getHeaders(role);
+  return this.http.put<any>(`${this.baseUrl}/${id}`, opportunite, { headers });
+}
+
+
 }

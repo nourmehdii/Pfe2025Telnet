@@ -153,3 +153,5 @@ iSmi/SMI/enjeux-strategique-MS/src/main/java/com/telnet/enjeux_strategique/servi
 jSmi/SMI/enjeux-strategique-MS/src/main/java/com/telnet/enjeux_strategique/controller/RisqueController.java,4\9\498265cfdc4c9f1f5fef9a13cbc6f170a246de9c
 Ÿ
 oSmi/SMI/enjeux-strategique-MS/src/main/java/com/telnet/enjeux_strategique/controller/OpportuniteController.java,2\5\251d5094c5dac93ba2c86e61d80c6c500d118e0b
+–
+fSmi/SMI/enjeux-strategique-MS/src/main/java/com/telnet/enjeux_strategique/converter/JsonConverter.java,1\6\161e48eed462a070447afed9313f0dadf34fbd59

@@ -4,6 +4,8 @@ import { RisqueService } from '../services/risque.service';
 import { OpportuniteService } from '../services/opportunite.service';
 import { Enjeu } from '../model/Enjeu.model';
 import { RO, TypeRO } from '../model/RO.model';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-analyse-ro-list',
@@ -16,19 +18,23 @@ export class AnalyseRoListComponent implements OnInit {
 
   risques: RO[] = [];
   opportunites: RO[] = [];
-
   selectedEnjeuId: number | null = null;
+  selectedEnjeuDescription: string | null = null;
   selectedActeur: string = '';
-  router: any;
+  //router: any;
   searchText: string = '';  
+    p: number = 1;
 
   constructor(
     private enjeuxService: EnjeuxService,
     private risqueService: RisqueService,
-    private opportuniteService: OpportuniteService
+    private opportuniteService: OpportuniteService,
+    private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    
+
     this.loadData();
   }
 
@@ -65,11 +71,30 @@ export class AnalyseRoListComponent implements OnInit {
     );
   }
 
+
+  //Filtrage dynamique par nom de l'enjeu 
+
+
+  filterName(): RO[] {
+  let result = this.risques;
+
+  if (this.selectedEnjeuDescription) {
+    result = result.filter(r =>
+      r.enjeu?.description?.toLowerCase().includes(this.selectedEnjeuDescription.toLowerCase())
+    );
+  }
+
+  return result;
+}
+
+
   // Récupération de la description de l’enjeu
   getEnjeuDescription(id: number): string {
     const enjeu = this.enjeux.find(e => e.id === id);
     return enjeu ? enjeu.description : '—';
   }
+
+
 
   redirectToEditRisque(risque: RO): void {
   // Redirige vers une route contenant l'ID à modifier
@@ -81,15 +106,74 @@ redirectToEditOpp(opp: RO): void {
 }
 
 deleteRisque(id: number): void {
-  this.risqueService.deleteRisque(id).subscribe(() => {
-    this.loadData(); // recharge les données après suppression
+
+ Swal.fire({
+    title: 'Êtes-vous sûr ?',
+    text: "Vous ne pourrez pas revenir en arrière !",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Oui, supprimer !',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.risqueService.deleteRisque(id).subscribe({
+        next: () => {
+          Swal.fire(
+            'Supprimé !',
+            'L\'enjeu a été supprimé avec succès.',
+            'success'
+          );
+          this.loadData(); // Recharge la liste après suppression
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          Swal.fire(
+            'Erreur !',
+            'Une erreur s\'est produite lors de la suppression de l\'enjeu.',
+            'error'
+          );
+        }
+      });
+    }
   });
+
 }
 
 deleteOpp(id: number): void {
-  this.opportuniteService.deleteOpportunite(id).subscribe(() => {
-    this.loadData();
+ Swal.fire({
+    title: 'Êtes-vous sûr ?',
+    text: "Vous ne pourrez pas revenir en arrière !",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Oui, supprimer !',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.opportuniteService.deleteOpportunite(id).subscribe({
+        next: () => {
+          Swal.fire(
+            'Supprimé !',
+            'L\'enjeu a été supprimé avec succès.',
+            'success'
+          );
+          this.loadData(); // Recharge la liste après suppression
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          Swal.fire(
+            'Erreur !',
+            'Une erreur s\'est produite lors de la suppression de l\'enjeu.',
+            'error'
+          );
+        }
+      });
+    }
   });
+
 }
 
 }
