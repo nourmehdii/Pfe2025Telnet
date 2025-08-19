@@ -36,22 +36,27 @@
     </div>
 
     <!-- Secteur -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="secteur">Secteur :</label>
       <input type="text" id="secteur" name="secteur" [(ngModel)]="secteur">
-    </div>
+    </div> -->
 
     <!-- Contexte -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="contexte">Contexte :</label>
       <input type="text" id="contexte" name="contexte" [(ngModel)]="contexte">
-    </div>
+    </div> -->
 
-    <!-- Processus -->
-    <div class="form-group">
-      <label for="processus">Processus :</label>
-      <input type="text" id="processus" name="processus" [(ngModel)]="processus">
-    </div>
+   <!-- Processus -->
+<div class="form-group">
+  <label for="processus">Processus</label>
+  <select class="form-control" id="processus" [(ngModel)]="selectedProcessusName" name="processus" required>
+    <option *ngFor="let p of processusList" [value]="p.name">{{ p.name }}</option>
+  </select>
+</div>
+
+
+
 
     <!-- Origine de l'info -->
     <div class="form-group">

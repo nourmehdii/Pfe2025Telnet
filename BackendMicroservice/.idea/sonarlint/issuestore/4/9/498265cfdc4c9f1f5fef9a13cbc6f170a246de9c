@@ -1,7 +1,7 @@
 
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ÿı„¸‡3J$ab82aec0-2183-49f9-84e2-ed75b3381788
-b
-java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(’Û÷ıùÿÿÿÿ8Ë¨Š¸‡3
-b
-java:S4684#"@Replace this persistent entity with a simple POJO or DTO object.(ñûúûÿÿÿÿ8Í¨Š¸‡3
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ÿı„¸‡3J$aaf2be6b-4b2a-4fa9-a263-6d47cd76b2e7
+ˆ
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(’Û÷ıùÿÿÿÿ8Ë¨Š¸‡3J$3069b794-14c2-46f1-8dd7-a77d73b7ccd9
+ˆ
+java:S4684#"@Replace this persistent entity with a simple POJO or DTO object.(ñûúûÿÿÿÿ8Í¨Š¸‡3J$76e25a8d-01d9-41d7-ac93-6369e1653ddc

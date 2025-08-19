@@ -3,6 +3,7 @@ import { Cadran } from '../model/cadran.model';
 import { UserserviceService } from '../services/userservice.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Processus } from '../model/Processus.model';
 
 @Component({
   selector: 'app-modifiercadran',
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ModifiercadranComponent implements OnInit {
   cadranForm!: FormGroup;
   private voletId!: number;
+  processusList: Processus[];
 
   @Output() cadranUpdated = new EventEmitter<void>();
 
@@ -20,7 +22,8 @@ export class ModifiercadranComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { cadranId: number },
     private cadranService: UserserviceService,
     private dialogRef: MatDialogRef<ModifiercadranComponent>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserserviceService
   ) {}
 
   ngOnInit(): void {
@@ -29,12 +32,18 @@ export class ModifiercadranComponent implements OnInit {
         // Stocke voletId séparément
         this.voletId = response.volet?.id;
 
+  // Récupérer la liste des processus depuis le service
+    this.userService.getProcessusList().subscribe(processus => {
+      this.processusList = processus;
+      console.log('Liste des processus :', this.processusList);
+    });
+
         // Initialise le formulaire avec les données reçues
         this.cadranForm = this.fb.group({
           name: [response.name, Validators.required],
           type: [response.type, Validators.required],
-          secteur: [response.secteur, Validators.required],
-          contexte: [response.contexte],
+          // secteur: [response.secteur, Validators.required],
+          // contexte: [response.contexte],
           processus: [response.processus],
           origineInfo: [response.origineInfo],
           creePar: [response.creePar],

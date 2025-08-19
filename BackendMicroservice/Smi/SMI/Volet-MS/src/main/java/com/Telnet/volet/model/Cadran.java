@@ -27,9 +27,6 @@ public class Cadran {
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "volet_id")
     private Volet volet;
-
-    private String secteur;
-    private String contexte;
     private String processus;
     private String origineInfo;
     private String creePar;
@@ -81,22 +78,6 @@ public class Cadran {
 
     public void setVolet(Volet volet) {
         this.volet = volet;
-    }
-
-    public String getSecteur() {
-        return secteur;
-    }
-
-    public void setSecteur(String secteur) {
-        this.secteur = secteur;
-    }
-
-    public String getContexte() {
-        return contexte;
-    }
-
-    public void setContexte(String contexte) {
-        this.contexte = contexte;
     }
 
     public String getProcessus() {

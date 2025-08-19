@@ -1,0 +1,8 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Û…‡º
+=
+java:S1948,"'Make "roles" transient or serializable.(öö¤
+>
+java:S19480"(Make "tokens" transient or serializable.(Š©™¬
+B
+java:S19485",Make "activities" transient or serializable.(‘Ê´ü

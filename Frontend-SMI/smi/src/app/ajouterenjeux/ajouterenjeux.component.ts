@@ -7,6 +7,8 @@ import { ResultsPip } from '../model/ResultsPip.model';
 import { EnjeuxService } from '../services/enjeux.service';
 import { Enjeu } from '../model/Enjeu.model';
 import Swal from 'sweetalert2';
+import { GeminiService } from '../services/gemini.service';
+
 
 
 @Component({
@@ -35,12 +37,18 @@ export class AjouterenjeuxComponent implements OnInit {
   swotGroups: { list: Cadran[]; class: string }[] = [];
   attentesAffichees: any;
 
+ formGroup!: FormGroup;
+
+ userPrompt: string = '';   // Ajout variable pour prompt IA
+aiResponse: string = '';   // Ajout variable pour réponse IA
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private cadranService: UserserviceService,
-    private enjeuxService: EnjeuxService
+    private enjeuxService: EnjeuxService,
+    private geminiService: GeminiService
 
   ) {}
 
@@ -206,7 +214,29 @@ loadEnjeuFromPreload(enjeu: Enjeu): void {
   }
 
  openIASupport(): void {
-  return console.log("HELLO IA");
+  if (!this.userPrompt || this.userPrompt.trim() === '') {
+    Swal.fire({ icon: 'warning', title: 'Veuillez entrer une question' });
+    return;
+  }
+
+  this.aiResponse = 'Chargement...';
+
+  this.geminiService.askGemini(this.userPrompt).subscribe({
+    next: (response) => {
+      this.aiResponse = response;
+      console.log('Réponse IA:', response);
+    },
+    error: (err) => {
+      this.aiResponse = 'Erreur lors de la récupération de la réponse.';
+      console.error(err);
+      Swal.fire({ icon: 'error', title: 'Erreur lors de la requête AI' });
+    }
+  });
 }
 
+
 }
+ 
+
+
+

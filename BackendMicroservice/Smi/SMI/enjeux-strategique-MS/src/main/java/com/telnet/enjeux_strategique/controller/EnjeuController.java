@@ -5,15 +5,17 @@ import com.telnet.enjeux_strategique.model.Enjeu;
 import com.telnet.enjeux_strategique.model.EnjeuHistory;
 import com.telnet.enjeux_strategique.repository.EnjeuHistoryRepository;
 import com.telnet.enjeux_strategique.service.EnjeuService;
-
-import lombok.Data;
+//import okhttp3.MediaType;
+import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 
 @RestController
 @RequestMapping("/api/enjeux")
@@ -27,8 +29,9 @@ public class EnjeuController {
     private EnjeuHistoryRepository enjeuHistoryRepository;
 
 //Créer un nouvel enjeu POST
-    @PostMapping
+    @PostMapping("/add")
     public Enjeu create(@RequestBody Enjeu enjeu) {
+
         return enjeuService.createEnjeu(enjeu);
     }
 
@@ -63,16 +66,58 @@ public class EnjeuController {
         }
     }
 
-
-
-
-
-
-
     // Ajouter la méthode GET pour récupérer l'historique par enjeuId
 @GetMapping("/{id}/history")
 public List<EnjeuHistory> getHistoryByEnjeuId(@PathVariable Long id) {
     return enjeuHistoryRepository.findByEnjeuId(id);
+}
+//ia
+@Value("${gemini.api.key}")
+String apiKey;
+    private static final String GEMINI_MODEL = "gemini-2.5-pro";
+    private static final String GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/"
+            + GEMINI_MODEL + ":generateContent";
+    @PostMapping("/ask")
+    public ResponseEntity<?> chatWithGemini(@RequestBody Map<String, String> body) {
+        String userMessage = body.get("message");
+        if (userMessage == null || userMessage.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Message is required");
+        }
+
+        try {
+            // Prepare the request payload
+            Map<String, Object> requestPayload = new HashMap<>();
+            List<Map<String, Object>> contents = new ArrayList<>();
+            Map<String, Object> part = new HashMap<>();
+            part.put("text", userMessage);
+            Map<String, Object> content = new HashMap<>();
+            content.put("parts", Collections.singletonList(part));
+            contents.add(content);
+            requestPayload.put("contents", contents);
+
+            // Build URL with API Key
+            String url = UriComponentsBuilder.fromHttpUrl(GEMINI_URL)
+                    .queryParam("key", apiKey)
+                    .toUriString();
+
+            // Prepare HTTP entity
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestPayload, headers);
+
+            // Send request
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    url, HttpMethod.POST, entity, Map.class);
+
+            return ResponseEntity.ok(response.getBody());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error calling Gemini API: " + e.getMessage());
+        }
+
 }
 
 }

@@ -1,0 +1,31 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¿˜ìøÿÿÿÿ
+X
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813$"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813'"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ
+[
+java:S4684S"@Replace this persistent entity with a simple POJO or DTO object.(–½Ç‰ıÿÿÿÿ
+A
+java:S1452X"&Remove usage of generic wildcard type.(ˆê¢ùüÿÿÿÿ
+W
+java:S4684„"@Replace this persistent entity with a simple POJO or DTO object.(åî®ı
+V	java:S125}"<This block of commented-out lines of code should be removed.(†ÚŸ¥úÿÿÿÿ
+\
+java:S4684‰"@Replace this persistent entity with a simple POJO or DTO object.(À¶Õûÿÿÿÿ
+=
+java:S1452›"&Remove usage of generic wildcard type.( ÀŞ‹
+€
+java:S1128"eRemove this unused import 'org.springframework.security.authentication.AnonymousAuthenticationToken'.(¬Ÿ¡¿ûÿÿÿÿ
+c
+java:S1128"MRemove this unused import 'org.springframework.security.core.Authentication'.(ñıÓ“
+r
+java:S1128"\Remove this unused import 'org.springframework.security.core.context.SecurityContextHolder'.(ŒÄæë
+N
+java:S1128"3Remove this unused import 'javax.validation.Valid'.(æ¤ñ÷úÿÿÿÿ
+S
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ

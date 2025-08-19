@@ -33,7 +33,7 @@ export class EnjeuxService {
   // ➕ Ajouter un enjeu
   addEnjeu(enjeu: Enjeu, role: 'user' | 'admin' = 'user'): Observable<Enjeu> {
     const headers = this.getHeaders(role);
-    return this.http.post<Enjeu>(this.baseUrl, enjeu, { headers });
+    return this.http.post<Enjeu>(`${this.baseUrl}/add`, enjeu, { headers });
   }
 
   // 🔄 Modifier un enjeu avec commentaire

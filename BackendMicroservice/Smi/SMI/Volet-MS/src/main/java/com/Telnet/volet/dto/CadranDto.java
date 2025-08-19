@@ -1,80 +1,60 @@
 package com.Telnet.volet.dto;
 
 public class CadranDto {
-        private String name;
-        private String type; // Exemple : "STRENGTH", "WEAKNESS", etc.
+    private String name;
+    private String type; // Exemple : "STRENGTH", "WEAKNESS", etc.
+    private String processus;
+    private String origineInfo;
+    private String creePar;
+    private Long voletId; // Référence au volet associé
 
-        private String secteur;
-        private String contexte;
-        private String processus;
-        private String origineInfo;
-        private String creePar;
-        private Long voletId; // Référence au volet associé
-
-        public CadranDto() {
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getSecteur() {
-            return secteur;
-        }
-
-        public void setSecteur(String secteur) {
-            this.secteur = secteur;
-        }
-
-        public String getContexte() {
-            return contexte;
-        }
-
-        public void setContexte(String contexte) {
-            this.contexte = contexte;
-        }
-
-        public String getProcessus() {
-            return processus;
-        }
-
-        public void setProcessus(String processus) {
-            this.processus = processus;
-        }
-
-        public String getOrigineInfo() {
-            return origineInfo;
-        }
-
-        public void setOrigineInfo(String origineInfo) {
-            this.origineInfo = origineInfo;
-        }
-
-        public String getCreePar() {
-            return creePar;
-        }
-
-        public void setCreePar(String creePar) {
-            this.creePar = creePar;
-        }
-        public Long getVoletId() {
-            return voletId;
-        }
-
-        public void setVoletId(Long voletId) {
-            this.voletId = voletId;
-        }
+    public CadranDto() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getProcessus() {
+        return processus;
+    }
+
+    public void setProcessus(String processus) {
+        this.processus = processus;
+    }
+
+    public String getOrigineInfo() {
+        return origineInfo;
+    }
+
+    public void setOrigineInfo(String origineInfo) {
+        this.origineInfo = origineInfo;
+    }
+
+    public String getCreePar() {
+        return creePar;
+    }
+
+    public void setCreePar(String creePar) {
+        this.creePar = creePar;
+    }
+    public Long getVoletId() {
+        return voletId;
+    }
+
+    public void setVoletId(Long voletId) {
+        this.voletId = voletId;
+    }
+}

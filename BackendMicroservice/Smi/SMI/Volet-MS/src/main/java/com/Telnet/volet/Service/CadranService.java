@@ -46,9 +46,6 @@ public class CadranService {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid type: " + cadranDto.getType());
         }
-
-        existing.setSecteur(cadranDto.getSecteur());
-        existing.setContexte(cadranDto.getContexte());
         existing.setProcessus(cadranDto.getProcessus());
         existing.setOrigineInfo(cadranDto.getOrigineInfo());
         existing.setCreePar(cadranDto.getCreePar());
@@ -71,9 +68,6 @@ public class CadranService {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid type: " + dto.getType());
         }
-
-        cadran.setSecteur(dto.getSecteur());
-        cadran.setContexte(dto.getContexte());
         cadran.setProcessus(dto.getProcessus());
         cadran.setOrigineInfo(dto.getOrigineInfo());
         cadran.setCreePar(dto.getCreePar());

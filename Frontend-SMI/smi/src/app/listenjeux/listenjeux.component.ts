@@ -63,7 +63,7 @@ export class ListenjeuxComponent implements OnInit {
   getAttentesText(attentesIds: number[]): string {
     return this.allAttentes
       .filter(a => attentesIds.includes(a.id))
-      .map(a => `• ${a.expectation}`)
+      .map(a => `• ${a.expectation} (${a.pip.name})`)
       .join('<br>');
   }
     openAjouterEnjeux(): void {

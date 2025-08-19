@@ -63,7 +63,8 @@
                                         </div>  
                                       
                                         <br/><br/>
-                                        <h4 class="card-title mb-4">Générer une Analyse d'un enjeu stratégique</h4><form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-sm bg-white">
+                                       <h4 class="card-title mb-4">Générer une Analyse d'un enjeu stratégique</h4>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-sm bg-white">
 
   <!-- Type d'analyse -->
   <div class="mb-3">
@@ -78,78 +79,68 @@
     </div>
   </div>
 
-<style>
-  .description-highlight {
-    font-weight: bold;
-    color: #343a40; /* Matches your form’s label color */
-  }
-  .poids-text {
-    font-size: 0.9em;
-    color: #666; /* Subtle color for secondary info */
-  }
-</style>
-<!-- Enjeu stratégique -->
-<div class="mb-3">
-  <label>Enjeu stratégique :</label>
-  <mat-select class="form-select" formControlName="enjeuId">
-    <mat-option *ngFor="let enjeu of enjeux" [value]="enjeu.id">
-      <span class="description-highlight">{{enjeu.description}}</span>
-      <span class="poids-text"> | Poids: {{enjeu.poids}}</span>
-      <!-- Cadran: {{enjeu.cadran}} -->
-    </mat-option>
-  </mat-select>
-</div>
+  <style>
+    .description-highlight {
+      font-weight: bold;
+      color: #343a40;
+    }
+    .poids-text {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .evaluation {
+      font-weight: bold;
+      margin-top: 0.3rem;
+    }
+  </style>
 
-  <!-- Champs communs -->
+  <!-- Enjeu stratégique -->
   <div class="mb-3">
-    <label>Probabilité : (1 à 5)</label>
-    <input type="number" class="form-control" formControlName="probabilite" min="1" max="5">
-  </div>
-
-  <div class="mb-3">
-    <label>Acteur responsable :</label>
-    <input type="text" class="form-control" formControlName="acteurResponsable">
-  </div>
-
-  <div class="mb-3">
-    <label>Date de suivi :</label>
-    <input type="date" class="form-control" formControlName="dateSuivi">
+    <label>Enjeu stratégique :</label>
+    <mat-select class="form-select" formControlName="enjeuId">
+      <mat-option *ngFor="let enjeu of enjeux" [value]="enjeu.id">
+        <span class="description-highlight">{{enjeu.description}}</span>
+        <span class="poids-text"> | Poids: {{enjeu.poids}}</span>
+      </mat-option>
+    </mat-select>
   </div>
 
   <!-- RISQUE -->
   <div *ngIf="form.get('type')?.value === 'RISQUE'">
     <hr>
     <h5>Informations Risque</h5>
-    <div class="mb-3">
-      <label>Impact : (1 à 5) </label>
-      <input type="number" class="form-control" formControlName="impact" min="1" max="5">
-    </div>
 
-    <div class="mb-3">
-      <label>Évaluation du risque (calculée) :</label>
-      <input type="number" class="form-control" [value]="form.value.probabilite * form.value.impact" readonly>
-    </div>
-
+    <!-- Description du risque -->
     <div class="mb-3">
       <label>Description :</label>
       <textarea class="form-control" formControlName="descriptionRisque"></textarea>
     </div>
 
+    <!-- Probabilité -->
     <div class="mb-3">
-      <label>Origine :</label>
-      <input type="text" class="form-control" formControlName="origine">
+      <label>Probabilité : (1 à 4)</label>
+      <input type="number" class="form-control" formControlName="probabilite" min="1" max="4">
     </div>
 
+    <!-- Impact -->
     <div class="mb-3">
-      <label>Catégorie :</label>
-      <input type="text" class="form-control" formControlName="categorie">
+      <label>Impact : (1 à 4)</label>
+      <input type="number" class="form-control" formControlName="impact" min="1" max="4">
     </div>
 
+    <!-- Évaluation du risque -->
+    <div class="mb-3">
+      <label>Évaluation du risque (calculée) :</label>
+      <div class="evaluation">{{form.value.probabilite * form.value.impact}}</div>
+    </div>
+
+    <!-- Plan d'action -->
     <div class="mb-3">
       <label>Plan d'action :</label>
       <textarea class="form-control" formControlName="planAction"></textarea>
     </div>
 
+    <!-- Statut -->
     <div class="mb-3">
       <label>Statut :</label>
       <select class="form-select" formControlName="statut">
@@ -159,6 +150,25 @@
       </select>
     </div>
 
+    <!-- Acteur responsable -->
+    <div class="mb-3">
+      <label>Acteur responsable :</label>
+      <input type="text" class="form-control" formControlName="acteurResponsable">
+    </div>
+
+    <!-- Date de suivi -->
+    <div class="mb-3">
+      <label>Date de suivi :</label>
+      <input type="date" class="form-control" formControlName="dateSuivi">
+    </div>
+
+    <!-- Origine -->
+    <div class="mb-3">
+      <label>Origine :</label>
+      <input type="text" class="form-control" formControlName="origine">
+    </div>
+
+    <!-- Severité -->
     <div class="mb-3">
       <label>Severité :</label>
       <input type="text" class="form-control" formControlName="severite">
@@ -170,24 +180,46 @@
     <hr>
     <h5>Informations Opportunité</h5>
 
-    <div class="mb-3">
-      <label>Bénéfice potentiel : (1 à 5) </label>
-      <input type="number" class="form-control" formControlName="beneficePotentiel" min="1" max="5">
-    </div>
-
-    <div class="mb-3">
-      <label>Valeur de l'opportunité (calculée) :</label>
-      <input type="number" class="form-control" [value]="form.value.probabilite * form.value.beneficePotentiel" readonly>
-    </div>
-
+    <!-- Description de l'opportunité -->
     <div class="mb-3">
       <label>Description :</label>
       <textarea class="form-control" formControlName="descriptionOpportunite"></textarea>
     </div>
 
+    <!-- Probabilité -->
+    <div class="mb-3">
+      <label>Probabilité : (1 à 4)</label>
+      <input type="number" class="form-control" formControlName="probabilite" min="1" max="4">
+    </div>
+
+    <!-- Bénéfice potentiel -->
+    <div class="mb-3">
+      <label>Bénéfice potentiel : (1 à 4)</label>
+      <input type="number" class="form-control" formControlName="beneficePotentiel" min="1" max="4">
+    </div>
+
+    <!-- Évaluation calculée -->
+    <div class="mb-3">
+      <label>Valeur de l'opportunité (calculée) :</label>
+      <div class="evaluation">{{form.value.probabilite * form.value.beneficePotentiel}}</div>
+    </div>
+
+    <!-- Action recommandée -->
     <div class="mb-3">
       <label>Action recommandée :</label>
       <textarea class="form-control" formControlName="actionRecommandee"></textarea>
+    </div>
+
+    <!-- Acteur responsable -->
+    <div class="mb-3">
+      <label>Acteur responsable :</label>
+      <input type="text" class="form-control" formControlName="acteurResponsable">
+    </div>
+
+    <!-- Date de suivi -->
+    <div class="mb-3">
+      <label>Date de suivi :</label>
+      <input type="date" class="form-control" formControlName="dateSuivi">
     </div>
   </div>
 

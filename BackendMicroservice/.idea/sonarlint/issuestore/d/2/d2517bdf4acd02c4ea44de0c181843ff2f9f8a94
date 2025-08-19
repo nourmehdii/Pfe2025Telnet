@@ -1,9 +1,9 @@
 
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ìİß½øÿÿÿÿ
-N
-java:S11729"8Remove this unused method parameter "impactedProcessus".(ŞÓëÓ
-V	java:S125/"<This block of commented-out lines of code should be removed.(ŞÄ£•ıÿÿÿÿ
-o
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(îßµıÿÿÿÿÿ
-j
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(–Æ‡Ù
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ìİß½øÿÿÿÿJ$3f62b123-b898-4fd0-b90d-60a8265dc85b
+t
+java:S11729"8Remove this unused method parameter "impactedProcessus".(ŞÓëÓJ$3708607d-a42e-47d2-9b48-2fcf9be880cd
+|	java:S125/"<This block of commented-out lines of code should be removed.(ŞÄ£•ıÿÿÿÿJ$f141cec0-dcf1-4f1d-adc6-67361e596233
+•
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(îßµıÿÿÿÿÿJ$07d1a2cf-45d3-4372-885d-3117cdc5c01d
+
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(–Æ‡ÙJ$af512973-c529-4422-b3be-62eb60fe386f

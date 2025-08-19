@@ -36,6 +36,7 @@ export class AppMenuComponent implements OnInit {
     if (this.userId) {
       this.userService.getRoleByUserId(this.userId).subscribe(
         (role: Role) => {
+          console.log(role)
           this.role = role;
         },
         (error) => {

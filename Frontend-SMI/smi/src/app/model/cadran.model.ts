@@ -1,4 +1,5 @@
 import { EType } from "./EType.model";
+import { Processus } from "./Processus.model";
 import { Volet } from "./Volet.model";
 
 export interface Cadran {
@@ -6,8 +7,8 @@ export interface Cadran {
   name: string;
   type: EType;
   volet?: Volet;  // 👈 ici on utilise tout l'objet complet Volet
-  secteur: string;
-  contexte: string;
+  //secteur: string;
+  //contexte: string;
   processus: string;
   origineInfo: string;
   creePar: string;
