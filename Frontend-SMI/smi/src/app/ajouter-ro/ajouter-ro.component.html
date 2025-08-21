@@ -105,123 +105,109 @@
     </mat-select>
   </div>
 
-  <!-- RISQUE -->
-  <div *ngIf="form.get('type')?.value === 'RISQUE'">
-    <hr>
-    <h5>Informations Risque</h5>
+  <!-- ... formulaire inchangé au début ... -->
 
-    <!-- Description du risque -->
-    <div class="mb-3">
-      <label>Description :</label>
-      <textarea class="form-control" formControlName="descriptionRisque"></textarea>
-    </div>
+<!-- RISQUE -->
+<div *ngIf="form.get('type')?.value === 'RISQUE'">
+  <hr>
+  <h5>Informations Risque</h5>
 
-    <!-- Probabilité -->
-    <div class="mb-3">
-      <label>Probabilité : (1 à 4)</label>
-      <input type="number" class="form-control" formControlName="probabilite" min="1" max="4">
-    </div>
+  <!-- Description du risque -->
+  <div class="mb-3">
+    <label>Description :</label>
+    <textarea class="form-control" formControlName="descriptionRisque"></textarea>
+  </div>
 
-    <!-- Impact -->
-    <div class="mb-3">
-      <label>Impact : (1 à 4)</label>
-      <input type="number" class="form-control" formControlName="impact" min="1" max="4">
-    </div>
+  <!-- Probabilité -->
+  <div class="mb-3">
+    <label>Probabilité : (1 à 4)</label>
+    <input type="number" class="form-control" formControlName="probabilite" min="1" max="4">
+  </div>
 
-    <!-- Évaluation du risque -->
-    <div class="mb-3">
-      <label>Évaluation du risque (calculée) :</label>
-      <div class="evaluation">{{form.value.probabilite * form.value.impact}}</div>
-    </div>
+  <!-- Impact -->
+  <div class="mb-3">
+    <label>Gravité : (1 à 3)</label>
+    <input type="number" class="form-control" formControlName="impact" min="1" max="3">
+  </div>
 
-    <!-- Plan d'action -->
-    <div class="mb-3">
-      <label>Plan d'action :</label>
-      <textarea class="form-control" formControlName="planAction"></textarea>
-    </div>
+  <!-- Évaluation du risque -->
+  <div class="mb-3">
+    <label>Évaluation du risque (calculée) :</label>
+    <div class="evaluation">{{form.value.probabilite * form.value.impact}}</div>
+  </div>
 
-    <!-- Statut -->
-    <div class="mb-3">
-      <label>Statut :</label>
-      <select class="form-select" formControlName="statut">
-        <option value="OUVERT">Ouvert</option>
-        <option value="EN_COURS">En cours</option>
-        <option value="TRAITE">Traité</option>
-      </select>
-    </div>
-
-    <!-- Acteur responsable -->
-    <div class="mb-3">
-      <label>Acteur responsable :</label>
-      <input type="text" class="form-control" formControlName="acteurResponsable">
-    </div>
-
-    <!-- Date de suivi -->
-    <div class="mb-3">
-      <label>Date de suivi :</label>
-      <input type="date" class="form-control" formControlName="dateSuivi">
-    </div>
-
-    <!-- Origine -->
-    <div class="mb-3">
-      <label>Origine :</label>
-      <input type="text" class="form-control" formControlName="origine">
-    </div>
-
-    <!-- Severité -->
-    <div class="mb-3">
-      <label>Severité :</label>
-      <input type="text" class="form-control" formControlName="severite">
+  <!-- Sévérité calculée -->
+  <div class="mb-3">
+    <label>Sévérité :</label>
+    <div 
+      class="severite-message p-2 rounded" 
+      [ngClass]="getSeveriteClass(form.value.probabilite, form.value.impact)">
+      {{ getSeveriteMessage(form.value.probabilite, form.value.impact) }}
     </div>
   </div>
 
-  <!-- OPPORTUNITE -->
-  <div *ngIf="form.get('type')?.value === 'OPPORTUNITE'">
-    <hr>
-    <h5>Informations Opportunité</h5>
-
-    <!-- Description de l'opportunité -->
-    <div class="mb-3">
-      <label>Description :</label>
-      <textarea class="form-control" formControlName="descriptionOpportunite"></textarea>
-    </div>
-
-    <!-- Probabilité -->
-    <div class="mb-3">
-      <label>Probabilité : (1 à 4)</label>
-      <input type="number" class="form-control" formControlName="probabilite" min="1" max="4">
-    </div>
-
-    <!-- Bénéfice potentiel -->
-    <div class="mb-3">
-      <label>Bénéfice potentiel : (1 à 4)</label>
-      <input type="number" class="form-control" formControlName="beneficePotentiel" min="1" max="4">
-    </div>
-
-    <!-- Évaluation calculée -->
-    <div class="mb-3">
-      <label>Valeur de l'opportunité (calculée) :</label>
-      <div class="evaluation">{{form.value.probabilite * form.value.beneficePotentiel}}</div>
-    </div>
-
-    <!-- Action recommandée -->
-    <div class="mb-3">
-      <label>Action recommandée :</label>
-      <textarea class="form-control" formControlName="actionRecommandee"></textarea>
-    </div>
-
-    <!-- Acteur responsable -->
-    <div class="mb-3">
-      <label>Acteur responsable :</label>
-      <input type="text" class="form-control" formControlName="acteurResponsable">
-    </div>
-
-    <!-- Date de suivi -->
-    <div class="mb-3">
-      <label>Date de suivi :</label>
-      <input type="date" class="form-control" formControlName="dateSuivi">
-    </div>
+  <!-- Plan d'action -->
+  <div class="mb-3">
+    <label>Plan d'action :</label>
+    <textarea class="form-control" formControlName="planAction"></textarea>
   </div>
 
-  <button class="btn btn-primary mt-3" type="submit">Enregistrer</button>
-</form>
+  <!-- Statut -->
+  <div class="mb-3">
+    <label>Statut :</label>
+    <select class="form-select" formControlName="statut">
+      <option value="OUVERT">Ouvert</option>
+      <option value="EN_COURS">En cours</option>
+      <option value="TRAITE">Traité</option>
+    </select>
+  </div>
+</div>
+
+<!-- OPPORTUNITE -->
+<div *ngIf="form.get('type')?.value === 'OPPORTUNITE'">
+  <hr>
+  <h5>Informations Opportunité</h5>
+
+  <!-- Description -->
+  <div class="mb-3">
+    <label>Description :</label>
+    <textarea class="form-control" formControlName="descriptionOpportunite"></textarea>
+  </div>
+
+  <!-- Probabilité -->
+  <div class="mb-3">
+    <label>Probabilité : (1 à 4)</label>
+    <input type="number" class="form-control" formControlName="probabilite" min="1" max="4">
+  </div>
+
+  <!-- Bénéfice potentiel -->
+  <div class="mb-3">
+    <label>Bénéfice potentiel : (1 à 4)</label>
+    <input type="number" class="form-control" formControlName="beneficePotentiel" min="1" max="4">
+  </div>
+
+  <!-- Valeur calculée -->
+  <div class="mb-3">
+    <label>Valeur de l'opportunité (calculée) :</label>
+    <div class="evaluation">{{form.value.probabilite * form.value.beneficePotentiel}}</div>
+  </div>
+
+  <!-- Action recommandée -->
+  <div class="mb-3">
+    <label>Action recommandée :</label>
+    <textarea class="form-control" formControlName="actionRecommandee"></textarea>
+  </div>
+</div>
+
+<!-- Champs communs -->
+<div class="mb-3">
+  <label>Acteur responsable :</label>
+  <input type="text" class="form-control" formControlName="acteurResponsable">
+</div>
+
+<div class="mb-3">
+  <label>Date de suivi :</label>
+  <input type="date" class="form-control" formControlName="dateSuivi">
+</div>
+
+<button class="btn btn-primary mt-3" type="submit">Enregistrer</button>

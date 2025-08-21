@@ -1,10 +1,16 @@
 
-‰	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(èÄ¡ë8ÂšÕÇ‰3J$b85bb984-8763-49fd-a7f2-5e279cfbd3fa
+c	java:S112’"FDefine and throw a dedicated exception instead of using a generic one.(èÄ¡ë8‹¹ËÌŒ3
+h	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(Ãìı¼ùÿÿÿÿ8¹ËÌŒ3
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÖšÕÇ‰3J$16a785f2-01d0-4e3a-92c9-f2b2a8f6298d
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‰’¦ÌŒ3J$caae9cce-0d43-4597-b826-23f64b02d4e6
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÖšÕÇ‰3J$8fb5f48d-7dd7-42e3-8613-b71ab9a2a46e
-~	java:S125+"<This block of commented-out lines of code should be removed.(»ÕÌÆ8ìšÕÇ‰3J$6b7f6559-685b-4ec3-bdf6-df58b8afc66e
-~	java:S125S"<This block of commented-out lines of code should be removed.(ˆµ8ìšÕÇ‰3J$71745f98-051c-4c19-b2e8-9f2d537c6180
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‰’¦ÌŒ3J$dcb0a18d-6601-475c-ab63-410a0446a2c4
+~	java:S125/"<This block of commented-out lines of code should be removed.(»ÕÌÆ8¾’¦ÌŒ3J$53db2b89-2fd8-48cd-86a0-95b227956fc3
+~	java:S125W"<This block of commented-out lines of code should be removed.(ˆµ8¾’¦ÌŒ3J$3bdf54dc-5673-4b3e-9601-735b21c6da81
+~	java:S125c"<This block of commented-out lines of code should be removed.(»ÕÌÆ8¿’¦ÌŒ3J$0593d6c4-d936-405b-abc9-20c3fa4871d3
+ƒ
+java:S1117Ê":Rename "mapper" which hides the field declared at line 28.(ĞÏáúÿÿÿÿ8É’¦ÌŒ3J$ea731cb3-ee95-4f8f-980b-048838d3dddf
+Œ
+java:S1128	"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8Ì’¦ÌŒ3J$348f4e7f-0eb1-41e6-b044-1d5199995c8e
 m
-java:S1068"*Remove this unused "mapper" private field.(ëæúÌ8òšÕÇ‰3J$6a03fc45-e657-4be7-8004-cc22d931b328
+java:S1068"*Remove this unused "mapper" private field.(ëæúÌ8Í’¦ÌŒ3J$0427afa3-8f4a-4a7a-b47d-597db5842f53

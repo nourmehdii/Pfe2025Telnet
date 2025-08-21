@@ -37,7 +37,6 @@ public class RisqueService {
         existing.setActeurResponsable(risque.getActeurResponsable());
         existing.setDateSuivi(risque.getDateSuivi());
         existing.setDescriptionRisque(risque.getDescriptionRisque());
-        existing.setOrigine(risque.getOrigine());
         existing.setCategorie(risque.getCategorie());
         existing.setPlanAction(risque.getPlanAction());
         existing.setStatut(risque.getStatut());

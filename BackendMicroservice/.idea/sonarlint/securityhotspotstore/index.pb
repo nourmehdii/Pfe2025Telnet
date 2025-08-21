@@ -183,3 +183,5 @@ DSmi/SMI/Auth-MS/src/main/java/com/Telnet/AuthService/model/User.java,0\f\0fc03
 aSmi/SMI/api-gateway/src/main/java/com/github/akhuntsaria/apigateway/communication/UserClient.java,5\5\55177f35bb0bb148680282b5ce53ad1e1f9172ed
 •
 eSmi/SMI/api-gateway/src/main/java/com/github/akhuntsaria/apigateway/filter/UserDetailsServiceImp.java,8\f\8f51c321eead1a7f71b4fbac401fd8a0e320c2a1
+’
+bSmi/SMI/enjeux-strategique-MS/src/main/java/com/telnet/enjeux_strategique/dto/EnjeuHistoryDTO.java,d\8\d8a2b59fb798d55b5ac90d231c55846a6510c9fd

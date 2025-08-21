@@ -38,7 +38,6 @@ export class AjouterRoComponent implements OnInit {
     // Risque
     impact: [1],
     descriptionRisque: [''],
-    origine: [''],
     categorie: [''],
     planAction: [''],
     statut: ['OUVERT'],
@@ -69,7 +68,6 @@ export class AjouterRoComponent implements OnInit {
             acteurResponsable: r.acteurResponsable,
             dateSuivi: r.dateSuivi,
             descriptionRisque: r.descriptionRisque,
-            origine: r.origine,
             categorie: r.categorie,
             planAction: r.planAction,
             statut: r.statut,
@@ -109,7 +107,6 @@ export class AjouterRoComponent implements OnInit {
         acteurResponsable: value.acteurResponsable,
         dateSuivi: value.dateSuivi,
         descriptionRisque: value.descriptionRisque,
-        origine: value.origine,
         categorie: value.categorie,
         planAction: value.planAction,
         statut: value.statut,
@@ -170,6 +167,76 @@ export class AjouterRoComponent implements OnInit {
       }
     }
   }
+
+  getSeveriteMessage(probabilite: number, gravite: number): string {
+  // Traite les cas exceptionnels en priorité
+  if (probabilite === 4 && gravite === 1) {
+    return "La gravité est moyenne, un plan d'action est recommandé.";
+  } else if (probabilite === 2 && gravite === 2) {
+    return "La gravité est moyenne, un plan d'action est recommandé.";
+  }
+  // Puis les autres cas un par un pour correspondre à la matrice (Gravité vertical 1-4, Probabilité horizontal 1-3)
+  if (gravite === 1) {
+    return "Le risque est faible, un plan d'action n'est pas nécessaire.";
+  } else if (gravite === 2) {
+    if (probabilite <= 2) {
+      return "Le risque est faible, un plan d'action n'est pas nécessaire.";
+    } else { // probabilite = 3 (ou 4 si extension)
+      return "La gravité est moyenne, un plan d'action est recommandé.";
+    }
+  } else if (gravite === 3) {
+    if (probabilite === 1) {
+      return "Le risque est faible, un plan d'action n'est pas nécessaire.";
+    } else if (probabilite === 2) {
+      return "La gravité est moyenne, un plan d'action est recommandé.";
+    } else { // probabilite = 3 (ou 4)
+      return "La gravité est importante et la probabilité est assez forte, un plan d'action est nécessaire.";
+    }
+  } else if (gravite === 4) {
+    if (probabilite === 1) {
+      return "La gravité est moyenne, un plan d'action est recommandé.";
+    } else { // probabilite >= 2
+      return "La gravité est importante et la probabilité est assez forte, un plan d'action est nécessaire.";
+    }
+  } else {
+    return "Valeurs invalides.";
+  }
+}
+
+getSeveriteClass(probabilite: number, gravite: number): string {
+  // Traite les cas exceptionnels en priorité
+  if (probabilite === 4 && gravite === 1) {
+    return "bg-warning text-dark"; // jaune
+  } else if (probabilite === 2 && gravite === 2) {
+    return "bg-warning text-dark"; // jaune
+  }
+  // Puis les autres cas un par un pour matcher les couleurs exactes
+  if (gravite === 1) {
+    return "bg-success text-white"; // vert
+  } else if (gravite === 2) {
+    if (probabilite <= 2) {
+      return "bg-success text-white"; // vert
+    } else {
+      return "bg-warning text-dark"; // jaune
+    }
+  } else if (gravite === 3) {
+    if (probabilite === 1) {
+      return "bg-success text-white"; // vert
+    } else if (probabilite === 2) {
+      return "bg-warning text-dark"; // jaune
+    } else {
+      return "bg-danger text-white"; // rouge
+    }
+  } else if (gravite === 4) {
+    if (probabilite === 1) {
+      return "bg-warning text-dark"; // jaune
+    } else {
+      return "bg-danger text-white"; // rouge
+    }
+  } else {
+    return "bg-light"; // default
+  }
+}
 
   redirectToROList(): void {
     this.router.navigate(['/risques-opportunites']);

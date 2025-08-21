@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { EnjeuxService } from '../services/enjeux.service';
-import { UserserviceService } from '../services/userservice.service';
-import { EnjeuHistory } from '../model/EnjeuHistory';
 import { ActivatedRoute } from '@angular/router';
-import { Enjeu } from '../model/Enjeu.model';
 import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { EnjeuxService } from '../services/enjeux.service';
+import { UserserviceService } from '../services/userservice.service';
+import { Enjeu } from '../model/Enjeu.model';
+import { EnjeuHistoryAvecFiltre } from '../model/EnjeuHistory';
 
-// Interface for the parsed Enjeu state
 export interface EnjeuState {
   description?: string;
   poids?: string;
@@ -17,34 +16,53 @@ export interface EnjeuState {
   dateCreation?: string | null;
   dateModification?: string | null;
   commentaireDerniereModification?: string | null;
-  [key: string]: any; // Allow additional fields
+  [key: string]: any;
 }
 
-// Interface for cadran source from UserserviceService
+export interface EnjeuHistory {
+  id: number;
+  commentaire: string;
+  dateModification: string;
+  etatAvant: EnjeuState | null;
+  etatApres: EnjeuState | null;
+}
+
 export interface CadranSource {
   id: number;
   name: string;
 }
 
+export interface Attente {
+  id: number;
+  expectation: string;
+}
+
 @Component({
   selector: 'app-enjeu-history',
-  templateUrl: './enjeu-history.component.html'
+  templateUrl: './enjeu-history.component.html',
 })
 export class EnjeuHistoryComponent implements OnInit {
   enjeuId!: number;
   enjeuDescription: string = '';
   historique: EnjeuHistory[] = [];
   errorMsg = '';
+
+  // Mapping id → nom pour cadrans et attentes
+  cadransMap: { [id: number]: string } = {};
+  attentesMap: { [id: number]: string } = {};
+
   cadransSourcesMap: { [key: number]: string } = {};
-  public fieldNameMap: { [key: string]: string } = {
+  fieldNameMap: { [key: string]: string } = {
     cadransSources: 'Cadrans Sources',
     attentesPartiesPrenantes: 'Attentes Parties Prenantes',
     description: 'Nom de l\'enjeu',
     poids: 'Poids',
     creePar: 'Créé par',
     dateCreation: 'Date de création',
-    dateModification: 'Date de modification'
+    dateModification: 'Date de modification',
   };
+
+  ignoredKeys = ['id', 'risques', 'opportunites', 'commentaireDerniereModification', 'Enjeu(id)'];
 
   constructor(
     private enjeuxService: EnjeuxService,
@@ -53,55 +71,88 @@ export class EnjeuHistoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Récupération de l'id depuis l'URL
     this.enjeuId = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('Enjeu ID:', this.enjeuId); // Debug
 
-    // Chargement de la description de l'enjeu
-    this.enjeuxService.getEnjeuById(this.enjeuId).subscribe({
-      next: (enjeu: Enjeu) => {
-        this.enjeuDescription = enjeu.description;
-        console.log('Enjeu Description:', this.enjeuDescription); // Debug
+    // Charger tous les cadrans
+    this.userservice.getAllCadrans().subscribe({
+      next: (cadrans: any[]) => {
+        cadrans.forEach(c => {
+          if (c.id != null && c.name) this.cadransMap[c.id] = c.name;
+        });
       },
-      error: (err) => {
-        console.error('Erreur lors du chargement de l\'enjeu', err);
-        this.errorMsg = 'Impossible de charger la description de l\'enjeu';
-      }
+      error: () => (this.errorMsg = 'Impossible de charger les cadrans'),
     });
 
-    // Chargement dynamique de l'historique
-    this.enjeuxService.getHistoryByEnjeuId(this.enjeuId).subscribe({
-      next: (data) => {
-        this.historique = data;
-        console.log('Historique:', this.historique); // Debug
-        const cadranIds = this.extractCadranIds(data);
-        console.log('Cadran IDs:', cadranIds); // Debug
-        this.fetchCadranNames(cadranIds);
+    // Charger toutes les attentes
+    this.userservice.getResultsPipList().subscribe({
+      next: (attentes: Attente[]) => {
+        attentes.forEach(a => {
+          if (a.id != null && a.expectation) this.attentesMap[a.id] = a.expectation;
+        });
       },
-      error: () => (this.errorMsg = 'Erreur lors du chargement de l’historique')
+      error: () => (this.errorMsg = 'Impossible de charger les attentes'),
+    });
+
+    // Charger la description de l'enjeu
+    this.enjeuxService.getEnjeuById(this.enjeuId).subscribe({
+      next: (enjeu: Enjeu) => (this.enjeuDescription = enjeu.description),
+      error: () => (this.errorMsg = 'Impossible de charger la description de l\'enjeu'),
+    });
+
+    // Charger l'historique
+    this.enjeuxService.getHistoryByEnjeuId(this.enjeuId).subscribe({
+      next: (data: any[]) => {
+        this.historique = data
+          .map(h => ({
+            id: h.id,
+            commentaire: h.commentaire,
+            dateModification: h.dateModification,
+            etatAvant: h.etatAvant ? JSON.parse(h.etatAvant) : {},
+            etatApres: h.etatApres ? JSON.parse(h.etatApres) : {},
+          }))
+          .sort((a, b) => new Date(b.dateModification).getTime() - new Date(a.dateModification).getTime());
+
+        const cadranIds = this.extractCadranIds(this.historique);
+        this.fetchCadranNames(cadranIds);
+
+        const attenteIds = this.extractAttenteIds(this.historique);
+        this.fetchAttentesNames(attenteIds);
+      },
+      error: () => (this.errorMsg = 'Erreur lors du chargement de l’historique'),
     });
   }
 
   private extractCadranIds(historique: EnjeuHistory[]): number[] {
     const ids = new Set<number>();
     historique.forEach(history => {
-      const avant = this.parseEnjeuString(history.etatAvant);
-      const apres = this.parseEnjeuString(history.etatApres);
-      (avant.cadransSources || []).forEach(id => ids.add(id));
-      (apres.cadransSources || []).forEach(id => ids.add(id));
-      (avant.attentesPartiesPrenantes || []).forEach(id => ids.add(id));
-      (apres.attentesPartiesPrenantes || []).forEach(id => ids.add(id));
+      const avant = history.etatAvant || {};
+      const apres = history.etatApres || {};
+
+      (avant.cadransSources || []).forEach((id: number) => ids.add(id));
+      (apres.cadransSources || []).forEach((id: number) => ids.add(id));
+      (avant.attentesPartiesPrenantes || []).forEach((id: number) => ids.add(id));
+      (apres.attentesPartiesPrenantes || []).forEach((id: number) => ids.add(id));
+    });
+    return Array.from(ids);
+  }
+
+  private extractAttenteIds(historique: EnjeuHistory[]): number[] {
+    const ids = new Set<number>();
+    historique.forEach(history => {
+      const avant = history.etatAvant || {};
+      const apres = history.etatApres || {};
+
+      (avant.attentesPartiesPrenantes || []).forEach((id: number) => ids.add(id));
+      (apres.attentesPartiesPrenantes || []).forEach((id: number) => ids.add(id));
     });
     return Array.from(ids);
   }
 
   private fetchCadranNames(cadranIds: number[]): void {
-    if (cadranIds.length === 0) return;
+    if (!cadranIds.length) return;
 
     const requests: Observable<CadranSource>[] = cadranIds.map(id =>
-      this.userservice.getCadranById(id).pipe(
-        map(cadran => ({ id, name: cadran.name }))
-      )
+      this.userservice.getCadranById(id).pipe(map(c => ({ id, name: c.name })))
     );
 
     forkJoin(requests).subscribe({
@@ -110,106 +161,51 @@ export class EnjeuHistoryComponent implements OnInit {
           map[cadran.id] = cadran.name;
           return map;
         }, {} as { [key: number]: string });
-        console.log('Cadrans Sources Map:', this.cadransSourcesMap); // Debug
       },
-      error: (err) => {
-        console.error('Erreur lors du chargement des noms des cadrans', err);
-        this.errorMsg = 'Impossible de charger les noms des cadrans';
-      }
+      error: () => (this.errorMsg = 'Impossible de charger les noms des cadrans'),
     });
   }
 
-  parseEnjeuString(enjeuString: string): EnjeuState {
-    try {
-      const content = enjeuString.replace(/^Enjeu$$ (.*) $$$/, '$1');
-      const result: EnjeuState = {};
-      let currentKey = '';
-      let currentValue = '';
-      let insideArray = false;
-      let arrayDepth = 0;
-      let i = 0;
+  private fetchAttentesNames(attenteIds: number[]): void {
+    if (!attenteIds.length) return;
 
-      while (i < content.length) {
-        const char = content[i];
-        if (char === '=' && !insideArray) {
-          currentKey = currentValue.trim();
-          currentValue = '';
-          i++;
-          continue;
-        }
-        if (char === '[') {
-          insideArray = true;
-          arrayDepth++;
-          currentValue += char;
-        } else if (char === ']') {
-          arrayDepth--;
-          currentValue += char;
-          if (arrayDepth === 0) {
-            insideArray = false;
-          }
-        } else if (char === ',' && !insideArray) {
-          if (currentKey) {
-            result[currentKey] = this.parseValue(currentValue.trim());
-            currentKey = '';
-            currentValue = '';
-          }
-        } else {
-          currentValue += char;
-        }
-        i++;
-      }
+    const requests: Observable<Attente>[] = attenteIds.map(id =>
+      this.userservice.getResultsPipById(id).pipe(map(a => ({ id, expectation: a.expectation })))
+    );
 
-      if (currentKey && currentValue) {
-        result[currentKey] = this.parseValue(currentValue.trim());
-      }
+    forkJoin(requests).subscribe({
+      next: (attentes: Attente[]) => {
+        this.attentesMap = attentes.reduce((map, attente) => {
+          if (attente.id != null && attente.expectation) map[attente.id] = attente.expectation;
+          return map;
+        }, {} as { [id: number]: string });
+      },
+      error: () => (this.errorMsg = 'Impossible de charger les noms des attentes'),
+    });
+  }
 
-      return result;
-    } catch (e) {
-      console.error('Error parsing Enjeu string:', e);
-      return {};
+  getKeys(state: EnjeuState | null): string[] {
+    return state ? Object.keys(state) : [];
+  }
+
+  getValue(state: EnjeuState | null, key: string): any {
+    return state ? state[key] : null;
+  }
+
+  formatValue(value: any, key?: string): string {
+    if (value === null || value === undefined || (Array.isArray(value) && value.length === 0)) {
+      return '—';
     }
-  }
 
-  private parseValue(value: string): any {
-    if (value === 'null') return null;
-    if (value.startsWith('[') && value.endsWith(']')) {
-      try {
-        const arrayContent = value
-          .slice(1, -1)
-          .split(',')
-          .map(item => {
-            const trimmed = item.trim();
-            return isNaN(Number(trimmed)) ? trimmed : Number(trimmed);
-          });
-        return arrayContent;
-      } catch (e) {
-        return [];
-      }
-    }
-    if (!isNaN(Number(value))) {
-      return Number(value);
-    }
-    return value;
-  }
-
-  getKeys(enjeuString: string): string[] {
-    const parsed = this.parseEnjeuString(enjeuString);
-    return Object.keys(parsed);
-  }
-
-  getValue(enjeuString: string, key: string): any {
-    const parsed = this.parseEnjeuString(enjeuString);
-    return parsed[key];
-  }
-
-  formatValue(value: any): string {
-    if (value === null || value === undefined) return 'null';
     if (Array.isArray(value)) {
-      return value
-        .map(item => this.cadransSourcesMap[item] || item)
-        .join(', ');
+      let map: { [id: number]: string } = {};
+      if (key === 'cadransSources') map = this.cadransMap;
+      else if (key === 'attentesPartiesPrenantes') map = this.attentesMap;
+
+      return value.map(item => `• ${map[item] || item}`).join('<br>');
     }
-    return value.toString();
+
+    return `• ${value.toString()}`;
   }
 
   areValuesEqual(value1: any, value2: any): boolean {
@@ -219,5 +215,22 @@ export class EnjeuHistoryComponent implements OnInit {
       return value1.every((item, index) => item === value2[index]);
     }
     return false;
+  }
+
+  private filterKeys(state: EnjeuState): EnjeuState {
+    const filtered: EnjeuState = {};
+    Object.keys(state).forEach(key => {
+      if (!this.ignoredKeys.includes(key)) filtered[key] = state[key];
+    });
+    return filtered;
+  }
+
+  getFilteredState(state: EnjeuState | null): EnjeuState {
+    return state ? this.filterKeys(state) : {};
+  }
+
+  mapIdsToNames(ids: number[], map: { [id: number]: string }): string {
+    if (!ids || ids.length === 0) return 'Aucun';
+    return ids.map(id => map[id] || id).join(', ');
   }
 }

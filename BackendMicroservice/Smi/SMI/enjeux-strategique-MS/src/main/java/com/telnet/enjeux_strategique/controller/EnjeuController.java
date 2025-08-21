@@ -62,7 +62,7 @@ public class EnjeuController {
             return ResponseEntity.ok(updated);
         } catch (Exception e) {
             e.printStackTrace();  // pour voir l'erreur dans la console
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 

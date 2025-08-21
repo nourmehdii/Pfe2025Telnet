@@ -65,3 +65,24 @@ button[type="submit"]:hover {
   background-color: #0e5f7c;
 }
 
+.card-title.mb-4 {
+  font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #1e1666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #22a4d9;
+    display: inline-block;
+    padding-bottom: 6px;
+}
+
+button.rounded-button.custom-button {
+  background-color: #187398;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}

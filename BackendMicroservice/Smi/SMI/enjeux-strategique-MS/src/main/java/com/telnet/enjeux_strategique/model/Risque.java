@@ -19,7 +19,6 @@ public class Risque {
     private int impact;
     private float evaluationRisque;
     private String descriptionRisque;
-    private String origine;
     private String categorie;
 
     private String acteurResponsable;

@@ -1,5 +1,6 @@
 package com.telnet.enjeux_strategique.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.telnet.enjeux_strategique.model.Enjeu;
 import lombok.Data;
@@ -30,5 +31,6 @@ public class Opportunite {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "enjeu_id")
     @JsonIgnoreProperties("opportunites")
+    @JsonBackReference
     private Enjeu enjeu;
 }
