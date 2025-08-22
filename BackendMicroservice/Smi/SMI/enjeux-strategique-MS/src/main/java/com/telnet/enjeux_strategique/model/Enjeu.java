@@ -53,7 +53,6 @@ public class Enjeu {
 
     @OneToMany(mappedBy = "enjeu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("enjeu")
-    @JsonManagedReference
     private List<Opportunite> opportunites;
 
 

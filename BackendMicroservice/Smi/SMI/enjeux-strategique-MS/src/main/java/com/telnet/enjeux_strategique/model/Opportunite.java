@@ -31,6 +31,5 @@ public class Opportunite {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "enjeu_id")
     @JsonIgnoreProperties("opportunites")
-    @JsonBackReference
     private Enjeu enjeu;
 }
