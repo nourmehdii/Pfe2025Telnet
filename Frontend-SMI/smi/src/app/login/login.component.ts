@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
 
   
             this.router.navigate(['/home']);
-            Swal.fire('Success', 'Bienvenue ', 'success');
+            //Swal.fire('Success', 'Bienvenue ', 'success');
           } else {
             console.error('User ID not found in response:', res);
             Swal.fire('Error', 'User ID not found in response', 'error');

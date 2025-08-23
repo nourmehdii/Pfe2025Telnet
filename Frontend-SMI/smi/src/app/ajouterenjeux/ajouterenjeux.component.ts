@@ -190,7 +190,8 @@ loadEnjeuFromPreload(enjeu: Enjeu): void {
     console.log(this.commentaire); 
   this.enjeuxService.updateEnjeu(this.enjeuIdToEdit, payload, this.commentaire).subscribe(() => {
     Swal.fire({ icon: 'success', title: 'Mis à jour avec succès' });
-    if (localStorage.getItem('role')=='ADMIN'){ this.router.navigate(['/admin/enjeux']); }
+    if (localStorage.getItem('role')=='ADMIN')
+      { this.router.navigate(['/admin/enjeux']); }
     else { this.router.navigate(['/enjeuxstrategique']);}
     
   });
