@@ -5,6 +5,7 @@ import { RisqueService } from '../services/risque.service';
 import { OpportuniteService } from '../services/opportunite.service';
 import { Enjeu } from '../model/Enjeu.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ajouter-ro',
@@ -113,12 +114,20 @@ export class AjouterRoComponent implements OnInit {
         severite: value.severite
       };
 
-      if (this.mode === 'edit' && this.risqueIdToEdit) {
-        this.risqueService.updateRisque(this.risqueIdToEdit, risque).subscribe({
-          next: () => this.redirectToROList(),
-          error: (error) => console.error('Erreur', error)
-        });
-      } else {
+     if (this.mode === 'edit' && this.risqueIdToEdit) {
+  this.risqueService.updateRisque(this.risqueIdToEdit, risque).subscribe({
+    next: () => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Mis à jour avec succès'
+      });
+      this.redirectToROList();
+    },
+    error: (error) => console.error('Erreur', error)
+  });
+}
+
+      else {
         this.risqueService.addRisque(risque).subscribe({
           next: () => {
             this.form.reset({
@@ -146,11 +155,19 @@ export class AjouterRoComponent implements OnInit {
       };
 
       if (this.mode === 'edit' && this.opportuniteIdToEdit) {
-        this.opportuniteService.updateOpportunite(this.opportuniteIdToEdit, opportunite).subscribe({
-          next: () => this.redirectToROList(),
-          error: (error) => console.error('Erreur', error)
-        });
-      } else {
+  this.opportuniteService.updateOpportunite(this.opportuniteIdToEdit, opportunite).subscribe({
+    next: () => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Mis à jour avec succès'
+      });
+      this.redirectToROList();
+    },
+    error: (error) => console.error('Erreur', error)
+  });
+}
+ 
+      else {
         this.opportuniteService.addOpportunite(opportunite).subscribe({
           next: () => {
             this.form.reset({

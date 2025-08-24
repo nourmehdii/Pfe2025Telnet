@@ -1,12 +1,14 @@
 package com.telnet.enjeux_strategique.service;
 
 
+import com.telnet.enjeux_strategique.model.Enjeu;
 import com.telnet.enjeux_strategique.model.Opportunite;
 import com.telnet.enjeux_strategique.repository.OpportuniteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OpportuniteService {
@@ -17,6 +19,11 @@ public class OpportuniteService {
     public List<Opportunite> getAll() {
         return repository.findAll();
     }
+
+    public Optional<Opportunite> getOppById(Long id) {
+        return repository.findById(id);
+    }
+
 
     public Opportunite save(Opportunite opportunite) {
         opportunite.setValeurOpportunite(opportunite.getProbabilite() * opportunite.getBeneficePotentiel());

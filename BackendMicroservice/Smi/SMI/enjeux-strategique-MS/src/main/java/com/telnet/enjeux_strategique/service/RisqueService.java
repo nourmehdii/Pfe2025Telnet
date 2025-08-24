@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RisqueService {
@@ -16,6 +17,11 @@ public class RisqueService {
     public List<Risque> getAll() {
         return repository.findAll();
     }
+
+    public Optional<Risque> getRisqueById(Long id) {
+        return repository.findById(id);
+    }
+
 
     public Risque save(Risque risque) {
         risque.setEvaluationRisque(risque.getImpact() * risque.getProbabilite());

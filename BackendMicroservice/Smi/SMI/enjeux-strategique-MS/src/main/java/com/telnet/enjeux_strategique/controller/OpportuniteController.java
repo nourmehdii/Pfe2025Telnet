@@ -41,6 +41,13 @@ public class OpportuniteController {
         return ResponseEntity.ok(updated);
     }
 
+    // Obtenir une opportunité par son ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Opportunite> getOpportuniteById(@PathVariable Long id) {
+        return opportuniteService.getOppById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 
 }

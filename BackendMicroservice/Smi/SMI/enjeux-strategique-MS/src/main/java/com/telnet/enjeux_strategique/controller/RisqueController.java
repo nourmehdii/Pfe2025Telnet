@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/risques")
@@ -38,6 +39,14 @@ public class RisqueController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(updated);
+    }
+
+    // ✅ GET : Obtenir un risque par ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Risque> getRisqueById(@PathVariable Long id) {
+        Optional<Risque> risque = risqueService.getRisqueById(id);
+        return risque.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }
