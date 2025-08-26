@@ -1,0 +1,200 @@
+/* ===================== Modal Container ===================== */
+.modal-dialog {
+  max-width: 600px; /* Largeur réduite */
+  margin: 1.75rem auto; /* Centre la modal verticalement/horizontalement */
+}
+
+.modal-content {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: none;
+  overflow: hidden;
+
+  max-height: 80vh; /* Limite la hauteur de la modal */
+  overflow-y: auto; /* Active le scroll vertical */
+}
+
+/* ===================== Modal Header ===================== */
+/* .modal-header {
+  background-color: #1e1666; /* Bleu foncé */
+  /* color: #fff;
+  padding: 15px 20px; } */
+  
+/* Décaler le modal un peu vers le bas */
+::ng-deep .cdk-global-overlay-wrapper {
+  align-items: flex-start !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+  margin-top: 65px !important;
+}
+
+
+
+.modal-title {
+ font-size: 24px;
+    font-weight: 600;
+    color: #1e1666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-header .close {
+  color: #fff;
+  font-size: 24px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.modal-header .close:hover {
+  opacity: 1;
+}
+
+/* ===================== Modal Body ===================== */
+.modal-body {
+  /* padding: 25px; */
+  background-color: #fff;
+}
+
+/* ===================== Form Group ===================== */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1e1666;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ===================== Inputs & Selects ===================== */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c2c3c5;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #22a4d9; /* Bleu clair */
+  outline: none;
+  background-color: #fff;
+}
+
+/* Multi-select limité avec scroll */
+#processus {
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+/* ===================== Modal Footer ===================== */
+/* .modal-footer {
+  padding: 15px 20px;
+  background-color: #f5f6f8;
+  border-top: 1px solid #ddd;
+} */
+
+/* ===================== Buttons ===================== */
+.btn-primary {
+  background-color: #22a4d9;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #187398;
+}
+
+.btn-primary:active {
+  background-color: #1e1666;
+}
+
+.btn-secondary {
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 15px;
+}
+
+/* ===================== Scrollbar stylée ===================== */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #22a4d9; /* Bleu clair */
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: #187398;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 95%; /* Plus compact sur mobile */
+    margin: 1rem auto;
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+}
+
+/* ===================== Dialog Container ===================== */
+.mat-dialog-container {
+  max-width: 600px !important;   /* Largeur max */
+  width: 90% !important;         /* Responsive */
+  max-height: 80vh !important;   /* Hauteur max (80% écran) */
+  height: auto !important;
+
+  overflow-y: auto !important;   /* Scroll vertical */
+  overflow-x: hidden !important; /* Pas de scroll horizontal */
+
+  border-radius: 12px !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  padding: 20px;
+}
+
+/* ===================== Scrollbar stylée ===================== */
+.mat-dialog-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mat-dialog-container::-webkit-scrollbar-thumb {
+  background-color: #22a4d9; /* Bleu clair */
+  border-radius: 10px;
+}
+
+.mat-dialog-container::-webkit-scrollbar-thumb:hover {
+  background-color: #187398;
+}
+
+.mat-dialog-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 576px) {
+  .mat-dialog-container {
+    max-width: 95% !important;
+    max-height: 75vh !important;
+    padding: 15px;
+  }
+}
