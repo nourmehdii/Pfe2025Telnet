@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 
 interface GeminiResponse {
   candidates: Array<{
@@ -21,8 +20,15 @@ export class GeminiService {
   constructor(private http: HttpClient) {}
 
   askGemini(message: string): Observable<string> {
-    return this.http.post<GeminiResponse>(this.baseUrl, { message }).pipe(
-      map(response => response.candidates[0].content.parts[0].text)
+    const token = localStorage.getItem('token'); // remplace par la bonne clé
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<GeminiResponse>(this.baseUrl, { message }, { headers }).pipe(
+      map(response => response.candidates?.[0]?.content?.parts?.[0]?.text || 'Aucune réponse')
     );
   }
 }

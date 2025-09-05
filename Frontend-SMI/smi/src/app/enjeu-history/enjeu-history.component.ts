@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { EnjeuxService } from '../services/enjeux.service';
 import { UserserviceService } from '../services/userservice.service';
 import { Enjeu } from '../model/Enjeu.model';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { EnjeuHistoryAvecFiltre } from '../model/EnjeuHistory';
 
 export interface EnjeuState {
@@ -57,12 +59,20 @@ export class EnjeuHistoryComponent implements OnInit {
     attentesPartiesPrenantes: 'Attentes Parties Prenantes',
     description: 'Nom de l\'enjeu',
     poids: 'Poids',
-    creePar: 'Créé par',
-    dateCreation: 'Date de création',
-    dateModification: 'Date de modification',
+    // Les 3 colonnes à ignorer sont retirées ici
   };
 
-  ignoredKeys = ['id', 'risques', 'opportunites', 'commentaireDerniereModification', 'Enjeu(id)'];
+  // Ajout des 3 colonnes à ignoredKeys pour qu'elles ne s'affichent plus
+  ignoredKeys = [
+    'id',
+    'risques',
+    'opportunites',
+    'commentaireDerniereModification',
+    'Enjeu(id)',
+    'creePar',
+    'dateCreation',
+    'dateModification',
+  ];
 
   constructor(
     private enjeuxService: EnjeuxService,
@@ -149,22 +159,26 @@ export class EnjeuHistoryComponent implements OnInit {
   }
 
   private fetchCadranNames(cadranIds: number[]): void {
-    if (!cadranIds.length) return;
+  if (!cadranIds.length) return;
 
-    const requests: Observable<CadranSource>[] = cadranIds.map(id =>
-      this.userservice.getCadranById(id).pipe(map(c => ({ id, name: c.name })))
-    );
+  const requests: Observable<CadranSource>[] = cadranIds.map(id =>
+    this.userservice.getCadranById(id).pipe(
+      map(c => ({ id, name: c?.name || 'Inconnu' })), // remplace les noms manquants
+      catchError(() => of({ id, name: 'Inconnu' }))    // en cas d'erreur, renvoie un nom par défaut
+    )
+  );
 
-    forkJoin(requests).subscribe({
-      next: (cadrans: CadranSource[]) => {
-        this.cadransSourcesMap = cadrans.reduce((map, cadran) => {
-          map[cadran.id] = cadran.name;
-          return map;
-        }, {} as { [key: number]: string });
-      },
-      error: () => (this.errorMsg = 'Impossible de charger les noms des cadrans'),
-    });
-  }
+  forkJoin(requests).subscribe({
+    next: (cadrans: CadranSource[]) => {
+      this.cadransSourcesMap = cadrans.reduce((map, cadran) => {
+        map[cadran.id] = cadran.name;
+        return map;
+      }, {} as { [key: number]: string });
+    },
+    error: () => (this.errorMsg = 'Impossible de charger les noms des cadrans')
+  });
+}
+
 
   private fetchAttentesNames(attenteIds: number[]): void {
     if (!attenteIds.length) return;

@@ -38,10 +38,11 @@ export class EnjeuxService {
 
   // 🔄 Modifier un enjeu avec commentaire
   updateEnjeu(id: number, enjeu: Enjeu, commentaire: string, role: 'user' | 'admin' = 'user'): Observable<Enjeu> {
-    const headers = this.getHeaders(role);
-    const requestBody = { enjeu, commentaire };
-    return this.http.put<Enjeu>(`${this.baseUrl}/${id}`, requestBody, { headers });
-  }
+  const headers = this.getHeaders(role);
+  const requestBody = { enjeu, commentaire }; // ✅ le payload doit avoir l’id inclus
+  return this.http.put<Enjeu>(`${this.baseUrl}/${id}`, requestBody, { headers });
+}
+
 
   // 🗑️ Supprimer un enjeu
   deleteEnjeu(id: number, role: 'user' | 'admin' = 'user'): Observable<void> {

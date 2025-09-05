@@ -466,3 +466,18 @@ mat-step li {
   margin-left: 6px;
 }
 
+.ia-assist {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loader-overlay {
+  position: absolute;
+  top: 40px;   /* ajuste la hauteur au-dessus du texte */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+

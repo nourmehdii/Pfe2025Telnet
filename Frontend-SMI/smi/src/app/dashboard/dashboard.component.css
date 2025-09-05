@@ -59,17 +59,25 @@
     color: #1e1666;
 }
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(30, 22, 102, 0.08);
+}
   
-  .card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 16px rgba(24, 115, 152, 0.2);
-    z-index: 1;
-  }
+ .card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(24, 115, 152, 0.2);
+  z-index: 1;
+}
   .progress-circle {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+}
+.text-center canvas {
+  max-height: 250px; /* Limite la hauteur du graphique pour un rendu harmonieux */
+  width: 100% !important;
 }
 
 .progress-circle:hover {

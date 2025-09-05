@@ -90,6 +90,8 @@ import { FilterBySearchPipe } from './pipes/filter-by-search.pipe';
 import { AnalyseRoListComponent } from './ro-list/ro-list.component';
 import { AjouterRoComponent } from './ajouter-ro/ajouter-ro.component';
 import { HighlighterrPipe } from './pipes/highlighterr.pipe';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -170,7 +172,7 @@ import { HighlighterrPipe } from './pipes/highlighterr.pipe';
   
   ],
   imports: [
-
+MatProgressSpinnerModule,
 BrowserModule,
   BrowserAnimationsModule,
   AppRoutingModule,

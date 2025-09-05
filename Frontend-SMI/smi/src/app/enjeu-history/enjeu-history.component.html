@@ -174,11 +174,13 @@
         <td>{{ fieldNameMap[key] || key }}</td>
 <td [innerHTML]="formatValue(getValue(history.etatAvant, key), key)"></td>
     <td>
-      <ng-container *ngIf="!areValuesEqual(getFilteredState(history.etatAvant)[key], getFilteredState(history.etatApres)[key]); else noChange">
-<td [innerHTML]="formatValue(getValue(history.etatAvant, key), key)"></td>
-      </ng-container>
-      <ng-template #noChange>Pas de changements pour ce champ</ng-template>
-    </td>
+  <ng-container *ngIf="!areValuesEqual(getFilteredState(history.etatAvant)[key], getFilteredState(history.etatApres)[key]); else noChange">
+    <!-- Affiche bien l'état après -->
+    <span [innerHTML]="formatValue(getValue(history.etatApres, key), key)"></span>
+  </ng-container>
+  <ng-template #noChange>Pas de changements pour ce champ</ng-template>
+</td>
+
   </tr>
 
 </ng-container>

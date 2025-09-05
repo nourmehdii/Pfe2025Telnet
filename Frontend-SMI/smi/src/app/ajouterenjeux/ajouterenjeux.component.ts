@@ -214,26 +214,85 @@ loadEnjeuFromPreload(enjeu: Enjeu): void {
     
   }
 
- openIASupport(): void {
-  if (!this.userPrompt || this.userPrompt.trim() === '') {
-    Swal.fire({ icon: 'warning', title: 'Veuillez entrer une question' });
+
+loading = false;
+
+openIASupport(): void {
+  const cadrans: Cadran[] = this.step1Form.value.cadransSources || [];
+  const attentes: ResultsPip[] = this.step1Form.value.attentesPartiesPrenantes || [];
+
+  const getNamesByType = (type: string) =>
+    cadrans.filter(c => c.type === type).map(c => c.name);
+
+  const forces = getNamesByType('STRENGTH');
+  const faiblesses = getNamesByType('WEAKNESS');
+  const opportunites = getNamesByType('OPPORTUNITY');
+  const menaces = getNamesByType('THREAT');
+  const attentesList = attentes.map(a => a.expectation);
+
+  if (
+    !forces.length &&
+    !faiblesses.length &&
+    !opportunites.length &&
+    !menaces.length &&
+    !attentesList.length
+  ) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Veuillez sélectionner au moins un élément SWOT ou une attente.'
+    });
     return;
   }
 
-  this.aiResponse = 'Chargement...';
+  // Construction du prompt IA
+  const prompt = `
+Prompt de génération d’enjeux stratégiques à partir de données SWOT et d’attentes
 
-  this.geminiService.askGemini(this.userPrompt).subscribe({
+Tu es chargé(e) d’analyser une combinaison de facteurs SWOT (forces, faiblesses, opportunités, menaces) et des attentes des parties prenantes, afin de formuler un enjeu stratégique logique et concis.
+
+Objectif :
+À partir des éléments sélectionnés (au moins une force, une faiblesse, une opportunité, une menace et des attentes), dégage un enjeu stratégique synthétique. Ce dernier doit exprimer un défi ou un levier stratégique pertinent, né de la combinaison logique des éléments fournis.
+
+Structure d’entrée :
+Liste des éléments SWOT sélectionnés :
+
+Force(s) : ${forces.join(', ') || 'Aucune'}
+Faiblesse(s) : ${faiblesses.join(', ') || 'Aucune'}
+Opportunité(s) : ${opportunites.join(', ') || 'Aucune'}
+Menace(s) : ${menaces.join(', ') || 'Aucune'}
+Attente(s) des parties prenantes : ${attentesList.join(', ') || 'Aucune'}
+
+Consignes pour la formulation de l’enjeu :
+Formulation brève, claire et stratégique (1 à 2 phrases maximum)
+Utiliser un langage professionnel
+L’enjeu doit relier de manière cohérente les éléments SWOT avec les attentes
+Il peut comporter un objectif à atteindre ou un problème à résoudre .
+je veux une reponse en deux phrases.
+Exemple de sortie attendue :
+"Accélérer le recrutement tout en capitalisant sur la montée en compétences interne pour faire face à la concurrence et maintenir l’expertise sur le long terme."
+  `;
+
+
+  this.aiResponse = 'Chargement...';
+  this.loading = true; 
+
+  this.geminiService.askGemini(prompt).subscribe({
     next: (response) => {
       this.aiResponse = response;
+      this.step2Form.patchValue({ description: response });
       console.log('Réponse IA:', response);
+      this.loading = false;
     },
     error: (err) => {
       this.aiResponse = 'Erreur lors de la récupération de la réponse.';
       console.error(err);
       Swal.fire({ icon: 'error', title: 'Erreur lors de la requête AI' });
+      this.loading = false; 
     }
   });
 }
+
+
 
 
 }

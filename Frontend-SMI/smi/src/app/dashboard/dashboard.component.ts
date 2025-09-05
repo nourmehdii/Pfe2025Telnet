@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserserviceService } from '../services/userservice.service';
+import { RisqueService } from '../services/risque.service';
+import { OpportuniteService } from '../services/opportunite.service';
 import 'chartjs-plugin-datalabels';
 
 declare var Chart: any;
@@ -13,11 +15,16 @@ export class DashboardComponent implements OnInit {
   projectCountByType: { type: string, count: number }[] = [];
   totalProjetsParClient: { client: string, count: number }[] = [];
   analyseCountsByProject: { projectId: number, count: number }[] = [];
-  
+
+  // Pour Risques / Opportunités
+  risqueCount: number = 0;
+  opportuniteCount: number = 0;
 
   constructor(
     private projectService: UserserviceService,
-    private analyseService: UserserviceService
+    private analyseService: UserserviceService,
+    private risqueService: RisqueService,
+    private opportuniteService: OpportuniteService
   ) { }
 
   ngOnInit(): void {
@@ -25,8 +32,12 @@ export class DashboardComponent implements OnInit {
     this.getAnalyseCountAndCreateChartForAllProjects();
     this.getTotalProjetsParType();
     this.createPieChart();
+
+    // Charger Risques et Opportunités
+    this.loadRisquesEtOpportunites();
   }
 
+  // ------------------ Projets / Analyses ------------------
   getTotalProjetsParClient(): void {
     this.projectService.getTotalProjetsParClient()
       .subscribe(
@@ -37,9 +48,7 @@ export class DashboardComponent implements OnInit {
           }));
           this.createBarChart();
         },
-        (error: any) => {
-          console.error('Erreur lors de la récupération des total projets par client:', error);
-        }
+        (error: any) => { console.error(error); }
       );
   }
 
@@ -47,101 +56,28 @@ export class DashboardComponent implements OnInit {
     this.projectService.getTotalProjetsParType()
       .subscribe(
         (data: Map<string, number>) => {
-          console.log('Data received for pie chart:', data); // Vérifiez les données reçues
           this.projectCountByType = Array.from(data.entries()).map(([type, count]) => ({ type, count }));
-          this.createPieChart(); // Appel pour créer le graphique après la récupération des données
+          this.createPieChart();
         },
-        (error: any) => {
-          console.error('Erreur lors de la récupération des projets par type:', error);
-        }
+        (error: any) => { console.error(error); }
       );
   }
 
   createBarChart(): void {
     const canvas: any = document.getElementById('bar-chart');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
-  
-    if (!ctx) {
-      console.error('Context of bar-chart canvas not found');
-      return;
-    }
-  
+    if (!ctx) return;
+
     const labels = this.totalProjetsParClient.map(item => item.client);
     const data = this.totalProjetsParClient.map(item => item.count);
-  
+
     new Chart(ctx, {
       type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Total projets par client',
-          data: data,
-          backgroundColor: (context: any) => {
-            const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 300);
-            gradient.addColorStop(0, '#22a4D9'); // Bleu clair
-            gradient.addColorStop(1, '#187398'); // Bleu foncé
-            return gradient;
-          },
-          borderRadius: 8, // coins arrondis
-          hoverBackgroundColor: '#1e1666',
-          borderSkipped: false // évite l'effet de bord dur
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: '#444', // Couleur du texte sur l’axe Y
-              font: {
-                size: 12,
-                weight: '500'
-              }
-            },
-            grid: {
-              drawBorder: false,
-              color: '#e0e0e0'
-            }
-          },
-          x: {
-            ticks: {
-              color: '#444',
-              font: {
-                size: 12,
-                weight: '500'
-              }
-            },
-            grid: {
-              display: false
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: '#1e1666',
-            titleFont: { size: 13 },
-            bodyFont: { size: 12 }
-          },
-          datalabels: {
-            anchor: 'end',
-            align: 'top',
-            formatter: (value: any) => value,
-            color: '#1e1666',
-            font: {
-              weight: 'bold',
-              size: 11
-            }
-          }
-        }
-      },
+      data: { labels, datasets: [{ label: 'Total projets par client', data, backgroundColor: '#22a4D9' }] },
+      options: { responsive: true, maintainAspectRatio: false }
     });
   }
-  
 
   getAnalyseCountAndCreateChartForAllProjects(): void {
     this.projectService.getProjectList()
@@ -149,169 +85,96 @@ export class DashboardComponent implements OnInit {
         (projects: any[]) => {
           projects.forEach(project => {
             this.analyseService.countAnalysesForProject(project.id)
-              .subscribe(
-                (count: number) => {
-                  this.analyseCountsByProject.push({ projectId: project.id, count: count });
-                  if (this.analyseCountsByProject.length === projects.length) {
-                    this.createDoughnutChart();
-                  }
-                },
-                (error: any) => {
-                  console.error('Erreur lors de la récupération du nombre d\'analyses pour le projet:', error);
+              .subscribe(count => {
+                this.analyseCountsByProject.push({ projectId: project.id, count });
+                if (this.analyseCountsByProject.length === projects.length) {
+                  this.createDoughnutChart();
                 }
-              );
+              });
           });
-        },
-        (error: any) => {
-          console.error('Erreur lors de la récupération des projets:', error);
         }
       );
   }
 
   createDoughnutChart(): void {
     const canvas: any = document.getElementById('doughnut-chart');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
-  
-    if (!ctx) {
-      console.error('Context of doughnut-chart canvas not found');
-      return;
-    }
-  
-    // 🔒 Données statiques temporaires pour l’affichage
+    if (!ctx) return;
+
     const labels = ['Projet 1', 'Projet 2', 'Projet 3', 'Projet 4'];
     const data = [6, 4, 3, 2];
-  
+
     new Chart(ctx, {
       type: 'doughnut',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: data,
-          backgroundColor: [
-            '#22a4D9', '#187398', '#C5ECF6', '#1e1666'
-          ],
-          hoverBackgroundColor: [
-            '#187398', '#22a4D9', '#A0DFF4', '#282066'
-          ],
-          borderColor: '#fff',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '55%',
-        plugins: {
-          legend: {
-            display: true,
-            position: 'right',
-            labels: {
-              color: '#333',
-              padding: 12,
-              font: {
-                size: 12,
-                family: 'Poppins',
-                weight: '500'
-              }
-            }
-          },
-          tooltip: {
-            backgroundColor: '#1e1666',
-            titleColor: '#fff',
-            bodyColor: '#fff'
-          },
-          datalabels: {
-            formatter: (value: number, context: any) => {
-              const total = context.chart.data.datasets[0].data.reduce((a: number, b: number) => a + b, 0);
-              const percentage = ((value / total) * 100).toFixed(1) + '%';
-              return percentage;
-            },
-            color: '#fff',
-            font: {
-              size: 11,
-              weight: 'bold'
-            }
-          }
-        }
-      },
+      data: { labels, datasets: [{ data, backgroundColor: ['#22a4D9', '#187398', '#C5ECF6', '#1e1666'] }] },
+      options: { responsive: true, maintainAspectRatio: false }
     });
   }
-  
 
   createPieChart(): void {
     const canvas: any = document.getElementById('pie-chart');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
-  
-    if (!ctx) {
-      console.error('Context of pie-chart canvas not found');
-      return;
-    }
-  
+    if (!ctx) return;
+
     const labels = ['Régie', 'Forfait'];
     const data = [4, 2];
-  
-    // 🎨 Création de dégradés élégants
+
     const gradientRegie = ctx.createLinearGradient(0, 0, 200, 200);
     gradientRegie.addColorStop(0, '#22a4D9');
     gradientRegie.addColorStop(1, '#c5ecf6');
-  
+
     const gradientForfait = ctx.createLinearGradient(0, 0, 200, 200);
     gradientForfait.addColorStop(0, '#187398');
     gradientForfait.addColorStop(1, '#1e1666');
-  
+
     new Chart(ctx, {
       type: 'pie',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: data,
-          backgroundColor: [gradientRegie, gradientForfait],
-          borderColor: '#ffffff',
-          borderWidth: 2,
-          hoverOffset: 10
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: {
-          animateScale: true,
-          duration: 1000,
-          easing: 'easeOutQuint' // ✨ Animation fluide
-        },
-        plugins: {
-          legend: {
-            display: true,
-            position: 'right',
-            labels: {
-              color: '#333',
-              font: {
-                family: 'Segoe UI, sans-serif', // ✅ Typo élégante
-                size: 12,
-                weight: '600'
-              },
-              usePointStyle: true,
-              padding: 16
-            }
-          },
-          datalabels: {
-            formatter: (value: any) => {
-              const total = data.reduce((a: number, b: number) => a + b, 0);
-              return ((value / total) * 100).toFixed(1) + '%';
-            },
-            color: '#fff',
-            font: {
-              family: 'Segoe UI',
-              weight: 'bold',
-              size: 13
-            },
-            textShadowBlur: 4,
-            textShadowColor: '#000'
-          }
-        }
-      },
+      data: { labels, datasets: [{ data, backgroundColor: [gradientRegie, gradientForfait] }] },
+      options: { responsive: true, maintainAspectRatio: false }
     });
   }
-  
-  
+
+  // ------------------ Risques / Opportunités ------------------
+  loadRisquesEtOpportunites(): void {
+    let risquesLoaded = false;
+    let opportunitesLoaded = false;
+
+    this.risqueService.getRisques().subscribe(data => {
+      this.risqueCount = data.length;
+      risquesLoaded = true;
+      if (risquesLoaded && opportunitesLoaded) this.createRisquesOpportunitesChart();
+    });
+
+    this.opportuniteService.getOpportunites().subscribe(data => {
+      this.opportuniteCount = data.length;
+      opportunitesLoaded = true;
+      if (risquesLoaded && opportunitesLoaded) this.createRisquesOpportunitesChart();
+    });
+  }
+
+  createRisquesOpportunitesChart(): void {
+    const canvas: any = document.getElementById('risques-opportunites-chart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const labels = ['Risques', 'Opportunités'];
+    const data = [this.risqueCount, this.opportuniteCount];
+
+    const gradientRisques = ctx.createLinearGradient(0, 0, 200, 200);
+    gradientRisques.addColorStop(0, '#22a4D9');
+    gradientRisques.addColorStop(1, '#c5ecf6');
+
+    const gradientOpportunites = ctx.createLinearGradient(0, 0, 200, 200);
+    gradientOpportunites.addColorStop(0, '#187398');
+    gradientOpportunites.addColorStop(1, '#1e1666');
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: { labels, datasets: [{ data, backgroundColor: [gradientRisques, gradientOpportunites] }] },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+  }
 }
